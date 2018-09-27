@@ -33,6 +33,19 @@ public abstract class WorldObject {
 	// new instance of required properties to avoid
 	// unintended aliasing
 
+	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description ){
+		this.xPos=xPos;
+		this.yPos=yPos;
+		this.zPos=zPos;
+		this.xWidth=xWidth;
+		this.yHeight=yHeight;
+		this.zWidth=zDepth;
+		this.name=Name;
+		this.description=Description;
+	}
+
+	public WorldObject() {}
+
 	@XmlElement
 	public int getX(){
 		return new Integer(xPos);
