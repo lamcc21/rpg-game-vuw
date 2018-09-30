@@ -10,27 +10,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 class InventoryPane extends JPanel{
-  private BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RoneItemtwo = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RoneItemthree = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage firstkey = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RoneItemtwo = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RoneItemthree = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage firstkey = ImageIO.read(getClass().getResource("black.png"));
 
-  private BufferedImage RtwoItemone = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RtwoItemtwo = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RtwoItemthree = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage secondkey = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RtwoItemone = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RtwoItemtwo = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RtwoItemthree = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage secondkey = ImageIO.read(getClass().getResource("black.png"));
 
-  private BufferedImage RthreeItemone = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RthreeItemtwo = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage RthreeItemthree = ImageIO.read(getClass().getResource("black.png"));
-  private BufferedImage threekey = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RthreeItemone = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RthreeItemtwo = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage RthreeItemthree = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage threekey = ImageIO.read(getClass().getResource("black.png"));
 
   private JLabel[][] inventoryItems;
 
   InventoryPane() throws IOException {
-    setSize(500,80);
     inventoryItems = new JLabel[1][5];
     setLayout(new GridLayout(1,10));
+    setBackground(Color.DARK_GRAY);
+    setPreferredSize(new Dimension(500,50));
 
     for(int i=0; i<inventoryItems.length; i++){
       for(int j=0; j<inventoryItems[0].length; j++){
@@ -53,8 +54,7 @@ class InventoryPane extends JPanel{
   private MouseListener MyMouseListener(){
     return new MouseListener() {
       @Override
-      public void mouseClicked(MouseEvent e1) {
-      }
+      public void mouseClicked(MouseEvent e1) {}
 
       @Override
       public void mousePressed(MouseEvent e1) {}

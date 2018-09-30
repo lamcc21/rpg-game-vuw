@@ -15,7 +15,7 @@ public class CanvasPane extends JPanel {
   GameWorld.Direction perspective;
 
   public CanvasPane(GameWorld gameWorld) {
-    setPreferredSize(new Dimension(800,600));
+    setPreferredSize(new Dimension(800, 600));
     this.gameWorld = gameWorld;
     //perspective = GameWorld.getPlayer().getPerspective();
   }
@@ -25,21 +25,21 @@ public class CanvasPane extends JPanel {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
     g2d.setColor(Color.BLACK);
-    g2d.drawRect(300, 150, 200,140);
-    g2d.drawLine(0,0,300,150);
-    g2d.drawLine(0,600,300,290);
-    g2d.drawLine(800,0,500,150);
-    g2d.drawLine(800,600,500,290);
+    g2d.drawRect(300, 150, 200, 140);
+    g2d.drawLine(0, 0, 300, 150);
+    g2d.drawLine(0, 600, 300, 290);
+    g2d.drawLine(800, 0, 500, 150);
+    g2d.drawLine(800, 600, 500, 290);
   }
 
-  public void drawRoom(Graphics g){
+  public void drawRoom(Graphics g) {
     drawSurfaces(g);
     drawObjects(g);
   }
 
-  private void drawSurfaces(Graphics g){
+  private void drawSurfaces(Graphics g) {
     /*Wall backWall = null;
-    switch (perspective){
+    switch (perspective) {
       case NORTH:
         backWall = Room.getWalls().get(SOUTH);
         break;
@@ -53,18 +53,18 @@ public class CanvasPane extends JPanel {
         backWall = Room.getWalls().get(EAST);
         break;
     }
-    if(backWall.isVisible()){
+    if (backWall.isVisible()) {
       //draw wall
     }*/
   }
 
-  private void drawObjects(Graphics g){
+  private void drawObjects(Graphics g) {
     /*for(WorldObject object: gameWorld.getRoom()){
       drawObject(object);
     }*/
   }
 
-  private void drawObject(WorldObject object){
+  private void drawObject(WorldObject object) {
     /*int objectDistance = object.getDistance();
     if(object.isVisible()) {
       //draw object
