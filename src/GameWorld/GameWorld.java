@@ -16,6 +16,39 @@ public class GameWorld {
 
 	//if there are any other ideas let me know.
 
+	/**
+	 * Set all getters and setters to static to allow Rendered to handle objects
+	 * hopefully it doent cause any problems
+	 */
+
+	static Player player;
+	static Room room;
+
+	public GameWorld(Player p , Room R) {
+		player=p;
+		room=R;
+	}
+
+	public GameWorld() {}
+
+	@XmlElement
+	public static Player getPlayer() {
+		return player;
+	}
+
+	public static void setPlayer(Player p) {
+		player=p;
+	}
+
+	@XmlElement
+	public static Room getRoom() {
+		return room;
+	}
+
+	public static void setRoom(Room r) {
+		room=r;
+	}
+
 	public enum Direction{
 		NORTH,
 		EAST,

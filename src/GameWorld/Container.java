@@ -29,4 +29,8 @@ public class Container extends WorldObject {
 		this.contents=contents;
 	}
 
+	public boolean canContain(WorldObject ob) {
+		return(this.xWidth>ob.xWidth && this.yHeight>ob.yHeight && this.zWidth>ob.zWidth);
+	}
+
 }
