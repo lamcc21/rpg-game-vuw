@@ -113,8 +113,8 @@ public class CanvasPane extends JPanel {
         int[] doorX = {350, 450, 450, 350};
         int[] doorY = {225, 225, 400, 400};
         Polygon door = new Polygon(doorX, doorY, 4);
-        Color gold = new Color( 193, 184, 95);
-        g2d.setColor(gold);
+        Color doorColor = new Color( 193, 184, 95);
+        g2d.setColor(doorColor);
         g2d.fillPolygon(door);
         g2d.setColor(Color.black);
         g2d.drawPolygon(door);
