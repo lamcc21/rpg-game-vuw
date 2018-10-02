@@ -76,4 +76,22 @@ public class Player {
 
 	}
 
+	/**
+	 * method for unlocking a door, unsure if we need anything for locking a door again;
+	 * @param door
+	 */
+	public void unlock(Door door) {
+		if (inventory.contains(door.key)) {
+			door.setIsLocked(false);
+		}
+	}
+	/**
+	 * Method to return a string containing the description of an object
+	 * when a player examines it
+	 * @param object
+	 * @return
+	 */
+	public String examineObject(WorldObject object) {
+		return object.getDescription();
+	}
 }
