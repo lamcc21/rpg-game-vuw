@@ -17,13 +17,15 @@ public class CanvasPane extends JPanel {
     private Color RED = Color.red;
     private Color GREEN = Color.green;
 
-    private GameWorld gameWorld;
-    GameWorld.Direction perspective;
+    private Room room;
+    private Player player;
+    private GameWorld.Direction perspective;
 
     public CanvasPane(GameWorld gameWorld) {
         setPreferredSize(new Dimension(800, 600));
-        this.gameWorld = gameWorld;
-        //perspective = GameWorld.getPlayer().getPerspective();
+        this.room = GameWorld.getRoom();
+        this.player = GameWorld.getPlayer();
+        //this.perspective = player.getPerspective();
     }
 
     @Override
@@ -43,6 +45,7 @@ public class CanvasPane extends JPanel {
 
         HashMap<Polygon, GradientPaint> polygonGradientMap = new HashMap<>();
 
+        //set foreground / background colors (instead of hardcoding this, change it to get the color from GameWorld)
         Color foregroundColor = new Color(220, 255, 255);
         Color backgroundColor = Color.WHITE;
 
@@ -88,7 +91,7 @@ public class CanvasPane extends JPanel {
 
         //draw surfaces and angles
         fillPolygons(g2d, polygonGradientMap);
-        drawDoor(g2d);
+        drawDoors(g2d, room);
         drawAngles(g2d);
     }
 
@@ -108,18 +111,44 @@ public class CanvasPane extends JPanel {
         }
     }
 
-    private void drawDoor(Graphics2D g2d){
+    private void drawDoors(Graphics2D g2d, Room room){
         //construct door polygon and gradient
-        int[] doorX = {350, 450, 450, 350};
-        int[] doorY = {225, 225, 400, 400};
-        Polygon door = new Polygon(doorX, doorY, 4);
-        Color doorColor = new Color( 193, 184, 95);
-        g2d.setColor(doorColor);
-        g2d.fillPolygon(door);
-        g2d.setColor(Color.black);
-        g2d.drawPolygon(door);
-        g2d.fillOval(430,325, 10, 10);
 
+        //set respective door colors (instead of hardcoding this, get the color from GameWorld)
+        Color backDoorColor = new Color( 193, 184, 95);
+
+        //left door
+        //if room.leftWall.hasDoor(){
+        int[] leftDoorX = {50, 100, 100, 50};
+        int[] leftDoorY = {466, 433, 225, 208};
+        Polygon leftDoor = new Polygon(leftDoorX, leftDoorY, 4);
+        g2d.setColor(backDoorColor);
+        g2d.fillPolygon(leftDoor);
+        g2d.setColor(Color.black);
+        g2d.drawPolygon(leftDoor);
+        g2d.fillOval(85, 350, 8, 10); //left knob
+
+        //back door
+        //if room.backWall.hasDoor(){
+        int[] backDoorX = {350, 450, 450, 350};
+        int[] backDoorY = {225, 225, 400, 400};
+        Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
+        g2d.setColor(backDoorColor);
+        g2d.fillPolygon(backDoor);
+        g2d.setColor(Color.black);
+        g2d.drawPolygon(backDoor);
+        g2d.fillOval(430,325, 10, 10); //back knob
+
+        //right door
+        //if room.rightWall.hasDoor(){
+        int[] rightDoorX = {700, 750, 750, 700};
+        int[] rightDoorY = {433, 466, 208, 225};
+        Polygon rightDoor = new Polygon(rightDoorX, rightDoorY, 4);
+        g2d.setColor(backDoorColor);
+        g2d.fillPolygon(rightDoor);
+        g2d.setColor(Color.black);
+        g2d.drawPolygon(rightDoor);
+        g2d.fillOval(735, 350, 8, 10); //right knob
     }
 
     private void drawSurfaces(Graphics g) {
