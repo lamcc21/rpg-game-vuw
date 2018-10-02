@@ -12,8 +12,8 @@ import GameWorld.GameWorld.Direction;
 
 /**
  * added to the room class;
- * certain methods have to be static to allow the rendered to work. will update
- * @author rauretfran
+ * certain methods have to be static to allow the renderer to work. will update
+ * @author francis raureti
  *
  */
 
@@ -23,6 +23,7 @@ public class Room {
 	static List<WorldObject> contents;
 	static Map<Direction,Room>neighbors;
 	static Map<Direction,Wall>walls;
+
 
 	public Room(List<WorldObject> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
 		this.contents=contents;
@@ -36,7 +37,7 @@ public class Room {
 	public List<WorldObject> getContents(){
 		return new ArrayList<WorldObject>(this.contents);
 	}
-	@SuppressWarnings("static-access")
+
 	public void setContents(List<WorldObject> contents) {
 		this.contents=contents;
 	}
@@ -46,13 +47,13 @@ public class Room {
 		return new HashMap<Direction,Room>(this.neighbors);
 	}
 
-	@SuppressWarnings("static-access")
+
 	public void setNeighbors(Map<Direction,Room>  neighbors) {
 		this.neighbors=neighbors;
 	}
 
 	@XmlElement
-	public Map<Direction,Wall> getWalls(){
+	public static Map<Direction,Wall> getWalls(){
 		return new HashMap<Direction,Wall>(walls);
 	}
 
@@ -62,6 +63,38 @@ public class Room {
 
 	public Wall getWall(Direction d) {
 		return walls.get(d);
+	}
+
+
+	/**
+	 * method for checking if room has neighbor in a particular direction
+	 * @param Direction d
+	 * @return true/false
+	 */
+	public boolean hasNeighbor(Direction d) {
+		if(neighbors.get(d)!=null) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * method for iterating through room nodes and returning a list
+	 * ------MUST BE PASSED AN EMPTY LIST AS INITIAL CONDITION-----
+	 * @param EMPTY - ArrayList<Room>
+	 * @return nice list of rooms
+	 */
+	public List<Room> getRooms(List<Room> rooms){
+		rooms.add(this);
+		for(Direction d : Direction.values()) {
+			if(hasNeighbor(d)) {
+				Room neighbor =neighbors.get(d);
+				if(!rooms.contains(neighbor)) {
+					neighbor.getRooms(rooms);
+				}
+			}
+		}
+		return rooms;
 	}
 
 }
