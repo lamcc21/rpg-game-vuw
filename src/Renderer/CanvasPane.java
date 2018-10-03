@@ -173,9 +173,9 @@ public class CanvasPane extends JPanel {
     }
 
     private void drawObjects(Graphics g) {
-        /*for(WorldObject object: gameWorld.getRoom()){
+        for(WorldObject object: GameWorld.getRoom().getContents()){
           drawObject(object);
-        }*/
+        }
     }
 
     private void drawObject(WorldObject object) {
