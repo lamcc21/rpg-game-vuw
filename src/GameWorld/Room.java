@@ -13,6 +13,7 @@ import GameWorld.GameWorld.Direction;
 /**
  * added to the room class;
  * certain methods have to be static to allow the renderer to work. will update
+ * Making default room size 10
  * @author francis raureti
  *
  */
@@ -20,10 +21,11 @@ import GameWorld.GameWorld.Direction;
 @XmlRootElement
 public class Room {
 
+	static final int SIZE = 10;
+
 	static List<WorldObject> contents;
 	static Map<Direction,Room>neighbors;
 	static Map<Direction,Wall>walls;
-
 
 	public Room(List<WorldObject> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
 		this.contents=contents;
