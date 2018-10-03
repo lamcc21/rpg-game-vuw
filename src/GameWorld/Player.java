@@ -73,7 +73,9 @@ public class Player {
 	// can player only pick up keys or will there be other objects that can be picked up?
 	// need to discuss further before implementing
 	public void pickUp(WorldObject ob) {
-
+		// if object can be picked up
+		// if inventory not full
+		// add object
 	}
 
 	/**
@@ -85,6 +87,16 @@ public class Player {
 			door.setIsLocked(false);
 		}
 	}
+
+	/**
+	 * method for moving character to another room
+	 * @param d
+	 */
+	public void moveRoom(Direction d) {
+
+		setLocation(location.getNeighbors().get(d));
+	}
+
 	/**
 	 * Method to return a string containing the description of an object
 	 * when a player examines it
