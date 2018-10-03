@@ -4,13 +4,22 @@ package Renderer;
  * For SWEN225 Group Project - Lachlan Mears
  */
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import GameWorld.*;
 
-public class CanvasPane extends JPanel {
+public class CanvasPane extends JPanel implements MouseListener{
+
+    private ArrayList<Point> allPointsInObjects = new ArrayList<>();
 
     // color fields
     private Color BLUE = Color.blue;
@@ -25,8 +34,13 @@ public class CanvasPane extends JPanel {
         setPreferredSize(new Dimension(800, 600));
         this.room = GameWorld.getRoom();
         this.player = GameWorld.getPlayer();
+        this.addMouseListener(this);
         //this.perspective = player.getPerspective();
     }
+
+    //public Dimension getPreferredSize() {
+        //return box == null ? new Dimension(100, 100) : new Dimension(box.getWidth(this), box.getHeight(this));
+    //}
 
     @Override
     public void paintComponent(Graphics g) {
@@ -34,11 +48,33 @@ public class CanvasPane extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         drawRoom(g2d, g);
         constructPolygonGradientMap(g2d);
+        drawBufferedImages(g2d);
+    }
+
+    private void drawBufferedImages(Graphics2D g2d) {
+        //test method for drawing 2d box png in 3d
+        try {
+            BufferedImage img = ImageIO.read(new File("/home/mearslach/Desktop/SWEN225/SWEN225-Group-Project/src/Renderer/Sprites/Crate.png"));
+            int y = 420;
+            for(int x = 170; x <= 700; x += 205) {
+                    g2d.drawImage(img, x, y, 50, 50, null);
+                    //add all coordinates inside each box to the arraylist to allow for detectable clicks
+                    Rectangle bound = new Rectangle(x, y, 50, 50); //potentially use rectangles for bounding box instead of 2d point arrays
+                    for(int a = x; a <= x + 50; a++){
+                        for(int b = y; b <= y + 50; b++){
+                            Point boundingBox = new Point(a, b);
+                            allPointsInObjects.add(boundingBox);
+                        }
+                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void drawRoom(Graphics2D g2d, Graphics g) {
         drawSurfaces(g);
-        drawObjects(g);
+        //drawObjects(g);
     }
 
     private void constructPolygonGradientMap(Graphics2D g2d){
@@ -172,16 +208,45 @@ public class CanvasPane extends JPanel {
         }*/
     }
 
-    private void drawObjects(Graphics g) {
+    /*private void drawObjects(Graphics g) {
         for(WorldObject object: GameWorld.getRoom().getContents()){
           drawObject(object);
         }
-    }
+    }*/
 
     private void drawObject(WorldObject object) {
         /*int objectDistance = object.getDistance();
         if(object.isVisible()) {
           //draw object
         }*/
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        for(Point p : allPointsInObjects){
+            if(p.getX() == e.getX() && p.getY() == e.getY()){
+                System.out.println("Box click detected");
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
