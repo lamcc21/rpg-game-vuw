@@ -2,6 +2,8 @@ package GameWorld;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import GameWorld.GameWorld.Direction;
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -99,6 +101,42 @@ public abstract class WorldObject {
 	public String getDescription() {
 		return new String(description);
 	}
+	/**
+	 * returns distance from viewer depending on viewer perspective
+	 * @param perspective
+	 * @return
+	 */
+	public int getDistance(Direction perspective) {
+		switch(perspective) {
+		case NORTH:
+			return zPos;
+		case SOUTH:
+			return Room.SIZE-zPos;
+		case EAST:
+			return Room.SIZE-xPos;
+		case WEST:
+			return xPos;
+		}
+		return 0;
+	}
 
-
+	/**
+	 * Auxillary method for determining left to right orientaion of objects for
+	 * the renderer
+	 * @param Player perspective
+	 * @return relative position along X axis
+	 */
+	public int getOrientation(Direction perspective) {
+		switch(perspective) {
+		case NORTH:
+			return xPos;
+		case SOUTH:
+			return Room.SIZE-xPos;
+		case EAST:
+			return Room.SIZE-zPos;
+		case WEST:
+			return zPos;
+		}
+		return 0;
+	}
 }
