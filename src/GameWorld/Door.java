@@ -11,7 +11,7 @@ public class Door {
 	boolean isLocked;
 	Color color;
 
-	public Door(boolean isLocked, KeyObject key, Color color) {
+	public Door(boolean isLocked, Color color) {
 		this.isLocked=isLocked;
 		this.color=color;
 	}

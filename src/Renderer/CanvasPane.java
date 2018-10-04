@@ -32,8 +32,8 @@ public class CanvasPane extends JPanel implements MouseListener{
 
     public CanvasPane(GameWorld gameWorld) {
         setPreferredSize(new Dimension(800, 600));
-        this.room = GameWorld.getRoom();
-        this.player = GameWorld.getPlayer();
+        this.room = gameWorld.getRoom();
+        this.player = gameWorld.getPlayer();
         this.addMouseListener(this);
         //this.perspective = player.getPerspective();
     }
