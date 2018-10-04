@@ -74,7 +74,7 @@ public class Player {
 	// need to discuss further before implementing
 	public void pickUp(WorldObject ob) {
 		if(ob instanceof Holdable) {
-			if(inventory.size()<3)
+			if(inventory.size()<5)
 			inventory.add(ob);
 		}
 	}
@@ -94,7 +94,6 @@ public class Player {
 	 * @param d
 	 */
 	public void moveRoom(Direction d) {
-
 		setLocation(location.getNeighbors().get(d));
 	}
 

@@ -3,18 +3,20 @@ package GameWorld;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import GameWorld.GameWorld.Direction;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
 public class Container extends WorldObject {
 
-	private List<WorldObject> contents;
+
 
 	public Container(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
-	String Name,String Description,List<WorldObject> contents ) {
-		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description);
-		this.contents=new ArrayList<WorldObject>(contents);
+	String Name,String Description,Direction direction, List<WorldObject> contents ) {
+		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,direction);
+		this.setContents(contents);
 	}
 
 	public Container() {}
@@ -41,22 +43,5 @@ public class Container extends WorldObject {
 	}
 
 
-	/**
-	 * Method for getting description of container also returns
-	 * names of Objects inside of Container
-	 */
-	@Override
-	public String getDescription() {
-		String s = this.description + "\n";
-		if(contents.isEmpty()) {
-			s = s  +  "Its Empty";
-		}else {
-			s = s + "It contains : \n";
-			for(WorldObject object : contents) {
-				s = s + object.name;
-			}
-		}
-		return s;
-	}
 
 }

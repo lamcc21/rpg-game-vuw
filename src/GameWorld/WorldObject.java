@@ -1,5 +1,8 @@
 package GameWorld;
 
+import java.awt.Color;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,15 +30,19 @@ public abstract class WorldObject {
 	protected int yHeight;
 	protected int zWidth;
 
+	protected Direction direction;
+
 	protected String name;
 	protected String description;
 
+	protected Color color;
+	protected List<WorldObject> contents;
 
 	// All get() methods for World object, returns
 	// new instance of required properties to avoid
 	// unintended aliasing
 
-	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description ){
+	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description,Direction direction ){
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -44,6 +51,7 @@ public abstract class WorldObject {
 		this.zWidth=zDepth;
 		this.name=Name;
 		this.description=Description;
+		this.direction=direction;
 	}
 
 	public WorldObject() {}
@@ -101,6 +109,26 @@ public abstract class WorldObject {
 	public String getDescription() {
 		return new String(description);
 	}
+
+	@XmlElement
+	public Direction getDirection() {
+		return this.direction;
+	}
+
+	public void setDirection(Direction d) {
+		this.direction=d;
+	}
+
+	@XmlElement
+	public List<WorldObject> getContents() throws Exception{
+		return this.contents;
+	}
+
+	public void setContents(List<WorldObject> contents) {
+		this.contents=contents;
+	}
+
+
 	/**
 	 * returns distance from viewer depending on viewer perspective
 	 * @param perspective
