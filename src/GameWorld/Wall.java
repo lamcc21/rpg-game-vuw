@@ -16,6 +16,12 @@ public class Wall {
 		this.direction=d;
 	}
 
+	public Wall(boolean isVisible, Direction direction, Door door) {
+		this.isVisible = isVisible;
+		this.direction = direction;
+		this.door = door;
+	}
+
 	public Wall() {}
 
 	@XmlElement
@@ -34,6 +40,15 @@ public class Wall {
 
 	public void setIsVisible(Boolean b) {
 		isVisible=b;
+	}
+
+	@XmlElement
+	public Door getDoor() {
+		return door;
+	}
+
+	public void setDoor(Door door) {
+		this.door = door;
 	}
 
 	public boolean hasDoor() {
