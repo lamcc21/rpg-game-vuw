@@ -9,12 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Door {
 
 	boolean isLocked;
-	KeyObject key;
 	Color color;
 
 	public Door(boolean isLocked, KeyObject key, Color color) {
 		this.isLocked=isLocked;
-		this.key=key;
 		this.color=color;
 	}
 
@@ -31,15 +29,6 @@ public class Door {
 
 	public void setIsLocked(Boolean b) {
 		isLocked=b;
-	}
-
-	@XmlElement
-	public KeyObject getKey() {
-		return key;
-	}
-
-	public void setKey(KeyObject k) {
-		this.key=k;
 	}
 
 	@XmlElement

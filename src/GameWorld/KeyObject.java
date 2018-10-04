@@ -18,5 +18,11 @@ public class KeyObject extends Holdable {
 		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,d,color);
 	}
 
+	public boolean equals(KeyObject object) {
+		if (this.color==object.getColor()) {
+			return true;
+		}
+		return false;
+	}
 
 }

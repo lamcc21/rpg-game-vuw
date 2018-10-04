@@ -31,7 +31,7 @@ public class Player {
 	  this.xPos=xpos;
 	  this.yPos=ypos;
 	}
-
+//
 	public Player() {};
 
 	/**
@@ -80,8 +80,6 @@ public class Player {
 	/**
 	 * special class methods
 	 */
-
-
 	public void pickUp(WorldObject ob) {
 		if(ob instanceof Holdable) {
 			if(inventory.size()<5)
@@ -94,9 +92,12 @@ public class Player {
 	 * @param door
 	 */
 	public void unlock(Door door) {
-		if (inventory.contains(door.key)) {
-			door.setIsLocked(false);
+		for(WorldObject object : inventory) {
+			if(object instanceof KeyObject) {
+				if(object.getColor().equals(door.getColor()))door.setIsLocked(false);
+			}
 		}
+
 	}
 
 	/**
@@ -127,5 +128,9 @@ public class Player {
 	 */
 	public String examineObject(WorldObject object) {
 		return object.getDescription();
+	}
+
+	public void craftKey() {
+
 	}
 }
