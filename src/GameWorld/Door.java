@@ -18,6 +18,10 @@ public class Door {
 		this.color=color;
 	}
 
+	public Door(boolean isLocked) {
+		this.isLocked=isLocked;
+	}
+
 	public Door() {}
 
 	@XmlElement
