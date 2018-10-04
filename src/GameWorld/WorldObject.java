@@ -139,4 +139,5 @@ public abstract class WorldObject {
 		}
 		return 0;
 	}
+
 }

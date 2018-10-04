@@ -36,4 +36,6 @@ public class Wall {
 		isVisible=b;
 	}
 
+
+
 }

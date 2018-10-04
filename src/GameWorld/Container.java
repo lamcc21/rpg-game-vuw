@@ -32,6 +32,14 @@ public class Container extends WorldObject {
 		return(this.xWidth>ob.xWidth && this.yHeight>ob.yHeight && this.zWidth>ob.zWidth);
 	}
 
+	/**
+	 * adds object to Container
+	 * @param ob
+	 */
+	public void addWorldObject(WorldObject ob) {
+		if(canContain(ob))contents.add(ob);
+	}
+
 
 	/**
 	 * Method for getting description of container also returns

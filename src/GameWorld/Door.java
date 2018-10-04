@@ -1,5 +1,7 @@
 package GameWorld;
 
+import java.awt.Color;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,10 +10,12 @@ public class Door {
 
 	boolean isLocked;
 	KeyObject key;
+	Color color;
 
-	public Door(boolean isLocked, KeyObject key) {
+	public Door(boolean isLocked, KeyObject key, Color color) {
 		this.isLocked=isLocked;
 		this.key=key;
+		this.color=color;
 	}
 
 	public Door() {}
@@ -31,7 +35,15 @@ public class Door {
 	}
 
 	public void setKey(KeyObject k) {
-		this.key=key;
+		this.key=k;
 	}
 
+	@XmlElement
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color c) {
+		this.color=c;
+	}
 }
