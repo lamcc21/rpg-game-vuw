@@ -1,6 +1,6 @@
 package Persistence;
 
-import GameWorld.GameWorld;
+import GameWorld.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -9,6 +9,10 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * For SWEN225 Group Project - Michael Henrys
@@ -16,6 +20,7 @@ import java.io.FileOutputStream;
  * and XML files into GameWorld objects
  */
 public class Persistence {
+
     /**
      * ObjectToXml method takes a GameWorld object and creates an XML file with
      * the name [filename].xml in the project root folder
@@ -24,11 +29,13 @@ public class Persistence {
      */
     public static void ObjectToXml(GameWorld gameWorld, String filename){
         try {
-            JAXBContext context = JAXBContext.newInstance(JAXBTestGame.class);
+            JAXBContext context = JAXBContext.newInstance(GameWorld.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(gameWorld, new FileOutputStream(filename+".xml"));
-        } catch (JAXBException | FileNotFoundException e) {
+            marshaller.marshal(gameWorld, new FileOutputStream(filename));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -50,28 +57,4 @@ public class Persistence {
         return null;
     }
 
-//    public static void main(String[] args){
-//        List<JAXBTestItem> items = new ArrayList<>();
-//        items.add(new JAXBTestItem(2, 2, 3, "Box"));
-//        JAXBTestRoom bedroom = new JAXBTestRoom("bedroom", 1, 1, items);
-//        JAXBTestRoom livingRoom = new JAXBTestRoom("living room", 2, 1, items);
-//        List<JAXBTestRoom> rooms = new ArrayList<>();
-//
-//        rooms.add(bedroom);
-//        rooms.add(livingRoom);
-//
-//        JAXBTestGame game = new JAXBTestGame(rooms);
-//
-//        ObjectToXml(game, "game");
-//
-//        JAXBTestGame game = XmlToObject(new File("game.xml"));
-//        for (JAXBTestRoom room: game.getRooms()) {
-//            System.out.println(room.getName());
-//            System.out.println(room.getX());
-//            System.out.println(room.getY());
-//            for (JAXBTestItem item: room.getItems()) {
-//                System.out.println(item.getName());
-//            }
-//        }
-//    }
 }

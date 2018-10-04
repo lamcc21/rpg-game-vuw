@@ -1,5 +1,7 @@
 package GameWorld;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
@@ -9,50 +11,60 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GameWorld {
 
-	//Planning to organize rooms like a graph where every room is a node
-	//rooms can only be connected to a max of four other rooms, a large
-	//room will consist of two or more rooms with invisible walls connecting
-	//them.
-
-	//if there are any other ideas let me know.
-
-	/**
-	 * Set all getters and setters to static to allow Rendered to handle objects
-	 * hopefully it doent cause any problems
-	 */
-
-	static Player player;
-	static Room room;
-
-	public GameWorld(Player p , Room R) {
-		player=p;
-		room=R;
-	}
-
-	public GameWorld() {}
-
-	@XmlElement
-	public static Player getPlayer() {
-		return player;
-	}
-
-	public static void setPlayer(Player p) {
-		player=p;
-	}
-
-	@XmlElement
-	public static Room getRoom() {
-		return room;
-	}
-
-	public static void setRoom(Room r) {
-		room=r;
-	}
+	private Player player;
+	private Room[][] rooms;
 
 	public enum Direction{
 		NORTH,
 		EAST,
 		SOUTH,
-		WEST
+		WEST;
 	}
+
+	public GameWorld(Player p , Room[][] rooms) {
+		player=p;
+		this.rooms=rooms;
+	}
+
+	public GameWorld() {}
+
+	@XmlElement
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player p) {
+		player=p;
+	}
+
+	@XmlElement
+	public Room getRoom(int x,int y) {
+		return rooms[x][y];
+	}
+
+	public void setRoom(Room[][] rooms) {
+		this.rooms=rooms;
+	}
+
+	public void MovePlayer(Direction d) {
+		if (rooms[player.getX()][player.getY()].hasNeighbor(d, rooms) &&
+				rooms[player.getX()][player.getY()].getWall(d).hasDoor()
+				&& !rooms[player.getX()][player.getY()].getWall(d).door.getIsLocked()) {
+			player.moveRoom(d);
+		}
+	}
+
+	public void pickUp(WorldObject object) {
+		// this returns the list of objects from players perspective and removes object from it
+		rooms[player.getX()][player.getY()].getContents().get(player.getPerspective()).remove(object);
+		player.pickUp(object);
+	}
+
+	public List<WorldObject> getObjectsInView() {
+		return rooms[player.getX()][player.getY()].getContents().get(player.getPerspective());
+	}
+
+
+
+
 }

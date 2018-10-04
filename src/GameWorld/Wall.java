@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Wall {
+
 	boolean isVisible;
 	Direction direction;
 	Door door;
@@ -13,6 +14,12 @@ public class Wall {
 	public Wall(boolean isVisible, Direction d) {
 		this.isVisible=isVisible;
 		this.direction=d;
+	}
+
+	public Wall(boolean isVisible, Direction direction, Door door) {
+		this.isVisible = isVisible;
+		this.direction = direction;
+		this.door = door;
 	}
 
 	public Wall() {}
@@ -34,4 +41,19 @@ public class Wall {
 	public void setIsVisible(Boolean b) {
 		isVisible=b;
 	}
+
+	@XmlElement
+	public Door getDoor() {
+		return door;
+	}
+
+	public void setDoor(Door door) {
+		this.door = door;
+	}
+
+	public boolean hasDoor() {
+		if(door!=null)return true;
+		return false;
+	}
+
 }

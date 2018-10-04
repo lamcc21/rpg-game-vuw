@@ -20,16 +20,18 @@ import GameWorld.GameWorld.Direction;
 @XmlRootElement
 public class Player {
 
-	Direction perspective;
-	List<WorldObject> inventory;
-	Room location;
+	private Direction perspective;
+	private List<WorldObject> inventory;
+	private int xPos;
+	private int yPos;
 
-	public Player(Room room) {
+	public Player(int xpos,int ypos) {
 	  this.perspective=Direction.NORTH;
-	  inventory = new ArrayList<WorldObject>();
-	  this.location = room;
+	  this.inventory = new ArrayList<WorldObject>();
+	  this.xPos=xpos;
+	  this.yPos=ypos;
 	}
-
+//
 	public Player() {};
 
 	/**
@@ -56,19 +58,28 @@ public class Player {
 	}
 
 	@XmlElement
-	public Room getLocation() {
-		return location;
+	public int getX() {
+		return xPos;
 	}
 
-	public void setLocation(Room newLoc) {
-		this.location=newLoc;
+	public void setX(int x) {
+		this.xPos=x;
 	}
+
+	@XmlElement
+	public int getY() {
+		//if there are any other ideas let me know.
+		return this.yPos;
+	}
+
+	public void setY(int y) {
+		this.yPos=y;
+	}
+
 
 	/**
 	 * special class methods
 	 */
-
-
 	public void pickUp(WorldObject ob) {
 		if(ob instanceof Holdable) {
 			if(inventory.size()<5)
@@ -81,9 +92,12 @@ public class Player {
 	 * @param door
 	 */
 	public void unlock(Door door) {
-		if (inventory.contains(door.key)) {
-			door.setIsLocked(false);
+		for(WorldObject object : inventory) {
+			if(object instanceof KeyObject) {
+				if(object.getColor().equals(door.getColor()))door.setIsLocked(false);
+			}
 		}
+
 	}
 
 	/**
@@ -91,7 +105,19 @@ public class Player {
 	 * @param d
 	 */
 	public void moveRoom(Direction d) {
-		setLocation(location.getNeighbors().get(d));
+		switch(d) {
+		case NORTH:
+			setY(yPos-1);
+			break;
+		case WEST:
+			setX(xPos-1);
+			break;
+		case SOUTH:
+			setY(yPos+1);
+			break;
+		case EAST:
+			setX(xPos+1);
+		}
 	}
 
 	/**
@@ -102,5 +128,9 @@ public class Player {
 	 */
 	public String examineObject(WorldObject object) {
 		return object.getDescription();
+	}
+
+	public void craftKey() {
+
 	}
 }
