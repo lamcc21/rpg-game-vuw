@@ -13,8 +13,7 @@ public class JAXBTestGame {
 
     private List<JAXBTestRoom> rooms;
 
-    public JAXBTestGame(){
-    }
+    public JAXBTestGame(){}
 
     public JAXBTestGame(List<JAXBTestRoom> rooms) {
         this.rooms = rooms;

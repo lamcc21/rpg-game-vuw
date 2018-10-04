@@ -1,12 +1,7 @@
 package GameWorld;
 
-import java.awt.Color;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import GameWorld.GameWorld.Direction;
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -30,19 +25,16 @@ public abstract class WorldObject {
 	protected int yHeight;
 	protected int zWidth;
 
-	protected Direction direction;
-
 	protected String name;
+
 	protected String description;
 
-	protected Color color;
-	protected List<WorldObject> contents;
 
 	// All get() methods for World object, returns
 	// new instance of required properties to avoid
 	// unintended aliasing
 
-	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description,Direction direction ){
+	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description ){
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -51,14 +43,13 @@ public abstract class WorldObject {
 		this.zWidth=zDepth;
 		this.name=Name;
 		this.description=Description;
-		this.direction=direction;
 	}
 
 	public WorldObject() {}
 
 	@XmlElement
 	public int getX(){
-		return new Integer(xPos);
+		return xPos;
 	}
 
 	public void setX(int x) {
@@ -67,7 +58,7 @@ public abstract class WorldObject {
 
 	@XmlElement
 	public int getY() {
-		return new Integer(yPos);
+		return yPos;
 	}
 
 	public void setY(int y) {
@@ -76,7 +67,7 @@ public abstract class WorldObject {
 
 	@XmlElement
 	public int getZ() {
-		return new Integer(zPos);
+		return zPos;
 	}
 
 	public void setZ(int z) {
@@ -85,21 +76,21 @@ public abstract class WorldObject {
 
 	@XmlElement
 	public int getWidth(){
-		return new Integer(xWidth);
+		return xWidth;
 	}
 
 	@XmlElement
 	public int getHeight() {
-		return new Integer(yHeight);
+		return yHeight;
 	}
 
 	@XmlElement
 	public int getDepth() {
-		return new Integer(zWidth);
+		return zWidth;
 	}
 	@XmlElement
 	public String getName() {
-		return new String(name);
+		return name;
 	}
 	/**
 	 *
@@ -107,65 +98,6 @@ public abstract class WorldObject {
 	 */
 	@XmlElement
 	public String getDescription() {
-		return new String(description);
+		return description;
 	}
-
-	@XmlElement
-	public Direction getDirection() {
-		return this.direction;
-	}
-
-	public void setDirection(Direction d) {
-		this.direction=d;
-	}
-
-	@XmlElement
-	public List<WorldObject> getContents() throws Exception{
-		return this.contents;
-	}
-
-	public void setContents(List<WorldObject> contents) {
-		this.contents=contents;
-	}
-
-
-	/**
-	 * returns distance from viewer depending on viewer perspective
-	 * @param perspective
-	 * @return
-	 */
-	public int getDistance(Direction perspective) {
-		switch(perspective) {
-		case NORTH:
-			return zPos;
-		case SOUTH:
-			return Room.SIZE-zPos;
-		case EAST:
-			return Room.SIZE-xPos;
-		case WEST:
-			return xPos;
-		}
-		return 0;
-	}
-
-	/**
-	 * Auxillary method for determining left to right orientaion of objects for
-	 * the renderer
-	 * @param Player perspective
-	 * @return relative position along X axis
-	 */
-	public int getOrientation(Direction perspective) {
-		switch(perspective) {
-		case NORTH:
-			return xPos;
-		case SOUTH:
-			return Room.SIZE-xPos;
-		case EAST:
-			return Room.SIZE-zPos;
-		case WEST:
-			return zPos;
-		}
-		return 0;
-	}
-
 }

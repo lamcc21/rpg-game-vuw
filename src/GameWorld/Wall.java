@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Wall {
-
 	boolean isVisible;
 	Direction direction;
 	Door door;
@@ -35,7 +34,4 @@ public class Wall {
 	public void setIsVisible(Boolean b) {
 		isVisible=b;
 	}
-
-
-
 }

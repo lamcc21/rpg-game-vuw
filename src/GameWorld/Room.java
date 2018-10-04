@@ -13,45 +13,39 @@ import GameWorld.GameWorld.Direction;
 /**
  * added to the room class;
  * certain methods have to be static to allow the renderer to work. will update
- * Making default room size 10
  * @author francis raureti
- *
  */
 
 @XmlRootElement
 public class Room {
-
-	static final int SIZE = 10;
-
 	static List<WorldObject> contents;
 	static Map<Direction,Room>neighbors;
 	static Map<Direction,Wall>walls;
 
 	public Room(List<WorldObject> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
-		this.contents=contents;
-		this.neighbors=neighbors;
-		this.walls=walls;
+		Room.contents=contents;
+		Room.neighbors=neighbors;
+		Room.walls=walls;
 	}
 
 	public Room() {}
 
 	@XmlElement
 	public List<WorldObject> getContents(){
-		return new ArrayList<WorldObject>(this.contents);
+		return new ArrayList<WorldObject>(contents);
 	}
 
 	public void setContents(List<WorldObject> contents) {
-		this.contents=contents;
+		Room.contents =contents;
 	}
 
 	@XmlElement
 	public Map<Direction,Room> getNeighbors(){
-		return new HashMap<Direction,Room>(this.neighbors);
+		return new HashMap<Direction,Room>(neighbors);
 	}
 
-
 	public void setNeighbors(Map<Direction,Room>  neighbors) {
-		this.neighbors=neighbors;
+		Room.neighbors =neighbors;
 	}
 
 	@XmlElement
@@ -74,11 +68,8 @@ public class Room {
 	 * @return true/false
 	 */
 	public boolean hasNeighbor(Direction d) {
-		if(neighbors.get(d)!=null) {
-			return true;
-		}
-		return false;
-	}
+    return neighbors.get(d) != null;
+  }
 
 	/**
 	 * method for iterating through room nodes and returning a list

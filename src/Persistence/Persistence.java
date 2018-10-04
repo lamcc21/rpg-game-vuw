@@ -16,7 +16,6 @@ import java.io.FileOutputStream;
  * and XML files into GameWorld objects
  */
 public class Persistence {
-
     /**
      * ObjectToXml method takes a GameWorld object and creates an XML file with
      * the name [filename].xml in the project root folder
@@ -29,9 +28,7 @@ public class Persistence {
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(gameWorld, new FileOutputStream(filename+".xml"));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (JAXBException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -54,7 +51,6 @@ public class Persistence {
     }
 
 //    public static void main(String[] args){
-//
 //        List<JAXBTestItem> items = new ArrayList<>();
 //        items.add(new JAXBTestItem(2, 2, 3, "Box"));
 //        JAXBTestRoom bedroom = new JAXBTestRoom("bedroom", 1, 1, items);
@@ -78,5 +74,4 @@ public class Persistence {
 //            }
 //        }
 //    }
-
 }

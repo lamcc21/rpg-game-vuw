@@ -1,5 +1,9 @@
 package Application;
 
+
+import GameWorld.GameWorld;
+import GameWorld.WorldObject;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -24,37 +28,60 @@ class InventoryPane extends JPanel{
   private final BufferedImage RthreeItemtwo = ImageIO.read(getClass().getResource("black.png"));
   private final BufferedImage RthreeItemthree = ImageIO.read(getClass().getResource("black.png"));
   private final BufferedImage threekey = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage emptyslot = ImageIO.read(getClass().getResource("black.png"));
 
-  private JLabel[][] inventoryItems;
+  private JLabel[] inventoryItems;
 
-  InventoryPane() throws IOException {
-    inventoryItems = new JLabel[1][5];
+  InventoryPane(ArrayList<WorldObject> inventory) throws IOException {
+    inventoryItems = new JLabel[10];
     setLayout(new GridLayout(1,10));
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.anchor = GridBagConstraints.EAST;
+
     setBackground(Color.DARK_GRAY);
     setPreferredSize(new Dimension(500,50));
 
     for(int i=0; i<inventoryItems.length; i++){
-      for(int j=0; j<inventoryItems[0].length; j++){
-        inventoryItems[i][j]= new JLabel();
-        inventoryItems[i][j].setIcon(new ImageIcon(firstkey));
-        inventoryItems[i][j].addMouseListener(MyMouseListener());
-        inventoryItems[i][j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-      }
+        inventoryItems[i]= new JLabel();
+        inventoryItems[i].setIcon(new ImageIcon(firstkey));
+        inventoryItems[i].addMouseListener(MyMouseListener());
+        inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    for(JLabel[] aGameGrid: inventoryItems){
-      for(int y = 0; y<inventoryItems[0].length; y++){
-        add(aGameGrid[y]);
-      }
+    for(JLabel aGameGrid: inventoryItems){
+        add(aGameGrid);
     }
   }
 
-  public void updateInventory(ArrayList items){}
+  public void updateInventory(List items){
+    for(int i=0; i<inventoryItems.length; i++){
+      inventoryItems[i]= new JLabel();
+      inventoryItems[i].setIcon(new ImageIcon(firstkey));
+      inventoryItems[i].setToolTipText();
+      inventoryItems[i].addMouseListener(MyMouseListener());
+      inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+  }
+
+  public BufferedImage getIcon(String itemName){
+    switch(itemName){
+      case "book" : return RoneItemone;
+      case "tree" : return RoneItemthree;
+      default: return emptyslot;
+      //TODO: This is just an example
+    }
+  }
+
+  public String getDescription(){
+    return "";
+  }
 
   private MouseListener MyMouseListener(){
     return new MouseListener() {
       @Override
-      public void mouseClicked(MouseEvent e1) {}
+      public void mouseClicked(MouseEvent e1) {
+
+      }
 
       @Override
       public void mousePressed(MouseEvent e1) {}

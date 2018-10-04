@@ -30,7 +30,7 @@ public class Player {
 	  this.location = room;
 	}
 
-	public Player() {};
+	public Player(){}
 
 	/**
 	 * all getters and setters for fields in class
@@ -67,7 +67,6 @@ public class Player {
 	/**
 	 * special class methods
 	 */
-
 
 	// a question..
 	// can player only pick up keys or will there be other objects that can be picked up?

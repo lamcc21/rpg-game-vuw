@@ -48,13 +48,13 @@ public class CanvasPane extends JPanel implements MouseListener{
         Graphics2D g2d = (Graphics2D) g;
         drawRoom(g2d, g);
         constructPolygonGradientMap(g2d);
-        drawBufferedImages(g2d);
+        //drawBufferedImages(g2d);
     }
 
-    private void drawBufferedImages(Graphics2D g2d) {
+    /*private void drawBufferedImages(Graphics2D g2d) {
         //test method for drawing 2d box png in 3d
         try {
-            BufferedImage img = ImageIO.read(new File("/home/mearslach/Desktop/SWEN225/SWEN225-Group-Project/src/Renderer/Sprites/Crate.png"));
+        //BufferedImage img = ImageIO.read(new File("/home/mearslach/Desktop/SWEN225/SWEN225-Group-Project/src/Renderer/Sprites/Crate.png"));
             int y = 420;
             for(int x = 170; x <= 700; x += 205) {
                     g2d.drawImage(img, x, y, 50, 50, null);
@@ -70,7 +70,7 @@ public class CanvasPane extends JPanel implements MouseListener{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void drawRoom(Graphics2D g2d, Graphics g) {
         drawSurfaces(g);

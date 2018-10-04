@@ -21,15 +21,8 @@ public class GameWorld {
 	 * hopefully it doent cause any problems
 	 */
 
-	private Player player;
-	private Room room;
-
-	public enum Direction{
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST;
-	}
+	static Player player;
+	static Room room;
 
 	public GameWorld(Player p , Room R) {
 		player=p;
@@ -39,24 +32,27 @@ public class GameWorld {
 	public GameWorld() {}
 
 	@XmlElement
-	public Player getPlayer() {
+	public static Player getPlayer() {
 		return player;
 	}
 
-	public void setPlayer(Player p) {
+	public static void setPlayer(Player p) {
 		player=p;
 	}
 
 	@XmlElement
-	public Room getRoom() {
+	public static Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(Room r) {
+	public static void setRoom(Room r) {
 		room=r;
 	}
 
-
-
-
+	public enum Direction{
+		NORTH,
+		EAST,
+		SOUTH,
+		WEST
+	}
 }

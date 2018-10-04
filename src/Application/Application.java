@@ -1,10 +1,14 @@
 package Application;
 import GameWorld.GameWorld;
+import GameWorld.Room;
+import Persistence.Persistence;
 import Renderer.CanvasPane;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
+import javax.xml.bind.annotation.XmlElement;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -13,17 +17,17 @@ import java.io.IOException;
 
 public class Application extends JFrame{
   private boolean gameStarted; //Will be used for start screen
-  private final CanvasPane canvas;
-  private final InventoryPane inventory;
-  private final GameWorld gameWorld;
+  private CanvasPane canvas;
+  private InventoryPane inventory;
+  private GameWorld gameWorld;
+  private File saveFile;
 
   private Application() throws IOException {
     super("Escape the Room");
     setLayout(new GridBagLayout());
-    setResizable(false);
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro",Font.BOLD,15));
 
-    this.gameWorld = new GameWorld();
+    this.gameWorld = createGameWorld(new File("./Persistence/SaveFile.xml"));
     this.canvas = new CanvasPane(gameWorld);
     this.inventory = new InventoryPane();
 
@@ -53,7 +57,6 @@ public class Application extends JFrame{
     add(inventory,gbc);
 
     pack();
-
     setVisible(true);
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +65,12 @@ public class Application extends JFrame{
 
   private void startListening() {
     //TODO: This method will will listen for updates and make changes To inventory/canvas with respective calls
+  }
+
+  private GameWorld createGameWorld(File saveFile){
+    //TODO:if saveFile is empty start new game
+    //TODO:if G
+    return null;
   }
 
   public static void main(String[] args) throws IOException { new Application();}
