@@ -9,16 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GameWorld {
 
-	//Planning to organize rooms like a graph where every room is a node
-	//rooms can only be connected to a max of four other rooms, a large
-	//room will consist of two or more rooms with invisible walls connecting
-	//them.
-
-	//if there are any other ideas let me know.
-
-
 	private Player player;
-	private Room room;
+	private Room[][] rooms;
 
 	public enum Direction{
 		NORTH,
@@ -27,9 +19,9 @@ public class GameWorld {
 		WEST;
 	}
 
-	public GameWorld(Player p , Room R) {
+	public GameWorld(Player p , Room[][] rooms) {
 		player=p;
-		room=R;
+		this.rooms=rooms;
 	}
 
 	public GameWorld() {}
@@ -44,12 +36,18 @@ public class GameWorld {
 	}
 
 	@XmlElement
-	public Room getRoom() {
-		return room;
+	public Room getRoom(int x,int y) {
+		return rooms[x][y];
 	}
 
-	public void setRoom(Room r) {
-		room=r;
+	public void setRoom(Room[][] rooms) {
+		this.rooms=rooms;
+	}
+
+	public void MovePlayer(Player player, Direction d) {
+		if (rooms[player.getX()][player.getY()].hasNeighbor(d, rooms)) {
+			player.moveRoom(d);
+		}
 	}
 
 
