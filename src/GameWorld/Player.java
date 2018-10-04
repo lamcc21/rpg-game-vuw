@@ -69,9 +69,6 @@ public class Player {
 	 */
 
 
-	// a question..
-	// can player only pick up keys or will there be other objects that can be picked up?
-	// need to discuss further before implementing
 	public void pickUp(WorldObject ob) {
 		if(ob instanceof Holdable) {
 			if(inventory.size()<5)

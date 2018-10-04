@@ -1,8 +1,11 @@
 package GameWorld;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,7 +18,7 @@ import GameWorld.GameWorld.Direction;
  *
  */
 @XmlRootElement
-public abstract class WorldObject {
+public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can
 	//follow some sort of conventional approach:"facing north"
@@ -34,6 +37,7 @@ public abstract class WorldObject {
 
 	protected String name;
 	protected String description;
+	private final BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
 
 	protected Color color;
 	protected List<WorldObject> contents;
@@ -42,7 +46,8 @@ public abstract class WorldObject {
 	// new instance of required properties to avoid
 	// unintended aliasing
 
-	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description,Direction direction ){
+	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
+			String Name,String Description,Direction direction )throws IOException{
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -58,7 +63,7 @@ public abstract class WorldObject {
 	 * separate constructor for making objects with color value associated
 	 */
 	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,
-			String Description, Direction direction, Color color ){
+			String Description, Direction direction, Color color )throws IOException{
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -71,7 +76,7 @@ public abstract class WorldObject {
 		this.color=color;
 	}
 
-	public WorldObject() {}
+	public WorldObject() throws IOException{}
 
 	@XmlElement
 	public int getX(){
