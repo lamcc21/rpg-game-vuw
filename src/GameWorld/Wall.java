@@ -36,6 +36,9 @@ public class Wall {
 		isVisible=b;
 	}
 
-
+	public boolean hasDoor() {
+		if(door!=null)return true;
+		return false;
+	}
 
 }

@@ -50,4 +50,6 @@ public class Door {
 	public void setColor(Color c) {
 		this.color=c;
 	}
+
+
 }

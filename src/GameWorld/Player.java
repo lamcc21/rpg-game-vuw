@@ -20,9 +20,9 @@ import GameWorld.GameWorld.Direction;
 @XmlRootElement
 public class Player {
 
-	Direction perspective;
-	List<WorldObject> inventory;
-	Room location;
+	private Direction perspective;
+	private List<WorldObject> inventory;
+	private Room location;
 
 	public Player(Room room) {
 	  this.perspective=Direction.NORTH;

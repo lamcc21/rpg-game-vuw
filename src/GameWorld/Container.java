@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import GameWorld.GameWorld.Direction;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,16 @@ public class Container extends WorldObject {
 		}
 	}
 
+	public Container(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
+	String Name,String Description,Direction direction) throws IOException {
+		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,direction);
+		try {
+			this.setContents(new ArrayList<WorldObject>());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public Container()throws IOException {}
 
 
@@ -38,6 +49,8 @@ public class Container extends WorldObject {
 	public void addWorldObject(WorldObject ob) {
 		if(canContain(ob))contents.add(ob);
 	}
+
+
 
 
 

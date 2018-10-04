@@ -123,10 +123,7 @@ public abstract class WorldObject  {
 	public String getName() {
 		return new String(name);
 	}
-	/**
-	 *
-	 * @return description
-	 */
+
 	@XmlElement
 	public String getDescription() {
 		return new String(description);
@@ -166,16 +163,8 @@ public abstract class WorldObject  {
 	 * @return
 	 */
 	public int getDistance(Direction perspective) {
-		switch(perspective) {
-		case NORTH:
-			return zPos;
-		case SOUTH:
-			return Room.SIZE-zPos;
-		case EAST:
-			return Room.SIZE-xPos;
-		case WEST:
-			return xPos;
-		}
+
+
 		return 0;
 	}
 

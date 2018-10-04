@@ -11,11 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import GameWorld.GameWorld.Direction;
 
 /**
- * added to the room class;
- * certain methods have to be static to allow the renderer to work. will update
- * Making default room size 10
- * @author francis raureti
  *
+ * @author francis raureti
  */
 
 @XmlRootElement
@@ -23,11 +20,11 @@ public class Room {
 
 	public final static int SIZE = 10;
 
-	private List<WorldObject> contents;
+	private Map<Direction,List<WorldObject>> contents;
 	private Map<Direction,Room>neighbors;
 	private Map<Direction,Wall>walls;
 
-	public Room(List<WorldObject> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
+	public Room(Map<Direction, List<WorldObject>> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
 		this.contents=contents;
 		this.neighbors=neighbors;
 		this.walls=walls;
@@ -36,11 +33,11 @@ public class Room {
 	public Room() {}
 
 	@XmlElement
-	public List<WorldObject> getContents(){
-		return new ArrayList<WorldObject>(this.contents);
+	public Map<Direction, List<WorldObject>> getContents(){
+		return this.contents;
 	}
 
-	public void setContents(List<WorldObject> contents) {
+	public void setContents(Map<Direction, List<WorldObject>>  contents) {
 		this.contents=contents;
 	}
 

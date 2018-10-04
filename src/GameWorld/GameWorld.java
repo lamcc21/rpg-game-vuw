@@ -16,10 +16,6 @@ public class GameWorld {
 
 	//if there are any other ideas let me know.
 
-	/**
-	 * Set all getters and setters to static to allow Rendered to handle objects
-	 * hopefully it doent cause any problems
-	 */
 
 	private Player player;
 	private Room room;
