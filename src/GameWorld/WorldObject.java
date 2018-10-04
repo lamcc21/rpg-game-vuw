@@ -54,6 +54,23 @@ public abstract class WorldObject {
 		this.direction=direction;
 	}
 
+	/*
+	 * separate constructor for making objects with color value associated
+	 */
+	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,
+			String Description, Direction direction, Color color ){
+		this.xPos=xPos;
+		this.yPos=yPos;
+		this.zPos=zPos;
+		this.xWidth=xWidth;
+		this.yHeight=yHeight;
+		this.zWidth=zDepth;
+		this.name=Name;
+		this.description=Description;
+		this.direction=direction;
+		this.color=color;
+	}
+
 	public WorldObject() {}
 
 	@XmlElement
@@ -120,12 +137,21 @@ public abstract class WorldObject {
 	}
 
 	@XmlElement
-	public List<WorldObject> getContents() throws Exception{
+	public List<WorldObject> getContents() {
 		return this.contents;
 	}
 
-	public void setContents(List<WorldObject> contents) {
+	public void setContents(List<WorldObject> contents) throws Exception {
 		this.contents=contents;
+	}
+
+	@XmlElement
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color c) {
+		this.color=c;
 	}
 
 
