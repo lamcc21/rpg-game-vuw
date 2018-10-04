@@ -21,11 +21,11 @@ import GameWorld.GameWorld.Direction;
 @XmlRootElement
 public class Room {
 
-	static final int SIZE = 10;
+	public final static int SIZE = 10;
 
-	static List<WorldObject> contents;
-	static Map<Direction,Room>neighbors;
-	static Map<Direction,Wall>walls;
+	private List<WorldObject> contents;
+	private Map<Direction,Room>neighbors;
+	private Map<Direction,Wall>walls;
 
 	public Room(List<WorldObject> contents, Map<Direction,Room>neighbors, Map<Direction,Wall>walls) {
 		this.contents=contents;
@@ -55,12 +55,12 @@ public class Room {
 	}
 
 	@XmlElement
-	public static Map<Direction,Wall> getWalls(){
-		return new HashMap<Direction,Wall>(walls);
+	public Map<Direction,Wall> getWalls(){
+		return walls;
 	}
 
 	public void setWalls(Map<Direction,Wall>  walls) {
-		Room.walls=walls;
+		this.walls= walls;
 	}
 
 	public Wall getWall(Direction d) {
