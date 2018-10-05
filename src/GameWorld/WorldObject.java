@@ -17,7 +17,7 @@ import GameWorld.GameWorld.Direction;
  * @author Francis Raureti
  *
  */
-@XmlTransient
+@XmlRootElement
 public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can
@@ -37,7 +37,7 @@ public abstract class WorldObject  {
 
 	protected String name;
 	protected String description;
-	private final BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
+	//private final BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
 
 	protected Color color;
 	protected List<WorldObject> contents;
@@ -171,7 +171,6 @@ public abstract class WorldObject  {
 	/**
 	 * Auxillary method for determining left to right orientaion of objects for
 	 * the renderer
-	 * @param Player perspective
 	 * @return relative position along X axis
 	 */
 	public int getOrientation(Direction perspective) {

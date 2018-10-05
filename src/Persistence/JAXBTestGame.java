@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-
 /**
  * A simple Game class used to text the JAXB Xml parsing - Michael Henrys
  */

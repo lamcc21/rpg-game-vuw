@@ -68,7 +68,7 @@ public class CanvasPane extends JPanel implements MouseListener{
         Graphics2D g2d = (Graphics2D) g;
         drawRoom(g2d, g);
         constructPolygonGradientMap(g2d);
-        drawBufferedImages(g2d);
+        //drawBufferedImages(g2d);
     }
 
     private void drawBufferedImages(Graphics2D g2d) {
@@ -187,7 +187,7 @@ public class CanvasPane extends JPanel implements MouseListener{
 
         //left door
         if (room.getWall(player.getLeft()).hasDoor()) {
-            Color leftDoorColor = room.getWall(player.getLeft()).getDoor().getColor();
+            Color leftDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
             int[] leftDoorX = {50, 100, 100, 50};
             int[] leftDoorY = {466, 433, 225, 208};
             Polygon leftDoor = new Polygon(leftDoorX, leftDoorY, 4);
@@ -200,7 +200,7 @@ public class CanvasPane extends JPanel implements MouseListener{
 
         //back door
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = room.getWall(perspective).getDoor().getColor();
+            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
             int[] backDoorX = {350, 450, 450, 350};
             int[] backDoorY = {225, 225, 400, 400};
             Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
@@ -213,7 +213,7 @@ public class CanvasPane extends JPanel implements MouseListener{
 
         //right door
         if (room.getWall(player.getRight()).hasDoor()) {
-            Color rightDoorColor = room.getWall(player.getRight()).getDoor().getColor();
+            Color rightDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
             int[] rightDoorX = {700, 750, 750, 700};
             int[] rightDoorY = {433, 466, 208, 225};
             Polygon rightDoor = new Polygon(rightDoorX, rightDoorY, 4);
