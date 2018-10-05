@@ -1,23 +1,27 @@
 package GameWorld;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import GameWorld.GameWorld.Direction;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.IOException;
 
 @XmlRootElement
 public class KeyComponent extends Holdable {
 
 	public KeyComponent(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description, Direction d,Color color) throws IOException {
-		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,d,color);
+    this.xPos=xPos;
+    this.yPos=yPos;
+    this.zPos=zPos;
+    this.xWidth=xWidth;
+    this.yHeight=yHeight;
+    this.zWidth=zDepth;
+    this.name=Name;
+    this.description=Description;
+    this.direction=direction;
+    this.color=color;
 	}
 
-	public KeyComponent() throws IOException {
-		super();
-	}
+	public KeyComponent() throws IOException {}
 
 
 }

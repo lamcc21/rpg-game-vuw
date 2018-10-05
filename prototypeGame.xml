@@ -13,6 +13,21 @@
                         </value>
                     </entry>
                     <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<color>
+    <b>255</b>
+    <g>0</g>
+    <r>0</r>
+</color>
+<isLocked>false</isLocked>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
                         <key>WEST</key>
                         <value>
                             <direction>WEST</direction>
@@ -34,21 +49,6 @@
                             <visible>true</visible>
                         </value>
                     </entry>
-                    <entry>
-                        <key>EAST</key>
-                        <value>
-                            <direction>EAST</direction>
-                            <door>
-<color>
-    <b>255</b>
-    <g>0</g>
-    <r>0</r>
-</color>
-<isLocked>false</isLocked>
-                            </door>
-                            <visible>true</visible>
-                        </value>
-                    </entry>
                 </walls>
                 <x>0</x>
                 <y>0</y>
@@ -56,7 +56,7 @@
         </rooms>
     </rooms>
     <player>
-        <inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
             <color>
                 <b>255</b>
                 <g>0</g>
@@ -64,7 +64,6 @@
             </color>
             <depth>1</depth>
             <description>A nice Pen</description>
-            <direction>NORTH</direction>
             <height>1</height>
             <name>Pen</name>
             <width>1</width>

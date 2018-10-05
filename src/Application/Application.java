@@ -1,28 +1,13 @@
 package Application;
 import GameWorld.GameWorld;
-import GameWorld.Wall;
-import GameWorld.WorldObject;
-import GameWorld.Room;
-import GameWorld.Door;
 import Persistence.Persistence;
 import Renderer.CanvasPane;
-import GameWorld.Color;
-import GameWorld.Player;
-import GameWorld.KeyComponent;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static java.lang.System.exit;
 
@@ -89,32 +74,32 @@ public class Application extends JFrame{
   }
 
   private GameWorld createGameWorld(File saveFile) throws IOException {
-//    return Persistence.XmlToObject(saveFile);
-    Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
-    Map<GameWorld.Direction, Wall> walls = new HashMap<>();
-
-    Color blue = new Color(0, 0, 255);
-    Wall northWall = new Wall(true, GameWorld.Direction.NORTH);
-    walls.put(GameWorld.Direction.NORTH, northWall);
-    Door eastDoor = new Door(false, blue);
-    Wall eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
-    walls.put(GameWorld.Direction.EAST, eastWall);
-    Door southDoor = new Door(false, blue);
-    Wall southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
-    walls.put(GameWorld.Direction.SOUTH, southWall);
-    Wall westWall = new Wall(true, GameWorld.Direction.WEST);
-    walls.put(GameWorld.Direction.WEST, westWall);
-
-    KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-
-    Room room = new Room(contents, walls, 0, 0);
-    Room rooms[][] = new Room[1][1];
-    rooms[0][0] = room;
-    Player player = new Player(0, 0);
-
-    player.pickUp(pen);
-
-    return new GameWorld(player, rooms);
+      return Persistence.XmlToObject(saveFile);
+//    Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
+//    Map<GameWorld.Direction, Wall> walls = new HashMap<>();
+//
+//    Color blue = new Color(0, 0, 255);
+//    Wall northWall = new Wall(true, GameWorld.Direction.NORTH);
+//    walls.put(GameWorld.Direction.NORTH, northWall);
+//    Door eastDoor = new Door(false, blue);
+//    Wall eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
+//    walls.put(GameWorld.Direction.EAST, eastWall);
+//    Door southDoor = new Door(false, blue);
+//    Wall southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
+//    walls.put(GameWorld.Direction.SOUTH, southWall);
+//    Wall westWall = new Wall(true, GameWorld.Direction.WEST);
+//    walls.put(GameWorld.Direction.WEST, westWall);
+//
+//    KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+//
+//    Room room = new Room(contents, walls, 0, 0);
+//    Room rooms[][] = new Room[1][1];
+//    rooms[0][0] = room;
+//    Player player = new Player(0, 0);
+//
+//    player.pickUp(pen);
+//
+//    return new GameWorld(player, rooms);
   }
 
   public static void main(String[] args) throws IOException, InterruptedException { new Application();}

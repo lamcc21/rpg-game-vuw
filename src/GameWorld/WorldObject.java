@@ -1,15 +1,12 @@
 package GameWorld;
 
-import java.awt.image.BufferedImage;
+import GameWorld.GameWorld.Direction;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.IOException;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import GameWorld.GameWorld.Direction;
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -17,7 +14,8 @@ import GameWorld.GameWorld.Direction;
  * @author Francis Raureti
  *
  */
-@XmlRootElement
+@XmlTransient
+@XmlSeeAlso({KeyObject.class, KeyComponent.class})
 public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can

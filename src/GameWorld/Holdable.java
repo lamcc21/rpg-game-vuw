@@ -1,22 +1,28 @@
 package GameWorld;
 
-import java.io.IOException;
-import java.util.List;
-
 import GameWorld.GameWorld.Direction;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.IOException;
 
-@XmlRootElement
+@XmlTransient
+@XmlSeeAlso({KeyObject.class, KeyComponent.class})
 public abstract class Holdable extends WorldObject {
 
 	public Holdable(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description, Direction d, Color color) throws IOException {
-		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,d,color);
+    this.xPos=xPos;
+    this.yPos=yPos;
+    this.zPos=zPos;
+    this.xWidth=xWidth;
+    this.yHeight=yHeight;
+    this.zWidth=zDepth;
+    this.name=Name;
+    this.description=Description;
+    this.direction=direction;
+    this.color=color;
 	}
 
-	public Holdable() throws IOException {
-        super();
-    }
+	public Holdable() throws IOException {}
 
 }
