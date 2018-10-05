@@ -3,6 +3,7 @@ package GameWorld;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
 /**
@@ -12,6 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GameWorld {
 
 	private Player player;
+
+	@XmlElementWrapper
+	@XmlElement
 	private Room[][] rooms;
 
 	public enum Direction{
@@ -20,6 +24,7 @@ public class GameWorld {
 		SOUTH,
 		WEST
 	}
+
 
 	public GameWorld(Player p , Room[][] rooms) {
 		player=p;
@@ -41,7 +46,7 @@ public class GameWorld {
 		return rooms[x][y];
 	}
 
-	@XmlElement
+
 	public Room[][] getRooms() {
 		return rooms;
 	}

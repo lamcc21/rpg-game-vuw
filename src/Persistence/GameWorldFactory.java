@@ -4,13 +4,13 @@ import GameWorld.*;
 import GameWorld.Color;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameWorldFactory {
     public static void main(String[] arg){
-
         Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
         Map<GameWorld.Direction, Wall> walls = new HashMap<>();
 
@@ -35,5 +35,9 @@ public class GameWorldFactory {
         GameWorld game = new GameWorld(player, rooms);
 
         Persistence.ObjectToXml(game, "prototypeGame.xml");
+
+        GameWorld newgame = Persistence.XmlToObject(new File("prototypeGame.xml"));
+        System.out.println(newgame.getPlayer().getX());
+        System.out.println(newgame.getRooms().length);
     }
 }
