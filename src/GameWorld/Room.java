@@ -21,12 +21,12 @@ public class Room {
 
 	public final static int SIZE = 10;
 
-	private Map<Direction,List<WorldObject>> contents;
+	private Map<Direction, ArrayList<WorldObject>> contents;
 	private Map<Direction,Wall>walls;
 	private int x;
 	private int y;
 
-	public Room(Map<Direction, List<WorldObject>> contents, Map<Direction,Wall>walls,int x , int y) {
+	public Room(Map<Direction, ArrayList<WorldObject>> contents, Map<Direction,Wall>walls,int x , int y) {
 		this.contents=contents;
 		this.walls=walls;
 		this.x=x;
@@ -36,11 +36,11 @@ public class Room {
 	public Room() {}
 
 	@XmlElement
-	public Map<Direction, List<WorldObject>> getContents(){
+	public Map<Direction, ArrayList<WorldObject>> getContents(){
 		return this.contents;
 	}
 
-	public void setContents(Map<Direction, List<WorldObject>>  contents) {
+	public void setContents(Map<Direction, ArrayList<WorldObject>> contents) {
 		this.contents=contents;
 	}
 

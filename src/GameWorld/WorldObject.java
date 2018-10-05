@@ -1,6 +1,5 @@
 package GameWorld;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
@@ -108,26 +107,26 @@ public abstract class WorldObject  {
 
 	@XmlElement
 	public int getWidth(){
-		return new Integer(xWidth);
+		return xWidth;
 	}
 
 	@XmlElement
 	public int getHeight() {
-		return new Integer(yHeight);
+		return yHeight;
 	}
 
 	@XmlElement
 	public int getDepth() {
-		return new Integer(zWidth);
+		return zWidth;
 	}
 	@XmlElement
 	public String getName() {
-		return new String(name);
+		return name;
 	}
 
 	@XmlElement
 	public String getDescription() {
-		return new String(description);
+		return description;
 	}
 
 	@XmlElement
