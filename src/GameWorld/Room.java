@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import GameWorld.GameWorld.Direction;
 
@@ -42,6 +43,7 @@ public class Room {
 	public void setContents(Map<Direction, List<WorldObject>>  contents) {
 		this.contents=contents;
 	}
+
 	@XmlElement
 	public int getX() {
 		return this.x;
@@ -56,7 +58,6 @@ public class Room {
 		return this.y;
 	}
 
-
 	public void setY(int y) {
 		this.y=y;
 	}
@@ -70,7 +71,6 @@ public class Room {
 		this.walls= walls;
 	}
 
-	@XmlElement
 	public Wall getWall(Direction d) {
 		return walls.get(d);
 	}

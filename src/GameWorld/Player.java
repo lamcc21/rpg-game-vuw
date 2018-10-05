@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import GameWorld.GameWorld.Direction;
 
 /**
@@ -32,7 +34,7 @@ public class Player {
 	  this.yPos=ypos;
 	}
 //
-	public Player() {};
+	public Player() {}
 
 	/**
 	 * all getters and setters for fields in class
@@ -132,5 +134,13 @@ public class Player {
 
 	public void craftKey() {
 
+	}
+
+	public Direction getRight(){
+		return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];
+	}
+
+	public Direction getLeft(){
+		return Direction.values()[(Math.floorMod(perspective.ordinal()-1, 4))];
 	}
 }

@@ -18,7 +18,7 @@ public class GameWorld {
 		NORTH,
 		EAST,
 		SOUTH,
-		WEST;
+		WEST
 	}
 
 	public GameWorld(Player p , Room[][] rooms) {
