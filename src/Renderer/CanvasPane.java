@@ -19,13 +19,36 @@ import GameWorld.*;
 
 public class CanvasPane extends JPanel implements MouseListener{
 
-    private ArrayList<Point> allPointsInObjects = new ArrayList<>();
+    /*object drawing fields*/
+
+    //object sizes
+    private int MIN_SIZE = 25;
+    private int MED_SIZE = 50;
+    private int MAX_SIZE = 75;
+
+    //object rows
+    private int BACK_ROW = 410;
+    private int MID_ROW = 450;
+    private int FRONT_ROW = 520;
+
+    //object rows starting x pos
+    private int BACK_X_START = 170;
+    private int MID_X_START = 110;
+    private int FRONT_X_START = 40;
+
+    //object rows respective spacing size
+    private int BACK_X_SPACING = 210;
+    private int MID_X_SPACING = 260;
+    private int FRONT_X_SPACING = 320;
+
+    private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
 
     // color fields
     private Color BLUE = Color.blue;
     private Color RED = Color.red;
     private Color GREEN = Color.green;
 
+    // helper fields
     private Room room;
     private Player player;
     private GameWorld.Direction perspective;
@@ -33,14 +56,10 @@ public class CanvasPane extends JPanel implements MouseListener{
     public CanvasPane(GameWorld gameWorld) {
         setPreferredSize(new Dimension(800, 600));
         this.player = gameWorld.getPlayer();
-        this.room = gameWorld.getRoom(player.getX(), player.getY());
+        //this.room = gameWorld.getRoom(player.getX(), player.getY());
         this.addMouseListener(this);
         //this.perspective = player.getPerspective();
     }
-
-    //public Dimension getPreferredSize() {
-        //return box == null ? new Dimension(100, 100) : new Dimension(box.getWidth(this), box.getHeight(this));
-    //}
 
     @Override
     public void paintComponent(Graphics g) {
@@ -54,18 +73,31 @@ public class CanvasPane extends JPanel implements MouseListener{
     private void drawBufferedImages(Graphics2D g2d) {
         //test method for drawing 2d box png in 3d
         try {
+
             BufferedImage img = ImageIO.read(new File("/home/mearslach/Desktop/SWEN225/SWEN225-Group-Project/src/Renderer/Sprites/Crate.png"));
-            int y = 420;
-            for(int x = 170; x <= 700; x += 205) {
-                    g2d.drawImage(img, x, y, 50, 50, null);
-                    //add all coordinates inside each box to the arraylist to allow for detectable clicks
-                    Rectangle bound = new Rectangle(x, y, 50, 50); //potentially use rectangles for bounding box instead of 2d point arrays
-                    for(int a = x; a <= x + 50; a++){
-                        for(int b = y; b <= y + 50; b++){
-                            Point boundingBox = new Point(a, b);
-                            allPointsInObjects.add(boundingBox);
-                        }
-                    }
+
+            //draw back row
+            for(int x = BACK_X_START; x <= (BACK_X_START+BACK_X_SPACING)*3; x += BACK_X_SPACING) {
+                g2d.drawImage(img, x, BACK_ROW, MIN_SIZE, MIN_SIZE, null);
+                //add bounding box to the arraylist to allow for detectable clicks
+                Rectangle bound = new Rectangle(x, BACK_ROW, MIN_SIZE, MIN_SIZE);
+                boundingBoxes.add(bound);
+            }
+
+            //draw mid row
+            for(int x = MID_X_START; x <= (MID_X_START+MID_X_SPACING)*3; x += MID_X_SPACING) {
+                g2d.drawImage(img, x, MID_ROW, MED_SIZE, MED_SIZE, null);
+                //add bounding box to the arraylist to allow for detectable clicks
+                Rectangle bound = new Rectangle(x, MID_ROW, MED_SIZE, MED_SIZE);
+                boundingBoxes.add(bound);
+            }
+
+            //draw front row
+            for(int x = FRONT_X_START; x <= (FRONT_X_START+FRONT_X_SPACING)*3; x += FRONT_X_SPACING) {
+                g2d.drawImage(img, x, FRONT_ROW, MAX_SIZE, MAX_SIZE, null);
+                //add bounding box to the arraylist to allow for detectable clicks
+                Rectangle bound = new Rectangle(x, FRONT_ROW, MAX_SIZE, MAX_SIZE);
+                boundingBoxes.add(bound);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,7 +159,7 @@ public class CanvasPane extends JPanel implements MouseListener{
 
         //draw surfaces and angles
         fillPolygons(g2d, polygonGradientMap);
-        drawDoors(g2d, room);
+        //drawDoors(g2d, room);
         drawAngles(g2d);
     }
 
@@ -151,40 +183,45 @@ public class CanvasPane extends JPanel implements MouseListener{
         //construct door polygon and gradient
 
         //set respective door colors (instead of hardcoding this, get the color from GameWorld)
-        Color backDoorColor = new Color( 193, 184, 95);
 
         //left door
-        //if room.leftWall.hasDoor(){
-        int[] leftDoorX = {50, 100, 100, 50};
-        int[] leftDoorY = {466, 433, 225, 208};
-        Polygon leftDoor = new Polygon(leftDoorX, leftDoorY, 4);
-        g2d.setColor(backDoorColor);
-        g2d.fillPolygon(leftDoor);
-        g2d.setColor(Color.black);
-        g2d.drawPolygon(leftDoor);
-        g2d.fillOval(85, 350, 8, 10); //left knob
+        if (room.getWall(player.getLeft()).hasDoor()) {
+            Color leftDoorColor = room.getWall(player.getLeft()).getDoor().getColor();
+            int[] leftDoorX = {50, 100, 100, 50};
+            int[] leftDoorY = {466, 433, 225, 208};
+            Polygon leftDoor = new Polygon(leftDoorX, leftDoorY, 4);
+            g2d.setColor(leftDoorColor);
+            g2d.fillPolygon(leftDoor);
+            g2d.setColor(Color.black);
+            g2d.drawPolygon(leftDoor);
+            g2d.fillOval(85, 350, 8, 10); //left knob
+        }
 
         //back door
-        //if room.backWall.hasDoor(){
-        int[] backDoorX = {350, 450, 450, 350};
-        int[] backDoorY = {225, 225, 400, 400};
-        Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
-        g2d.setColor(backDoorColor);
-        g2d.fillPolygon(backDoor);
-        g2d.setColor(Color.black);
-        g2d.drawPolygon(backDoor);
-        g2d.fillOval(430,325, 10, 10); //back knob
+        if (room.getWall(perspective).hasDoor()) {
+            Color backDoorColor = room.getWall(perspective).getDoor().getColor();
+            int[] backDoorX = {350, 450, 450, 350};
+            int[] backDoorY = {225, 225, 400, 400};
+            Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
+            g2d.setColor(backDoorColor);
+            g2d.fillPolygon(backDoor);
+            g2d.setColor(Color.black);
+            g2d.drawPolygon(backDoor);
+            g2d.fillOval(430, 325, 10, 10); //back knob
+        }
 
         //right door
-        //if room.rightWall.hasDoor(){
-        int[] rightDoorX = {700, 750, 750, 700};
-        int[] rightDoorY = {433, 466, 208, 225};
-        Polygon rightDoor = new Polygon(rightDoorX, rightDoorY, 4);
-        g2d.setColor(backDoorColor);
-        g2d.fillPolygon(rightDoor);
-        g2d.setColor(Color.black);
-        g2d.drawPolygon(rightDoor);
-        g2d.fillOval(735, 350, 8, 10); //right knob
+        if (room.getWall(player.getRight()).hasDoor()) {
+            Color rightDoorColor = room.getWall(player.getRight()).getDoor().getColor();
+            int[] rightDoorX = {700, 750, 750, 700};
+            int[] rightDoorY = {433, 466, 208, 225};
+            Polygon rightDoor = new Polygon(rightDoorX, rightDoorY, 4);
+            g2d.setColor(rightDoorColor);
+            g2d.fillPolygon(rightDoor);
+            g2d.setColor(Color.black);
+            g2d.drawPolygon(rightDoor);
+            g2d.fillOval(735, 350, 8, 10); //right knob
+        }
     }
 
     private void drawSurfaces(Graphics g) {
@@ -223,8 +260,8 @@ public class CanvasPane extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(Point p : allPointsInObjects){
-            if(p.getX() == e.getX() && p.getY() == e.getY()){
+        for(Rectangle r : boundingBoxes){
+            if(r.contains(e.getX(), e.getY())){
                 System.out.println("Box click detected");
             }
         }
