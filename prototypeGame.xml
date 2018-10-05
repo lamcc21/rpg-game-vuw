@@ -10,17 +10,6 @@
             <contents/>
             <walls>
                 <entry>
-                    <key>EAST</key>
-                    <value>
-                        <direction>EAST</direction>
-                        <door>
-                            <color/>
-                            <isLocked>false</isLocked>
-                        </door>
-                        <visible>true</visible>
-                    </value>
-                </entry>
-                <entry>
                     <key>NORTH</key>
                     <value>
                         <direction>NORTH</direction>
@@ -39,7 +28,26 @@
                     <value>
                         <direction>SOUTH</direction>
                         <door>
-                            <color/>
+                            <color>
+<b>255</b>
+<g>0</g>
+<r>0</r>
+                            </color>
+                            <isLocked>false</isLocked>
+                        </door>
+                        <visible>true</visible>
+                    </value>
+                </entry>
+                <entry>
+                    <key>EAST</key>
+                    <value>
+                        <direction>EAST</direction>
+                        <door>
+                            <color>
+<b>255</b>
+<g>0</g>
+<r>0</r>
+                            </color>
                             <isLocked>false</isLocked>
                         </door>
                         <visible>true</visible>
