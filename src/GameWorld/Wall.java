@@ -51,6 +51,7 @@ public class Wall {
 		this.door = door;
 	}
 
+
 	public boolean hasDoor() {
 		if(door!=null)return true;
 		return false;
