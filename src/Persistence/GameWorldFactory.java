@@ -3,6 +3,7 @@ package Persistence;
 import GameWorld.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class GameWorldFactory {
     public static void main(String[] arg){
 
-        Map<GameWorld.Direction, List<WorldObject>> contents= new HashMap<>();
+        Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
         Map<GameWorld.Direction, Wall> walls = new HashMap<>();
 
         Wall northWall = new Wall(true, GameWorld.Direction.NORTH);
