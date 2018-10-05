@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import GameWorld.GameWorld.Direction;
 
 /**
@@ -32,7 +34,7 @@ public class Player {
 	  this.yPos=ypos;
 	}
 //
-	public Player() {};
+	public Player() {}
 
 	/**
 	 * all getters and setters for fields in class
@@ -41,7 +43,7 @@ public class Player {
 
 	@XmlElement
 	public Direction getPerspective() {
-		return this.perspective;
+		return perspective;
 	}
 
 	public void setPerspective(Direction newPer) {
@@ -50,7 +52,7 @@ public class Player {
 
 	@XmlElement
 	public List<WorldObject> getInventory(){
-		return new ArrayList<WorldObject>(inventory);
+		return inventory;
 	}
 
 	public void setInventory(List<WorldObject> newInv) {
@@ -73,7 +75,7 @@ public class Player {
 	}
 
 	public void setY(int y) {
-		this.yPos=y;
+		yPos=y;
 	}
 
 
@@ -132,5 +134,13 @@ public class Player {
 
 	public void craftKey() {
 
+	}
+
+	public Direction getRight(){
+		return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];
+	}
+
+	public Direction getLeft(){
+		return Direction.values()[(Math.floorMod(perspective.ordinal()-1, 4))];
 	}
 }

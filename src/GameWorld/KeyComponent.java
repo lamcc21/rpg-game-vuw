@@ -16,6 +16,9 @@ public class KeyComponent extends Holdable {
 		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,d,color);
 	}
 
+	public KeyComponent() throws IOException {
+		super();
+	}
 
 
 }

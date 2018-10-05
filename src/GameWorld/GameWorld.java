@@ -18,7 +18,7 @@ public class GameWorld {
 		NORTH,
 		EAST,
 		SOUTH,
-		WEST;
+		WEST
 	}
 
 	public GameWorld(Player p , Room[][] rooms) {
@@ -37,9 +37,13 @@ public class GameWorld {
 		player=p;
 	}
 
-	@XmlElement
 	public Room getRoom(int x,int y) {
 		return rooms[x][y];
+	}
+
+	@XmlElement
+	public Room[][] getRooms() {
+		return rooms;
 	}
 
 	public void setRoom(Room[][] rooms) {

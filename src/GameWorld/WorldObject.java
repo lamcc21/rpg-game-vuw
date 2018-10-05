@@ -8,6 +8,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import GameWorld.GameWorld.Direction;
 /**
@@ -17,7 +18,7 @@ import GameWorld.GameWorld.Direction;
  * @author Francis Raureti
  *
  */
-@XmlRootElement
+@XmlTransient
 public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can
@@ -80,7 +81,7 @@ public abstract class WorldObject  {
 
 	@XmlElement
 	public int getX(){
-		return new Integer(xPos);
+		return xPos;
 	}
 
 	public void setX(int x) {
@@ -89,7 +90,7 @@ public abstract class WorldObject  {
 
 	@XmlElement
 	public int getY() {
-		return new Integer(yPos);
+		return yPos;
 	}
 
 	public void setY(int y) {
@@ -98,7 +99,7 @@ public abstract class WorldObject  {
 
 	@XmlElement
 	public int getZ() {
-		return new Integer(zPos);
+		return zPos;
 	}
 
 	public void setZ(int z) {
@@ -107,26 +108,26 @@ public abstract class WorldObject  {
 
 	@XmlElement
 	public int getWidth(){
-		return new Integer(xWidth);
+		return xWidth;
 	}
 
 	@XmlElement
 	public int getHeight() {
-		return new Integer(yHeight);
+		return yHeight;
 	}
 
 	@XmlElement
 	public int getDepth() {
-		return new Integer(zWidth);
+		return zWidth;
 	}
 	@XmlElement
 	public String getName() {
-		return new String(name);
+		return name;
 	}
 
 	@XmlElement
 	public String getDescription() {
-		return new String(description);
+		return description;
 	}
 
 	@XmlElement
