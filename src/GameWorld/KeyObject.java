@@ -18,6 +18,12 @@ public class KeyObject extends Holdable {
 		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,d,color);
 	}
 
+	public KeyObject(Color c) throws IOException {
+		this.color = c;
+		this.description = "A "+ c.toString() +" key, I wonder what it opens..";
+		this.name = c.toString()+" Key";
+	}
+
 	public KeyObject() throws IOException {
 		super();
 	}
