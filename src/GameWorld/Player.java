@@ -43,7 +43,7 @@ public class Player {
 
 	@XmlElement
 	public Direction getPerspective() {
-		return this.perspective;
+		return perspective;
 	}
 
 	public void setPerspective(Direction newPer) {
@@ -52,7 +52,7 @@ public class Player {
 
 	@XmlElement
 	public List<WorldObject> getInventory(){
-		return new ArrayList<WorldObject>(inventory);
+		return inventory;
 	}
 
 	public void setInventory(List<WorldObject> newInv) {
@@ -75,7 +75,7 @@ public class Player {
 	}
 
 	public void setY(int y) {
-		this.yPos=y;
+		yPos=y;
 	}
 
 
