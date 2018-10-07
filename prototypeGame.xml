@@ -11,6 +11,21 @@
                 </contents>
                 <walls>
                     <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<color>
+    <b>255</b>
+    <g>0</g>
+    <r>0</r>
+</color>
+<isLocked>false</isLocked>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
                         <key>NORTH</key>
                         <value>
                             <direction>NORTH</direction>
@@ -28,21 +43,6 @@
                         <key>SOUTH</key>
                         <value>
                             <direction>SOUTH</direction>
-                            <door>
-<color>
-    <b>255</b>
-    <g>0</g>
-    <r>0</r>
-</color>
-<isLocked>false</isLocked>
-                            </door>
-                            <visible>true</visible>
-                        </value>
-                    </entry>
-                    <entry>
-                        <key>EAST</key>
-                        <value>
-                            <direction>EAST</direction>
                             <door>
 <color>
     <b>255</b>
@@ -139,6 +139,102 @@
             <width>50</width>
             <x>6</x>
             <y>9</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its A af</description>
+            <direction>NORTH</direction>
+            <height>50</height>
+            <name>ds</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
             <z>1</z>
         </inventory>
         <perspective>NORTH</perspective>

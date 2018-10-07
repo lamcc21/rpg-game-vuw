@@ -33,11 +33,15 @@ public class GameWorldFactory {
         KeyComponent painting = new KeyComponent(7, 10, 1, 50, 50, 1, "Painting", "its A Painting", GameWorld.Direction.NORTH, new Color(0, 0, 255));
         KeyComponent chair = new KeyComponent(2, 15, 1, 50, 50, 1, "Chair", "its A Chair", GameWorld.Direction.NORTH, new Color(0, 0, 255));
         KeyComponent table = new KeyComponent(6, 9, 1, 50, 50, 1, "Table", "its A Table ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent ed = new KeyComponent(7, 10, 1, 50, 50, 1, "ed", "its A ed", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent ds = new KeyComponent(2, 15, 1, 50, 50, 1, "ds", "its A af", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent af = new KeyComponent(6, 9, 1, 50, 50, 1, "af", "its A af ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
 
         ArrayList<WorldObject> northComponents = new ArrayList<>();
         northComponents.add(pen);
         northComponents.add(plant);
         northComponents.add(painting);
+        northComponents.add(ed);
 
         contents.put(GameWorld.Direction.NORTH, northComponents);
 
@@ -51,6 +55,13 @@ public class GameWorldFactory {
         player.pickUp(painting);
         player.pickUp(chair);
         player.pickUp(table);
+        player.pickUp(ds);
+        player.pickUp(ds);
+        player.pickUp(ds);
+        player.pickUp(ds);
+        player.pickUp(ds);
+        player.pickUp(ds);
+
 
         GameWorld game = new GameWorld(player, rooms);
 

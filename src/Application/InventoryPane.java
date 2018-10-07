@@ -29,7 +29,8 @@ class InventoryPane extends JPanel{
     setPreferredSize(new Dimension(560,140));
 
     setLayout(new GridLayout(2,8));
-    ToolTipManager.sharedInstance().setInitialDelay(200);
+    ToolTipManager.sharedInstance().setInitialDelay(400);
+    ToolTipManager.sharedInstance().setReshowDelay(400);
     GridBagConstraints gbc = new GridBagConstraints();
 
     addInventoryGUI(gameWorld.getPlayer().getInventory(), gameWorld.getPlayer());
@@ -60,6 +61,7 @@ class InventoryPane extends JPanel{
     for(int j=inventory.size(); j<inventoryItems.length; j++){
       inventoryItems[j]= new JButton();
       inventoryItems[j].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+      inventoryItems[j].setToolTipText("Empty Slot");
       inventoryItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
       inventoryItems[j].setEnabled(false);
     }
@@ -82,6 +84,7 @@ class InventoryPane extends JPanel{
 
     for(int j=inventory.size(); j<inventoryItems.length; j++){
       inventoryItems[j].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+      inventoryItems[j].setToolTipText("Empty Slot");
       inventoryItems[j].setEnabled(false);
       inventoryItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }

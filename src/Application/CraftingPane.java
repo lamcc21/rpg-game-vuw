@@ -38,32 +38,36 @@ class CraftingPane extends JPanel{
     private void addCraftGUI(){
         for(int j=0; j<keyItems.length; j++){
             keyItems[j]= new JButton();
+            keyItems[j].setOpaque(true);
+
             keyItems[j].setEnabled(false);
         }
 
-        keyItems[0].setBackground(Color.cyan);
-        keyItems[0].setIcon(new ImageIcon(keyImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        keyItems[0].setBackground(new Color(67,125,128));
+        keyItems[0].setForeground(new Color(67,125,128));
+        keyItems[0].setIcon(new ImageIcon(keyImage.getScaledInstance(64, 64,  java.awt.Image.SCALE_SMOOTH)));
         keyItems[0].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         keyItems[0].setToolTipText("Craft Cyan Key");
         keyItems[0].setEnabled(true);
 
-        keyItems[1].setBackground(Color.magenta);
-        keyItems[1].setIcon(new ImageIcon(keyImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+
+        keyItems[1].setBackground(new Color(75, 66, 121));
+        keyItems[1].setIcon(new ImageIcon(keyImage.getScaledInstance(64, 64,  java.awt.Image.SCALE_SMOOTH)));
         //keyItems[1].setToolTipText("Craft Purple Key");
         keyItems[1].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-        keyItems[2].setBackground(Color.green);
-        keyItems[2].setIcon(new ImageIcon(keyImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        keyItems[2].setBackground(new Color(63,99, 37));
+        keyItems[2].setIcon(new ImageIcon(keyImage.getScaledInstance(64, 64,  java.awt.Image.SCALE_SMOOTH)));
         //keyItems[2].setToolTipText("Craft Green Key");
         keyItems[2].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-        keyItems[3].setBackground(Color.yellow);
-        keyItems[3].setIcon(new ImageIcon(keyImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        keyItems[3].setBackground(new Color(170, 170, 36));
+        keyItems[3].setIcon(new ImageIcon(keyImage.getScaledInstance(64, 64,  java.awt.Image.SCALE_SMOOTH)));
         //keyItems[3].setToolTipText("Craft Gold Key");
         keyItems[3].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
+        keyItems[4].setIcon(new ImageIcon(keyImage.getScaledInstance(64, 64,  java.awt.Image.SCALE_SMOOTH)));
         keyItems[4].setBackground(Color.blue);
-        keyItems[4].setIcon(new ImageIcon(keyImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         // keyItems[4].setToolTipText("Craft Brown Key");
         keyItems[4].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 

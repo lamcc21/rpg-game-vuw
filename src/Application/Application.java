@@ -24,7 +24,7 @@ public class Application extends JFrame{
   private Application() throws IOException, InterruptedException {
     super("Have A Go Escaping");
     setLayout(new GridBagLayout());
-    UIManager.put ("ToolTip.background", new Color(67, 125, 128));
+    UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
     GameWorld gameWorld = createGameWorld(new File("prototypeGame.xml"));
 
