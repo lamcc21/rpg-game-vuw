@@ -12,56 +12,62 @@ import java.util.Map;
 
 public class GameWorldFactory {
     public static void main(String[] arg) throws IOException {
-        Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
-        Map<GameWorld.Direction, Wall> walls = new HashMap<>();
 
-        Color blue = new Color(0, 0, 255);
+        //TODO: generate a whole map Xml
+        Room rooms[][] = new Room[3][3];
+
+        //make room walls
+        Map<GameWorld.Direction, Wall> walls1 = new HashMap<>();
+        Color cyan = new Color(224,255,255);
         Wall northWall = new Wall(true, GameWorld.Direction.NORTH);
-        walls.put(GameWorld.Direction.NORTH, northWall);
-        Door eastDoor = new Door(false, blue);
-        Wall eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
-        walls.put(GameWorld.Direction.EAST, eastWall);
-        Door southDoor = new Door(false, blue);
-        Wall southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
-        walls.put(GameWorld.Direction.SOUTH, southWall);
-        Wall westWall = new Wall(true, GameWorld.Direction.WEST);
-        walls.put(GameWorld.Direction.WEST, westWall);
+        walls1.put(GameWorld.Direction.NORTH, northWall);
+        Wall eastWall = new Wall(true, GameWorld.Direction.EAST);
+        walls1.put(GameWorld.Direction.EAST, eastWall);
+        Wall southWall = new Wall(true, GameWorld.Direction.SOUTH);
+        walls1.put(GameWorld.Direction.SOUTH, southWall);
+        Door westDoor = new Door(false, cyan);
+        Wall westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
+        walls1.put(GameWorld.Direction.WEST, westWall);
 
-        //TODO: These are just example objects we will replace
-        KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A Nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent plant = new KeyComponent(5, 5, 1, 50, 50, 1, "Pot plant", "Greenery", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent painting = new KeyComponent(7, 10, 1, 50, 50, 1, "Painting", "its A Painting", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent chair = new KeyComponent(2, 15, 1, 50, 50, 1, "Chair", "its A Chair", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent table = new KeyComponent(6, 9, 1, 50, 50, 1, "Table", "its A Table ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent ed = new KeyComponent(7, 10, 1, 50, 50, 1, "ed", "its A ed", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent ds = new KeyComponent(2, 15, 1, 50, 50, 1, "ds", "its A af", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent af = new KeyComponent(6, 9, 1, 50, 50, 1, "af", "its A af ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-
+        //make room contents
+        Map<GameWorld.Direction, ArrayList<WorldObject>> contents1= new HashMap<>();
+        KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A Nice Pen", GameWorld.Direction.NORTH, cyan);
+        KeyComponent plant = new KeyComponent(5, 5, 1, 50, 50, 1, "Pot plant", "Greenery", GameWorld.Direction.NORTH, cyan);
+        KeyComponent painting = new KeyComponent(7, 10, 1, 50, 50, 1, "Painting", "its A Painting", GameWorld.Direction.EAST, cyan);
         ArrayList<WorldObject> northComponents = new ArrayList<>();
+        ArrayList<WorldObject> westComponents = new ArrayList<>();
         northComponents.add(pen);
         northComponents.add(plant);
-        northComponents.add(painting);
-        northComponents.add(ed);
+        westComponents.add(painting);
+        contents1.put(GameWorld.Direction.NORTH, northComponents);
+        contents1.put(GameWorld.Direction.WEST, westComponents);
 
-        contents.put(GameWorld.Direction.NORTH, northComponents);
+        //initialise room
+        Room room1 = new Room(contents1, walls1, 0, 0);
+        rooms[0][0] = room1;
 
-        Room room = new Room(contents, walls, 0, 0);
-        Room rooms[][] = new Room[1][1];
-        rooms[0][0] = room;
+        //make room walls
+        Map<GameWorld.Direction, Wall> walls2 = new HashMap<>();
+        northWall = new Wall(true, GameWorld.Direction.NORTH);
+        walls2.put(GameWorld.Direction.NORTH, northWall);
+        eastWall = new Wall(true, GameWorld.Direction.EAST);
+        walls2.put(GameWorld.Direction.EAST, eastWall);
+        southWall = new Wall(true, GameWorld.Direction.SOUTH);
+        walls2.put(GameWorld.Direction.SOUTH, southWall);
+        westDoor = new Door(false, cyan);
+        westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
+        walls2.put(GameWorld.Direction.WEST, westWall);
 
+        //make room contents
+        Map<GameWorld.Direction, ArrayList<WorldObject>> contents2= new HashMap<>();
+
+        //initialise room
+        Room room2 = new Room(contents1, walls1, 0, 0);
+        rooms[1][0] = room1;
+
+        //initialise player
         Player player = new Player(0, 0);
-        player.pickUp(pen);
-        player.pickUp(plant);
-        player.pickUp(painting);
-        player.pickUp(chair);
-        player.pickUp(table);
-        player.pickUp(ds);
-        player.pickUp(ds);
-        player.pickUp(ds);
-        player.pickUp(ds);
-        player.pickUp(ds);
-        player.pickUp(ds);
-
+        //add items that start in the players inventory
 
         GameWorld game = new GameWorld(player, rooms);
 
