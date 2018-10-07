@@ -29,7 +29,5 @@ public class KeyObject extends Holdable {
 		this.name = c.toString()+" Key";
 	}
 
-	public KeyObject() throws IOException {
-    System.out.println("KeyObject default constructor is being used");
-  }
+	public KeyObject() throws IOException {}
 }

@@ -1,5 +1,6 @@
 package Application;
 import GameWorld.GameWorld;
+import GameWorld.WorldObject;
 import Persistence.Persistence;
 import Renderer.CanvasPane;
 
@@ -8,6 +9,9 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 import static java.lang.System.exit;
 
@@ -16,20 +20,17 @@ import static java.lang.System.exit;
  */
 
 public class Application extends JFrame{
-  private CanvasPane canvas;
-  private GameWorld gameWorld;
-  private InventoryPane inventory;
 
   private Application() throws IOException, InterruptedException {
-    super("The Great Escape");
+    super("Have a go Escaping");
     setLayout(new GridBagLayout());
     GridBagConstraints gbc = new GridBagConstraints();
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
     GameWorld gameWorld = createGameWorld(new File("prototypeGame.xml"));
 
     if(gameWorld != null){
-      this.canvas = new CanvasPane(gameWorld);
-      this.inventory = new InventoryPane(gameWorld);
+      CanvasPane canvas = new CanvasPane(gameWorld);
+      InventoryPane inventory = new InventoryPane(gameWorld);
 
       gbc.anchor = GridBagConstraints.NORTH;
 
@@ -55,50 +56,30 @@ public class Application extends JFrame{
       gbc.gridy = 1;
       add(inventory, gbc);
       pack();
-      //startListening();
     }else{
       JOptionPane.showMessageDialog(this, "Game Load Error");
       exit(0);
     }
 
+
+    getContentPane().setBackground(Color.black);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
-   // startListening();
+    startListening(gameWorld);
   }
 
-  private void startListening() throws InterruptedException {
+  private void startListening(GameWorld gameWorld) throws InterruptedException {
     while(true){
       //inventory.updateInventoryGUI(gameWorld.getRoom().getContents()); //TODO: If Item is added or removed
-      Thread.sleep(1000);
+      /*Map<GameWorld.Direction, ArrayList<WorldObject>> objectList = gameWorld.getRoom(0,0).getContents();
+      System.out.println(Arrays.toString(objectList.get(GameWorld.Direction.NORTH).toArray()));*/
+
+      Thread.sleep(4000);
     }
   }
 
-  private GameWorld createGameWorld(File saveFile) throws IOException {
+  private GameWorld createGameWorld(File saveFile){
       return Persistence.XmlToObject(saveFile);
-//    Map<GameWorld.Direction, ArrayList<WorldObject>> contents= new HashMap<>();
-//    Map<GameWorld.Direction, Wall> walls = new HashMap<>();
-//
-//    Color blue = new Color(0, 0, 255);
-//    Wall northWall = new Wall(true, GameWorld.Direction.NORTH);
-//    walls.put(GameWorld.Direction.NORTH, northWall);
-//    Door eastDoor = new Door(false, blue);
-//    Wall eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
-//    walls.put(GameWorld.Direction.EAST, eastWall);
-//    Door southDoor = new Door(false, blue);
-//    Wall southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
-//    walls.put(GameWorld.Direction.SOUTH, southWall);
-//    Wall westWall = new Wall(true, GameWorld.Direction.WEST);
-//    walls.put(GameWorld.Direction.WEST, westWall);
-//
-//    KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-//
-//    Room room = new Room(contents, walls, 0, 0);
-//    Room rooms[][] = new Room[1][1];
-//    rooms[0][0] = room;
-//    Player player = new Player(0, 0);
-//
-//    player.pickUp(pen);
-//
-//    return new GameWorld(player, rooms);
   }
 
   public static void main(String[] args) throws IOException, InterruptedException { new Application();}

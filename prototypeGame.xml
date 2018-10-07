@@ -3,27 +3,17 @@
     <rooms>
         <rooms>
             <item>
-                <contents/>
+                <contents>
+                    <entry>
+                        <key>NORTH</key>
+                        <value/>
+                    </entry>
+                </contents>
                 <walls>
                     <entry>
                         <key>NORTH</key>
                         <value>
                             <direction>NORTH</direction>
-                            <visible>true</visible>
-                        </value>
-                    </entry>
-                    <entry>
-                        <key>EAST</key>
-                        <value>
-                            <direction>EAST</direction>
-                            <door>
-<color>
-    <b>255</b>
-    <g>0</g>
-    <r>0</r>
-</color>
-<isLocked>false</isLocked>
-                            </door>
                             <visible>true</visible>
                         </value>
                     </entry>
@@ -49,6 +39,21 @@
                             <visible>true</visible>
                         </value>
                     </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<color>
+    <b>255</b>
+    <g>0</g>
+    <r>0</r>
+</color>
+<isLocked>false</isLocked>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
                 </walls>
                 <x>0</x>
                 <y>0</y>
@@ -63,7 +68,7 @@
                 <r>0</r>
             </color>
             <depth>1</depth>
-            <description>A nice Pen</description>
+            <description>A Nice Pen</description>
             <direction>NORTH</direction>
             <height>1</height>
             <name>Pen</name>
@@ -79,7 +84,7 @@
                 <r>0</r>
             </color>
             <depth>1</depth>
-            <description>nice greenery yep</description>
+            <description>Greenery</description>
             <direction>NORTH</direction>
             <height>50</height>
             <name>Pot plant</name>
@@ -95,7 +100,7 @@
                 <r>0</r>
             </color>
             <depth>1</depth>
-            <description>its a painting</description>
+            <description>its A Painting</description>
             <direction>NORTH</direction>
             <height>50</height>
             <name>Painting</name>
@@ -111,7 +116,7 @@
                 <r>0</r>
             </color>
             <depth>1</depth>
-            <description>its a chair</description>
+            <description>its A Chair</description>
             <direction>NORTH</direction>
             <height>50</height>
             <name>Chair</name>
@@ -127,7 +132,7 @@
                 <r>0</r>
             </color>
             <depth>1</depth>
-            <description>its a table </description>
+            <description>its A Table </description>
             <direction>NORTH</direction>
             <height>50</height>
             <name>Table</name>

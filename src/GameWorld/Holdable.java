@@ -8,6 +8,9 @@ import java.io.IOException;
 
 @XmlTransient
 @XmlSeeAlso({KeyObject.class, KeyComponent.class})
+//These allow the WorldObject to get the parameters of subclass using setters I think
+//Don't get confused by the fact the default constructor is being used here
+
 public abstract class Holdable extends WorldObject {
 
 	public Holdable(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description, Direction d,Color color) throws IOException {

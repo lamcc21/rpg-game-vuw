@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameWorldFactory {
@@ -26,15 +27,24 @@ public class GameWorldFactory {
         Wall westWall = new Wall(true, GameWorld.Direction.WEST);
         walls.put(GameWorld.Direction.WEST, westWall);
 
-        KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent plant = new KeyComponent(5, 5, 1, 50, 50, 1, "Pot plant", "nice greenery yep", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent painting = new KeyComponent(7, 10, 1, 50, 50, 1, "Painting", "its a painting", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent chair = new KeyComponent(2, 15, 1, 50, 50, 1, "Chair", "its a chair", GameWorld.Direction.NORTH, new Color(0, 0, 255));
-        KeyComponent table = new KeyComponent(6, 9, 1, 50, 50, 1, "Table", "its a table ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        //TODO: These are just example objects we will replace
+        KeyComponent pen = new KeyComponent(1, 1, 1, 1, 1, 1, "Pen", "A Nice Pen", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent plant = new KeyComponent(5, 5, 1, 50, 50, 1, "Pot plant", "Greenery", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent painting = new KeyComponent(7, 10, 1, 50, 50, 1, "Painting", "its A Painting", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent chair = new KeyComponent(2, 15, 1, 50, 50, 1, "Chair", "its A Chair", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+        KeyComponent table = new KeyComponent(6, 9, 1, 50, 50, 1, "Table", "its A Table ", GameWorld.Direction.NORTH, new Color(0, 0, 255));
+
+        ArrayList<WorldObject> northComponents = new ArrayList<>();
+        northComponents.add(pen);
+        northComponents.add(plant);
+        northComponents.add(painting);
+
+        contents.put(GameWorld.Direction.NORTH, northComponents);
 
         Room room = new Room(contents, walls, 0, 0);
         Room rooms[][] = new Room[1][1];
         rooms[0][0] = room;
+
         Player player = new Player(0, 0);
         player.pickUp(pen);
         player.pickUp(plant);
@@ -45,8 +55,5 @@ public class GameWorldFactory {
         GameWorld game = new GameWorld(player, rooms);
 
         Persistence.ObjectToXml(game, "prototypeGame.xml");
-
-        GameWorld newgame = Persistence.XmlToObject(new File("prototypeGame.xml"));
-        System.out.println(newgame.getPlayer().getInventory().get(0).getDescription());
     }
 }
