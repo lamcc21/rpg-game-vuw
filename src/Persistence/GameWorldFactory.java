@@ -46,8 +46,7 @@ public class GameWorldFactory {
 
         Persistence.ObjectToXml(game, "prototypeGame.xml");
 
-        //GameWorld newgame = Persistence.XmlToObject(new File("prototypeGame.xml"));
-        //System.out.println(newgame.getPlayer().getX());
-        //System.out.println(newgame.getRooms().length);
+        GameWorld newgame = Persistence.XmlToObject(new File("prototypeGame.xml"));
+        System.out.println(newgame.getPlayer().getInventory().get(0).getDescription());
     }
 }

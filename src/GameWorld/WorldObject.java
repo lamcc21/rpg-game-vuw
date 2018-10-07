@@ -117,17 +117,26 @@ public abstract class WorldObject  {
 	public int getDepth() {
 		return zWidth;
 	}
+
 	@XmlElement
 	public String getName() {
 		return name;
 	}
 
-	@XmlElement
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @XmlElement
 	public String getDescription() {
 		return description;
 	}
 
-	@XmlElement
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @XmlElement
 	public Direction getDirection() {
 		return this.direction;
 	}

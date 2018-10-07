@@ -22,6 +22,5 @@ public class KeyComponent extends Holdable {
 	}
 
 	public KeyComponent() throws IOException {
-	  System.out.println("KeyComponent default constructor is being used");
   }
 }

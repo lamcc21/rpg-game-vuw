@@ -13,16 +13,9 @@
                         </value>
                     </entry>
                     <entry>
-                        <key>WEST</key>
+                        <key>EAST</key>
                         <value>
-                            <direction>WEST</direction>
-                            <visible>true</visible>
-                        </value>
-                    </entry>
-                    <entry>
-                        <key>SOUTH</key>
-                        <value>
-                            <direction>SOUTH</direction>
+                            <direction>EAST</direction>
                             <door>
 <color>
     <b>255</b>
@@ -35,9 +28,16 @@
                         </value>
                     </entry>
                     <entry>
-                        <key>EAST</key>
+                        <key>WEST</key>
                         <value>
-                            <direction>EAST</direction>
+                            <direction>WEST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
                             <door>
 <color>
     <b>255</b>
@@ -64,6 +64,7 @@
             </color>
             <depth>1</depth>
             <description>A nice Pen</description>
+            <direction>NORTH</direction>
             <height>1</height>
             <name>Pen</name>
             <width>1</width>
@@ -79,6 +80,7 @@
             </color>
             <depth>1</depth>
             <description>nice greenery yep</description>
+            <direction>NORTH</direction>
             <height>50</height>
             <name>Pot plant</name>
             <width>50</width>
@@ -94,6 +96,7 @@
             </color>
             <depth>1</depth>
             <description>its a painting</description>
+            <direction>NORTH</direction>
             <height>50</height>
             <name>Painting</name>
             <width>50</width>
@@ -109,6 +112,7 @@
             </color>
             <depth>1</depth>
             <description>its a chair</description>
+            <direction>NORTH</direction>
             <height>50</height>
             <name>Chair</name>
             <width>50</width>
@@ -124,6 +128,7 @@
             </color>
             <depth>1</depth>
             <description>its a table </description>
+            <direction>NORTH</direction>
             <height>50</height>
             <name>Table</name>
             <width>50</width>
