@@ -17,11 +17,11 @@ public class KeyComponent extends Holdable {
     this.zWidth=zDepth;
     this.name=Name;
     this.description=Description;
-    this.direction=direction;
+    this.direction=d;
     this.color=color;
 	}
 
-	public KeyComponent() throws IOException {}
-
-
+	public KeyComponent() throws IOException {
+	  System.out.println("KeyComponent default constructor is being used");
+  }
 }

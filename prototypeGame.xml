@@ -13,9 +13,16 @@
                         </value>
                     </entry>
                     <entry>
-                        <key>EAST</key>
+                        <key>WEST</key>
                         <value>
-                            <direction>EAST</direction>
+                            <direction>WEST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
                             <door>
 <color>
     <b>255</b>
@@ -28,16 +35,9 @@
                         </value>
                     </entry>
                     <entry>
-                        <key>WEST</key>
+                        <key>EAST</key>
                         <value>
-                            <direction>WEST</direction>
-                            <visible>true</visible>
-                        </value>
-                    </entry>
-                    <entry>
-                        <key>SOUTH</key>
-                        <value>
-                            <direction>SOUTH</direction>
+                            <direction>EAST</direction>
                             <door>
 <color>
     <b>255</b>
@@ -69,6 +69,66 @@
             <width>1</width>
             <x>1</x>
             <y>1</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>nice greenery yep</description>
+            <height>50</height>
+            <name>Pot plant</name>
+            <width>50</width>
+            <x>5</x>
+            <y>5</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its a painting</description>
+            <height>50</height>
+            <name>Painting</name>
+            <width>50</width>
+            <x>7</x>
+            <y>10</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its a chair</description>
+            <height>50</height>
+            <name>Chair</name>
+            <width>50</width>
+            <x>2</x>
+            <y>15</y>
+            <z>1</z>
+        </inventory>
+        <inventory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+            <color>
+                <b>255</b>
+                <g>0</g>
+                <r>0</r>
+            </color>
+            <depth>1</depth>
+            <description>its a table </description>
+            <height>50</height>
+            <name>Table</name>
+            <width>50</width>
+            <x>6</x>
+            <y>9</y>
             <z>1</z>
         </inventory>
         <perspective>NORTH</perspective>

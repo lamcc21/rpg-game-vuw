@@ -84,10 +84,16 @@ public class Player {
 	 */
 	public void pickUp(WorldObject ob) {
 		if(ob instanceof Holdable) {
-			if(inventory.size()<5)
+			if(inventory.size()<16)
 			inventory.add(ob);
 		}
 	}
+
+	public void dropItem(WorldObject ob){
+	  if(ob instanceof Holdable){
+	    inventory.remove(ob);
+    }
+  }
 
 	/**
 	 * method for unlocking a door, unsure if we need anything for locking a door again;

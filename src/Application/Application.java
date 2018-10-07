@@ -16,7 +16,6 @@ import static java.lang.System.exit;
  */
 
 public class Application extends JFrame{
-   //Will be used for start screen
   private CanvasPane canvas;
   private GameWorld gameWorld;
   private InventoryPane inventory;
@@ -30,7 +29,7 @@ public class Application extends JFrame{
 
     if(gameWorld != null){
       this.canvas = new CanvasPane(gameWorld);
-      this.inventory = new InventoryPane(gameWorld.getPlayer().getInventory());
+      this.inventory = new InventoryPane(gameWorld);
 
       gbc.anchor = GridBagConstraints.NORTH;
 

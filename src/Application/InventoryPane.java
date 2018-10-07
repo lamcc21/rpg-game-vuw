@@ -1,5 +1,7 @@
 package Application;
 
+import GameWorld.GameWorld;
+import GameWorld.Player;
 import GameWorld.WorldObject;
 
 import javax.imageio.ImageIO;
@@ -14,97 +16,85 @@ import java.util.List;
 
 class InventoryPane extends JPanel{
   private final BufferedImage defaultImage = ImageIO.read(getClass().getResource("black.png"));
+  //TODO: Find a purple key icon
+  //TODO: Find a cyan key icon
+  //TODO: Find a dark green key icon
+  //TODO: Find a gold key icon
   private JButton[] inventoryItems;
+  private JButton[] keyItems;
 
-  InventoryPane(List<? extends WorldObject> inventory) throws IOException {
-    inventoryItems = new JButton[5];
-    setLayout(new GridLayout(1,10));
+  InventoryPane(GameWorld gameWorld) throws IOException {
+    inventoryItems = new JButton[16];
+    setLayout(new GridLayout(2,8));
+    ToolTipManager.sharedInstance().setInitialDelay(0);
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.anchor = GridBagConstraints.EAST;
 
     setBackground(Color.DARK_GRAY);
-    setPreferredSize(new Dimension(500,50));
-    //addInventoryGUI(inventory);
+    setPreferredSize(new Dimension(500,80));
+    addInventoryGUI(gameWorld);
 
-    /*for(JButton aGameGrid: inventoryItems){
+    for(JButton aGameGrid: inventoryItems){
         add(aGameGrid);
-    }*/
+    }
   }
 
-  private void addInventoryGUI(List<? extends WorldObject> inventory){ //TODO: bug fix this
-    boolean noMoreItems = false;
+  private void addInventoryGUI(GameWorld gameWorld){
+    List<? extends WorldObject> inventory = gameWorld.getPlayer().getInventory();
+    Player player = gameWorld.getPlayer();
+
     assert inventory != null;
-    if(inventory == null){System.out.println("nothing to show");}
-
-    for(int i=0; i<inventoryItems.length;){
-      if(!noMoreItems){
-        if(inventory.get(i) == null) {
-          noMoreItems = true;
-        }else {
-          System.out.println("added");
-          WorldObject item = inventory.get(i);
-          inventoryItems[i]= new JButton();
-          inventoryItems[i].setIcon(new ImageIcon()); //TODO: get correct image for Icon in room contents
-          inventoryItems[i].setToolTipText(item.getName() + ": " +item.getDescription() + "\nClick To Drop");
-          inventoryItems[i].addMouseListener(MyMouseListener());
-          //TODO: need to figure out how to remove object from list in Room
-          //TODO: could compare Inventory list in Application and one in InventoryPane get
-          inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-          i++;
-        }
-      }else{
+    for(int i=0; i<inventory.size(); i++){
+      if(inventory.get(i)!=null){
+        WorldObject item = inventory.get(i);
         inventoryItems[i]= new JButton();
-        inventoryItems[i].setToolTipText("Empty Slot");
-        inventoryItems[i].setIcon(new ImageIcon(defaultImage));//TODO: Icon shit will be added from xml
-        inventoryItems[i].setEnabled(false);
-        i++;
-      }
-    }
-  }
-
-  public void updateInventoryGUI(List<? extends WorldObject> inventory){
-    boolean noMoreItems = false;
-    if(inventory.isEmpty()){noMoreItems=true;}
-
-    for(int i=0; i<inventoryItems.length;){
-      if(!noMoreItems){
-        if(inventory.get(i) != null){
-          WorldObject item = inventory.get(i);
-          inventoryItems[i].setIcon(new ImageIcon());
-          inventoryItems[i].setToolTipText(item.getName() + ": " + item.getDescription() + "\nClick To Drop");
-          inventoryItems[i].addMouseListener(MyMouseListener());
-          inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-          i++;
-        }
-        else{noMoreItems=true;}
+        inventoryItems[i].setIcon(new ImageIcon(defaultImage)); //TODO: get correct image for Icon in room contents
+        inventoryItems[i].setToolTipText(item.getName() + ": " +item.getDescription() + "\nClick To Drop");
+        inventoryItems[i].addActionListener((e -> {
+          //TODO:need to make it so that it can only drop when container is active
+          player.dropItem(item);
+          updateInventoryGUI(gameWorld.getPlayer().getInventory(),gameWorld.getPlayer());
+        }));
+        inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
       }else{
-        inventoryItems[i].setIcon(new ImageIcon(defaultImage));//TODO: Icon shit will be added from xml
-        inventoryItems[i].setToolTipText("Empty Slot");
-        inventoryItems[i].setEnabled(false);
-        i++;
+        i=inventory.size();
+      }
+      //TODO: need to compare Inventory list in Application to the one in this class to see if items have been dropped
+      //TODO: and add those Items back into the container
+    }
+
+    for(int j=inventory.size(); j<inventoryItems.length; j++){
+      inventoryItems[j]= new JButton();
+      inventoryItems[j].setToolTipText("Empty Slot");
+      inventoryItems[j].setIcon(new ImageIcon(defaultImage));
+      inventoryItems[j].setEnabled(false);
+    }
+  }
+
+  private void updateInventoryGUI(List<? extends WorldObject> inventory, Player player) {
+    assert inventory != null;
+    for (int i = 0; i < inventory.size(); i++) {
+      if (inventory.get(i) != null) {
+        WorldObject item = inventory.get(i);
+        inventoryItems[i].setIcon(new ImageIcon(defaultImage));
+        inventoryItems[i].setToolTipText(item.getName() + ": " + item.getDescription() + "\nClick To Drop");
+        inventoryItems[i].addActionListener(e -> player.dropItem(item));
+        inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+        inventoryItems[i].setEnabled(true);
+      } else {
+        i = inventory.size();
       }
     }
-    this.revalidate();
+
+    for(int j=inventory.size(); j<inventoryItems.length; j++){
+      inventoryItems[j].setToolTipText("Empty Slot");
+      inventoryItems[j].setIcon(new ImageIcon(defaultImage));
+      inventoryItems[j].setEnabled(false);
+    }
   }
 
-  private MouseListener MyMouseListener(){
-    return new MouseListener() {
-      @Override
-      public void mouseClicked(MouseEvent e1) {
-        //TODO: This Method Just needs to call a drop method in room
-      }
 
-      @Override
-      public void mousePressed(MouseEvent e1) {}
 
-      @Override
-      public void mouseReleased(MouseEvent e1) {}
 
-      @Override
-      public void mouseEntered(MouseEvent e1) {}
-
-      @Override
-      public void mouseExited(MouseEvent e1) {}
-    };
-  }
+  //TODO: need functionality for creating keys
 }

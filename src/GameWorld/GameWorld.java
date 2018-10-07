@@ -55,7 +55,7 @@ public class GameWorld {
 		this.rooms=rooms;
 	}
 
-	public void MovePlayer(Direction d) {
+	public void movePlayer(Direction d) {
 		if (rooms[player.getX()][player.getY()].hasNeighbor(d, rooms) &&
 				rooms[player.getX()][player.getY()].getWall(d).hasDoor()
 				&& !rooms[player.getX()][player.getY()].getWall(d).door.getIsLocked()) {
@@ -72,8 +72,4 @@ public class GameWorld {
 	public List<WorldObject> getObjectsInView() {
 		return rooms[player.getX()][player.getY()].getContents().get(player.getPerspective());
 	}
-
-
-
-
 }

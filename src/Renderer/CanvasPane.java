@@ -18,8 +18,7 @@ import java.util.HashMap;
 
 import GameWorld.*;
 
-public class CanvasPane extends JPanel implements MouseListener{
-
+public class CanvasPane extends JPanel{
     /*object drawing fields*/
 
     //object sizes
@@ -58,8 +57,9 @@ public class CanvasPane extends JPanel implements MouseListener{
         setPreferredSize(new Dimension(800, 600));
         this.player = gameWorld.getPlayer();
         //this.room = gameWorld.getRoom(player.getX(), player.getY());
-        this.addMouseListener(this);
-        //this.perspective = player.getPerspective();
+        this.addMouseListener(MyMouseListener());
+
+      //this.perspective = player.getPerspective();
     }
 
     @Override
@@ -259,32 +259,31 @@ public class CanvasPane extends JPanel implements MouseListener{
         }*/
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        for(Rectangle r : boundingBoxes){
+    private MouseListener MyMouseListener(){
+      return new MouseListener() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+          for(Rectangle r : boundingBoxes){
             if(r.contains(e.getX(), e.getY())){
-                System.out.println("Box click detected");
+              System.out.println("Box click detected");
             }
+          }
+          //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
         }
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+        @Override
+        public void mousePressed(MouseEvent e) {}
 
-    }
+        @Override
+        public void mouseReleased(MouseEvent e) {}
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
+        @Override
+        public void mouseEntered(MouseEvent e) {
+          //TODO: I think this can be used for highlighting description
+        }
 
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+        @Override
+        public void mouseExited(MouseEvent e) {}
+      };
     }
 }

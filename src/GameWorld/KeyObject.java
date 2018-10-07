@@ -10,7 +10,7 @@ import java.io.IOException;
 public class KeyObject extends Holdable {
 
 	public KeyObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,
-			String Description,Direction d,Color color) throws IOException {
+			String Description,GameWorld.Direction d,Color color) throws IOException {
     this.xPos=xPos;
     this.yPos=yPos;
     this.zPos=zPos;
@@ -19,7 +19,7 @@ public class KeyObject extends Holdable {
     this.zWidth=zDepth;
     this.name=Name;
     this.description=Description;
-    this.direction=direction;
+    this.direction=d;
     this.color=color;
 	}
 
@@ -29,5 +29,7 @@ public class KeyObject extends Holdable {
 		this.name = c.toString()+" Key";
 	}
 
-	public KeyObject() throws IOException {}
+	public KeyObject() throws IOException {
+    System.out.println("KeyObject default constructor is being used");
+  }
 }
