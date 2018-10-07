@@ -67,7 +67,6 @@ public class Application extends JFrame{
       toprow.fill = GridBagConstraints.NONE;
       toprow.gridx = 0;
       toprow.gridy = 1;
-      toprow.insets = new Insets(0,30,0,0);
       toprow.gridwidth = 2;
 
       toprow.anchor = GridBagConstraints.WEST;
@@ -75,7 +74,7 @@ public class Application extends JFrame{
 
       toprow.gridx = 1;
       toprow.gridy = 1;
-      toprow.insets = new Insets(0,0,0,30);
+      //toprow.insets = new Insets(0,0,0,15);
       toprow.anchor = GridBagConstraints.EAST;
       add(crafting, toprow);
 
