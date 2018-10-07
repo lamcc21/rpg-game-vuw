@@ -115,7 +115,7 @@ public class CanvasPane extends JPanel{
         HashMap<Polygon, GradientPaint> polygonGradientMap = new HashMap<>();
 
         //set foreground / background colors (instead of hardcoding this, change it to get the color from GameWorld)
-        Color foregroundColor = new Color(220, 255, 255);
+        Color foregroundColor = new Color(182, 182, 255);
         Color backgroundColor = Color.WHITE;
 
         //construct floor polygon and gradient

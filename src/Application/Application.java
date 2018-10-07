@@ -22,47 +22,70 @@ import static java.lang.System.exit;
 public class Application extends JFrame{
 
   private Application() throws IOException, InterruptedException {
-    super("Have a go Escaping");
+    super("Have A Go Escaping");
     setLayout(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
+    UIManager.put ("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
     GameWorld gameWorld = createGameWorld(new File("prototypeGame.xml"));
 
     if(gameWorld != null){
       CanvasPane canvas = new CanvasPane(gameWorld);
       InventoryPane inventory = new InventoryPane(gameWorld);
+      CraftingPane crafting = new CraftingPane(gameWorld);
 
-      gbc.anchor = GridBagConstraints.NORTH;
 
+      GridBagConstraints toprow = new GridBagConstraints();
+      GridBagConstraints bottomrow = new GridBagConstraints();
+
+      toprow.anchor = GridBagConstraints.NORTH;
       Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
       this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
       //This centers every window displayed
 
-      gbc.gridx = 1;
-      gbc.gridy = 0;
-      add(canvas, gbc);
+      toprow.fill = GridBagConstraints.VERTICAL;
+      toprow.gridx = 0;
+      toprow.gridy = 0;
 
-      gbc.fill = GridBagConstraints.VERTICAL;
-      gbc.gridx = 0;
-      gbc.gridy = 0;
-      add(new BasicArrowButton(BasicArrowButton.WEST), gbc);
+      BasicArrowButton buttonwest = new BasicArrowButton(BasicArrowButton.WEST) {
+        @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
+      };
+      add(buttonwest, toprow);
 
-      gbc.gridx = 2;
-      gbc.gridy = 0;
-      add(new BasicArrowButton(BasicArrowButton.EAST), gbc);
+      toprow.gridx = 1;
+      toprow.gridy = 0;
+      add(canvas, toprow);
 
-      gbc.fill = GridBagConstraints.HORIZONTAL;
-      gbc.gridx = 1;
-      gbc.gridy = 1;
-      add(inventory, gbc);
+      toprow.gridx = 2;
+      toprow.gridy = 0;
+
+      BasicArrowButton buttoneast = new BasicArrowButton(BasicArrowButton.EAST) {
+        @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
+      };
+
+      add(buttoneast, toprow);
+
+      toprow.fill = GridBagConstraints.NONE;
+      toprow.gridx = 0;
+      toprow.gridy = 1;
+      toprow.insets = new Insets(0,30,0,0);
+      toprow.gridwidth = 2;
+
+      toprow.anchor = GridBagConstraints.WEST;
+      add(inventory, toprow);
+
+      toprow.gridx = 1;
+      toprow.gridy = 1;
+      toprow.insets = new Insets(0,0,0,30);
+      toprow.anchor = GridBagConstraints.EAST;
+      add(crafting, toprow);
+
       pack();
     }else{
       JOptionPane.showMessageDialog(this, "Game Load Error");
       exit(0);
     }
 
-
-    getContentPane().setBackground(Color.black);
+    getContentPane().setBackground(new Color(37, 18, 13));
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
     startListening(gameWorld);
@@ -94,3 +117,5 @@ public class Application extends JFrame{
     }
   }
 }
+
+
