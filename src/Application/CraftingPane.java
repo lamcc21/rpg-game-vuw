@@ -24,7 +24,7 @@ class CraftingPane extends JPanel{
 
     CraftingPane(GameWorld gameWorld) throws IOException {
         keyItems = new JButton[6];
-        setBackground(Color.DARK_GRAY);
+        setBackground(Color.darkGray);
 
         setLayout(new GridLayout(2,3));
         setPreferredSize(new Dimension(210,140));

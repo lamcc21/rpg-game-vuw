@@ -25,7 +25,7 @@ class InventoryPane extends JPanel{
   InventoryPane(GameWorld gameWorld) throws IOException {
     inventoryItems = new JButton[16];
 
-    setBackground(Color.DARK_GRAY);
+    setBackground(Color.darkGray);
     setPreferredSize(new Dimension(560,140));
 
     setLayout(new GridLayout(2,8));

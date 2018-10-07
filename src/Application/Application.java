@@ -85,7 +85,7 @@ public class Application extends JFrame{
       exit(0);
     }
 
-    getContentPane().setBackground(new Color(37, 18, 13));
+    getContentPane().setBackground(Color.gray);
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
     startListening(gameWorld);
