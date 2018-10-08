@@ -2,6 +2,7 @@ package GameWorld;
 
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -138,28 +139,31 @@ public class Player {
 		return object.getDescription();
 	}
 
-//	public void craftKey() {
-//		int sameKeyComp = 0;
-//		List<KeyComponent> keyComps = new ArrayList<>();
-//		for(int i = 0 ; i < inventory.size()-1 ; i++) {
-//			if(inventory.get(i) instanceof KeyComponent) {
-//				KeyComponent comp1 = (KeyComponent) inventory.get(i);
-//				for(int o = i+1; i < inventory.size() ; i++) {
-//					if(inventory.get(o) instanceof KeyComponent && object!=object2) {
-//						if(comp1.getColor().equals(object2.getColor())) {
-//							keyComps.add(object2);
-//							if(keyComps.size()==2) {
-//								keyComps.add(object);
-//								break;
-//							}
-//						}
-//					}
-//				}
-//			}
-//			keyComps = new ArrayList<>();
-//		}
-//
-//	}
+	public List<WorldObject> getCraftable(Color c) {
+		int matchedObject = 0;
+		List<WorldObject> keycomps = new ArrayList<WorldObject>();
+		for(WorldObject object: inventory) {
+			if(object.getColor().equals(c) && object instanceof KeyComponent) {
+				matchedObject+=1;
+				keycomps.add(object);
+			}
+		}
+		if(matchedObject==3) {
+			return keycomps;
+		}
+		return null;
+	}
+
+	public void craft(Color c) throws IOException {
+		List<WorldObject> craftable = getCraftable(c);
+		for(WorldObject object : craftable) {
+			dropItem(object);
+		}
+		WorldObject key = new KeyObject(c);
+		inventory.add(key);
+	}
+
+
 
 	public Direction getRight(){
 		return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];
