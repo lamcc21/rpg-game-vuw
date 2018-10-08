@@ -13,6 +13,7 @@ import java.util.List;
 @XmlRootElement
 public class Container extends WorldObject {
   private boolean isOpen;
+  private boolean isSelected;
 
 	public Container(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
 	String Name,String Description,Direction direction, List<WorldObject> contents ) throws IOException {
@@ -54,6 +55,14 @@ public class Container extends WorldObject {
 	 */
 	public void addWorldObject(WorldObject ob) {
 		if(canContain(ob))contents.add(ob);
+	}
+	
+	public void setIsSelected(Boolean b) {
+		isSelected =b;
+	}
+	
+	public boolean getIsSelected() {
+		return isSelected;
 	}
 
 
