@@ -189,7 +189,7 @@ public class CanvasPane extends JPanel{
         //set respective door colors (instead of hardcoding this, get the color from GameWorld)
 
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
+            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getGameColor().getR(), room.getWall(player.getRight()).getDoor().getGameColor().getG(), room.getWall(player.getRight()).getDoor().getGameColor().getB());
             //Color backDoorColor = room.getWall(perspective).getDoor().getColor();
             int[] backDoorX = {350, 450, 450, 350};
             int[] backDoorY = {225, 225, 400, 400};
