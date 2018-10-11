@@ -17,13 +17,23 @@ public class Room {
 
 	public final static int SIZE = 10;
 
+	private List<WorldObject> north;
+	private List<WorldObject> east;
+	private List<WorldObject> south;
+	private List<WorldObject> west;
+
 	private Map<Direction, ArrayList<WorldObject>> contents;
 	private Map<Direction,Wall> walls;
 	private int x;
 	private int y;
 
-	public Room(Map<Direction, ArrayList<WorldObject>> contents, Map<Direction,Wall>walls,int x , int y) {
-		this.contents=contents;
+
+	public Room(List<WorldObject> north, List<WorldObject> east,List<WorldObject> south, List<WorldObject> west,
+			Map<Direction,Wall>walls,int x , int y) {
+		this.north=north;
+		this.west=west;
+		this.east=east;
+		this.south=south;
 		this.walls=walls;
 		this.x=x;
 		this.y=y;
@@ -32,12 +42,39 @@ public class Room {
 	public Room() {}
 
 	@XmlElement
-	public Map<Direction, ArrayList<WorldObject>> getContents(){
-		return this.contents;
+	public List<WorldObject> getNorth() {
+		return this.north;
 	}
 
-	public void setContents(Map<Direction, ArrayList<WorldObject>> contents) {
-		this.contents=contents;
+	public void setNorth(List<WorldObject> north) {
+		this.north=north;
+	}
+
+	@XmlElement
+	public List<WorldObject> getWest() {
+		return this.west;
+	}
+
+	public void setWest(List<WorldObject>west) {
+		this.west=west;
+	}
+
+	@XmlElement
+	public List<WorldObject> getSouth() {
+		return this.south;
+	}
+
+	public void setSouth(List<WorldObject> south) {
+		this.south=south;
+	}
+
+	@XmlElement
+	public List<WorldObject> getEast() {
+		return this.east;
+	}
+
+	public void setEast(List<WorldObject> east) {
+		this.east=east;
 	}
 
 	@XmlElement
@@ -73,6 +110,16 @@ public class Room {
 
 	public void setWall(Direction d ,Wall w) {
 		this.walls.put(d, w);
+	}
+
+	public List<WorldObject> getContents(Direction d) {
+		switch(d) {
+		case NORTH:return north;
+		case EAST:return east;
+		case SOUTH: return south;
+		case WEST: return west;
+		}
+		return null;
 	}
 
 	public Room getNeighbor(Direction dir, Room[][] rooms) {
@@ -130,7 +177,7 @@ public class Room {
 		}
 		return false;
 	}
-	
+
 
 	/**
 	 * method for iterating through room nodes and returning a list
