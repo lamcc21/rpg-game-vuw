@@ -22,12 +22,12 @@ import GameWorld.*;
 public class CanvasPane extends JPanel{
     /*object drawing fields*/
 
-    //object sizes
+    //object sizes based on Z value
     private int MIN_SIZE = 25;
     private int MED_SIZE = 50;
     private int MAX_SIZE = 75;
 
-    //object rows
+    //object rows based on Z value
     private int BOTTOM_BACK_ROW = 410;
     private int BOTTOM_MID_ROW = 450;
     private int BOTTOM_FRONT_ROW = 520;
@@ -36,16 +36,17 @@ public class CanvasPane extends JPanel{
     private int ROOF_MID_ROW = 35;
     private int ROOF_FRONT_ROW = 5;
 
-    //object rows starting x pos
+    //object rows starting x pos based on Z value
     private int BACK_X_START = 170;
     private int MID_X_START = 110;
     private int FRONT_X_START = 40;
 
-    //object rows respective spacing size
+    //object rows respective spacing size based on Z value
     private int BACK_X_SPACING = 210;
     private int MID_X_SPACING = 260;
     private int FRONT_X_SPACING = 320;
 
+    //bounding box for objects
     private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
 
     // color fields
@@ -90,7 +91,7 @@ public class CanvasPane extends JPanel{
         int objectHeight = object.getY();
         int objectSize;
 
-        if(z == 0){
+        if(z == 2){
             startX = BACK_X_START;
             spaceX = BACK_X_SPACING;
             if(objectHeight == 0) y = BOTTOM_BACK_ROW;
