@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +42,7 @@ public class CanvasPane extends JPanel{
 
     private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
 
-    // color fields
+    // gameColor fields
     private Color BLUE = Color.blue;
     private Color RED = Color.red;
     private Color GREEN = Color.green;
@@ -61,6 +60,8 @@ public class CanvasPane extends JPanel{
         this.perspective = player.getPerspective();
     }
 
+    public void updatePerspective(GameWorld.Direction d){}
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -72,10 +73,9 @@ public class CanvasPane extends JPanel{
     private void drawBufferedImages(Graphics2D g2d) {
         //test method for drawing 2d box png in 3d
         try {
+            BufferedImage img = ImageIO.read(getClass().getResource("Crate.png"));
 
-            BufferedImage img = ImageIO.read(new File("/home/mearslach/Desktop/SWEN225/SWEN225-Group-Project/src/Renderer/Sprites/Crate.png"));
-
-            //draw back row
+          //draw back row
             for(int x = BACK_X_START; x <= (BACK_X_START+BACK_X_SPACING)*3; x += BACK_X_SPACING) {
                 g2d.drawImage(img, x, BACK_ROW, MIN_SIZE, MIN_SIZE, null);
                 //add bounding box to the arraylist to allow for detectable clicks
@@ -107,7 +107,7 @@ public class CanvasPane extends JPanel{
 
         HashMap<Polygon, GradientPaint> polygonGradientMap = new HashMap<>();
 
-        //set foreground / background colors (instead of hardcoding this, change it to get the color from GameWorld)
+        //set foreground / background colors (instead of hardcoding this, change it to get the gameColor from GameWorld)
         Color foregroundColor = new Color(182, 182, 255);
         Color backgroundColor = Color.WHITE;
 
@@ -157,11 +157,11 @@ public class CanvasPane extends JPanel{
     private void drawDoors(Graphics2D g2d, Room room){
         //construct door polygon and gradient
 
-        //set respective door colors (instead of hardcoding this, get the color from GameWorld)
+        //set respective door colors (instead of hardcoding this, get the gameColor from GameWorld)
 
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
-            //Color backDoorColor = room.getWall(perspective).getDoor().getColor();
+            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getGameColor().getR(), room.getWall(player.getRight()).getDoor().getGameColor().getG(), room.getWall(player.getRight()).getDoor().getGameColor().getB());
+            //GameColor backDoorColor = room.getWall(perspective).getDoor().getGameColor();
             int[] backDoorX = {350, 450, 450, 350};
             int[] backDoorY = {225, 225, 400, 400};
             Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);

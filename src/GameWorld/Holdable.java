@@ -1,10 +1,10 @@
 package GameWorld;
 
 import GameWorld.GameWorld.Direction;
+import GameWorld.GameColor;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-import java.io.IOException;
 
 @XmlTransient
 @XmlSeeAlso({KeyObject.class, KeyComponent.class})
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public abstract class Holdable extends WorldObject {
 
-	public Holdable(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,String Description, Direction d,Color color) throws IOException {
+	public Holdable(int xPos, int yPos, int zPos, int xWidth, int yHeight, int zDepth, String Name, String Description, Direction d, GameColor gameColor){
     this.xPos=xPos;
     this.yPos=yPos;
     this.zPos=zPos;
@@ -23,8 +23,8 @@ public abstract class Holdable extends WorldObject {
     this.name=Name;
     this.description=Description;
     this.direction=d;
-    this.color=color;
+    this.gameColor = gameColor;
 	}
 
-	public Holdable() throws IOException {}
+	public Holdable() {}
 }

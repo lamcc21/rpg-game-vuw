@@ -5,15 +5,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 @XmlRootElement
-public class Color {
+public class GameColor {
+  public static final GameColor cyan = new GameColor(67,125,128);
+  public static final GameColor purple = new GameColor(75, 66, 121);
+  public static final GameColor green = new GameColor(63,99, 37);
+  public static final GameColor gold = new GameColor(170, 170, 36);
+  public static final GameColor brown = new GameColor(114,50,28);
+  public static final GameColor silver = new GameColor(121,121,121);
 
-	int R;
-	int G;
-	int B;
+	private int R;
+	private int G;
+	private int B;
 
-	public Color() {}
+	public GameColor() {}
 
-	public Color(int r, int g, int b) {
+	public GameColor(int r, int g, int b) {
 		this.R=r;
 		this.B=b;
 		this.G=g;
@@ -50,10 +56,10 @@ public class Color {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Color color = (Color) o;
-		return R == color.R &&
-				G == color.G &&
-				B == color.B;
+		GameColor gameColor = (GameColor) o;
+		return R == gameColor.R &&
+				G == gameColor.G &&
+				B == gameColor.B;
 	}
 
 	@Override

@@ -1,9 +1,6 @@
 package GameWorld;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -12,7 +9,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import GameWorld.GameWorld.Direction;
 
 /**
- *
  * @author francis raureti
  */
 
@@ -96,10 +92,9 @@ public class Room {
 		return null;
 	}
 
-
 	/**
 	 * method for checking if room has neighbor in a particular direction
-	 * @param Direction d
+	 * @param direction d
 	 * @return true/false
 	 */
 	public boolean hasNeighbor(Direction direction, Room[][] rooms) {

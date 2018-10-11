@@ -1,11 +1,11 @@
 package GameWorld;
 
 import GameWorld.GameWorld.Direction;
+import GameWorld.GameColor;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
-import java.io.IOException;
 import java.util.List;
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
@@ -37,7 +37,7 @@ public abstract class WorldObject  {
 	protected String description;
 	//private final BufferedImage RoneItemone = ImageIO.read(getClass().getResource("black.png"));
 
-	protected Color color;
+	protected GameColor gameColor;
 	protected List<WorldObject> contents;
 
 	// All get() methods for World object, returns
@@ -45,7 +45,7 @@ public abstract class WorldObject  {
 	// unintended aliasing
 
 	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
-			String Name,String Description,Direction direction )throws IOException{
+			String Name,String Description,Direction direction ){
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -58,10 +58,10 @@ public abstract class WorldObject  {
 	}
 
 	/*
-	 * separate constructor for making objects with color value associated
+	 * separate constructor for making objects with gameColor value associated
 	 */
 	public WorldObject(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,String Name,
-			String Description, Direction direction, Color color )throws IOException{
+			String Description, Direction direction, GameColor gameColor){
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
@@ -71,10 +71,10 @@ public abstract class WorldObject  {
 		this.name=Name;
 		this.description=Description;
 		this.direction=direction;
-		this.color=color;
+		this.gameColor = gameColor;
 	}
 
-	public WorldObject() throws IOException{}
+	public WorldObject(){}
 
 	@XmlElement
 	public int getX(){
@@ -155,12 +155,12 @@ public abstract class WorldObject  {
 	}
 
 	@XmlElement
-	public Color getColor() {
-		return color;
+	public GameColor getGameColor() {
+		return gameColor;
 	}
 
-	public void setColor(Color c) {
-		this.color=c;
+	public void setGameColor(GameColor c) {
+		this.gameColor =c;
 	}
 
 
@@ -170,8 +170,6 @@ public abstract class WorldObject  {
 	 * @return
 	 */
 	public int getDistance(Direction perspective) {
-
-
 		return 0;
 	}
 
