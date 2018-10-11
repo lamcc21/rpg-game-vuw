@@ -14,12 +14,12 @@ public class GameWorldFactory {
     Room rooms[][] = new Room[3][3];
 
     //initialise colours
-    Color cyan = new Color(67,125,128);
+    /*Color cyan = new Color(67,125,128);
     Color purple = new Color(75, 66, 121);
     Color green = new Color(63,99, 37);
     Color blue = new Color(0, 0, 255);
     Color gold = new Color(170, 170, 36);
-    Color silver = new Color(102, 102, 102);
+    Color silver = new Color(102, 102, 102);*/
 
     Room room;
 
