@@ -73,7 +73,7 @@ public class GameWorldFactory {
     northComponents = new ArrayList<>();
     northComponents.add(component2);
     northComponents.add(container1);
-    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Viae", "A vile of a mysterious substance", GameWorld.Direction.SOUTH, cyan);
+    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Vial", "A vial of a mysterious substance", GameWorld.Direction.SOUTH, cyan);
     southComponents = new ArrayList<>();
     southComponents.add(component3);
     contents.put(GameWorld.Direction.NORTH, northComponents);
