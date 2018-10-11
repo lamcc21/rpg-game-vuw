@@ -11,9 +11,11 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import GameWorld.*;
 
@@ -26,9 +28,13 @@ public class CanvasPane extends JPanel{
     private int MAX_SIZE = 75;
 
     //object rows
-    private int BACK_ROW = 410;
-    private int MID_ROW = 450;
-    private int FRONT_ROW = 520;
+    private int BOTTOM_BACK_ROW = 410;
+    private int BOTTOM_MID_ROW = 450;
+    private int BOTTOM_FRONT_ROW = 520;
+    private int CENTRE_ROW = 250;
+    private int ROOF_BACK_ROW = 80;
+    private int ROOF_MID_ROW = 35;
+    private int ROOF_FRONT_ROW = 5;
 
     //object rows starting x pos
     private int BACK_X_START = 170;
@@ -42,7 +48,7 @@ public class CanvasPane extends JPanel{
 
     private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
 
-    // gameColor fields
+    // color fields
     private Color BLUE = Color.blue;
     private Color RED = Color.red;
     private Color GREEN = Color.green;
@@ -51,6 +57,7 @@ public class CanvasPane extends JPanel{
     private Room room;
     private Player player;
     private GameWorld.Direction perspective;
+    private GameWorld gameWorld;
 
     public CanvasPane(GameWorld gameWorld) {
         setPreferredSize(new Dimension(800, 600));
@@ -58,46 +65,67 @@ public class CanvasPane extends JPanel{
         this.room = gameWorld.getRoom(player.getX(), player.getY());
         this.addMouseListener(MyMouseListener());
         this.perspective = player.getPerspective();
+        this.gameWorld = gameWorld;
     }
-
-    public void updatePerspective(GameWorld.Direction d){}
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         constructPolygonGradientMap(g2d);
-        drawBufferedImages(g2d);
+        drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
-    private void drawBufferedImages(Graphics2D g2d) {
+    private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+    }
+
+
+    private void drawBufferedImages(Graphics2D g2d, WorldObject object) {
+        int startX;
+        int spaceX;
+        int x;
+        int y;
+        int z = object.getZ();
+        int objectHeight = object.getY();
+        int objectSize;
+
+        if(z == 0){
+            startX = BACK_X_START;
+            spaceX = BACK_X_SPACING;
+            if(objectHeight == 0) y = BOTTOM_BACK_ROW;
+            else if(objectHeight == 1) y = CENTRE_ROW;
+            else y = ROOF_BACK_ROW;
+            objectSize = MIN_SIZE;
+        }
+        else if(z == 1){
+            startX = MID_X_START;
+            spaceX = MID_X_SPACING;
+            if(objectHeight == 0) y = BOTTOM_MID_ROW;
+            else if(objectHeight == 1) y = CENTRE_ROW;
+            else y = ROOF_MID_ROW;
+            objectSize = MED_SIZE;
+        }
+        else{
+            startX = FRONT_X_START;
+            spaceX = FRONT_X_SPACING;
+            if(objectHeight == 0) y = BOTTOM_FRONT_ROW;
+            else if(objectHeight == 1) y = CENTRE_ROW;
+            else y = ROOF_FRONT_ROW;
+            objectSize = MAX_SIZE;
+        }
+
+        x = startX + object.getX()*spaceX;
+
+
         //test method for drawing 2d box png in 3d
         try {
-            BufferedImage img = ImageIO.read(getClass().getResource("Crate.png"));
-
-          //draw back row
-            for(int x = BACK_X_START; x <= (BACK_X_START+BACK_X_SPACING)*3; x += BACK_X_SPACING) {
-                g2d.drawImage(img, x, BACK_ROW, MIN_SIZE, MIN_SIZE, null);
-                //add bounding box to the arraylist to allow for detectable clicks
-                Rectangle bound = new Rectangle(x, BACK_ROW, MIN_SIZE, MIN_SIZE);
-                boundingBoxes.add(bound);
-            }
-
-            //draw mid row
-            for(int x = MID_X_START; x <= (MID_X_START+MID_X_SPACING)*3; x += MID_X_SPACING) {
-                g2d.drawImage(img, x, MID_ROW, MED_SIZE, MED_SIZE, null);
-                //add bounding box to the arraylist to allow for detectable clicks
-                Rectangle bound = new Rectangle(x, MID_ROW, MED_SIZE, MED_SIZE);
-                boundingBoxes.add(bound);
-            }
-
-            //draw front row
-            for(int x = FRONT_X_START; x <= (FRONT_X_START+FRONT_X_SPACING)*3; x += FRONT_X_SPACING) {
-                g2d.drawImage(img, x, FRONT_ROW, MAX_SIZE, MAX_SIZE, null);
-                //add bounding box to the arraylist to allow for detectable clicks
-                Rectangle bound = new Rectangle(x, FRONT_ROW, MAX_SIZE, MAX_SIZE);
-                boundingBoxes.add(bound);
-            }
+            BufferedImage img = object.getImageFile();
+            //draw
+            g2d.drawImage(img, x, y, objectSize, objectSize, null);
+            //add bounding box to the arraylist to allow for detectable clicks`
+            Rectangle bound = new Rectangle(x, y, objectSize, objectSize);
+            boundingBoxes.add(bound);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +135,7 @@ public class CanvasPane extends JPanel{
 
         HashMap<Polygon, GradientPaint> polygonGradientMap = new HashMap<>();
 
-        //set foreground / background colors (instead of hardcoding this, change it to get the gameColor from GameWorld)
+        //set foreground / background colors (instead of hardcoding this, change it to get the color from GameWorld)
         Color foregroundColor = new Color(182, 182, 255);
         Color backgroundColor = Color.WHITE;
 
@@ -157,11 +185,11 @@ public class CanvasPane extends JPanel{
     private void drawDoors(Graphics2D g2d, Room room){
         //construct door polygon and gradient
 
-        //set respective door colors (instead of hardcoding this, get the gameColor from GameWorld)
+        //set respective door colors (instead of hardcoding this, get the color from GameWorld)
 
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getGameColor().getR(), room.getWall(player.getRight()).getDoor().getGameColor().getG(), room.getWall(player.getRight()).getDoor().getGameColor().getB());
-            //GameColor backDoorColor = room.getWall(perspective).getDoor().getGameColor();
+            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getColor().getR(), room.getWall(player.getRight()).getDoor().getColor().getG(), room.getWall(player.getRight()).getDoor().getColor().getB());
+            //Color backDoorColor = room.getWall(perspective).getDoor().getColor();
             int[] backDoorX = {350, 450, 450, 350};
             int[] backDoorY = {225, 225, 400, 400};
             Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
