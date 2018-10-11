@@ -12,15 +12,6 @@ public class GameWorldFactory {
   public static void main(String[] arg) throws IOException {
 
     Room rooms[][] = new Room[3][3];
-
-    //initialise colours
-    /*Color cyan = new Color(67,125,128);
-    Color purple = new Color(75, 66, 121);
-    Color green = new Color(63,99, 37);
-    Color blue = new Color(0, 0, 255);
-    Color gold = new Color(170, 170, 36);
-    Color silver = new Color(102, 102, 102);*/
-
     Room room;
 
     Map<GameWorld.Direction, ArrayList<WorldObject>> contents;
@@ -57,7 +48,7 @@ public class GameWorldFactory {
 
     northWall = new Wall(true, GameWorld.Direction.NORTH);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(true, cyan);
+    eastDoor = new Door(true, GameColor.cyan);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
@@ -65,15 +56,15 @@ public class GameWorldFactory {
     westWall = new Wall(true, GameWorld.Direction.WEST);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "An essential plasma utility", GameWorld.Direction.NORTH, cyan);
-    component2 = new KeyComponent(2, 2, 0, 1, 1, 1, "Computer console", "Wall mounted for convenience", GameWorld.Direction.NORTH, cyan);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "An essential plasma utility", GameWorld.Direction.NORTH, GameColor.cyan);
+    component2 = new KeyComponent(2, 2, 0, 1, 1, 1, "Computer console", "Wall mounted for convenience", GameWorld.Direction.NORTH, GameColor.cyan);
     contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(2, 1, 2, 1, 1, 1, "Crate", "A simple crate", GameWorld.Direction.NORTH, contained);
     northComponents = new ArrayList<>();
     northComponents.add(component2);
     northComponents.add(container1);
-    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Vial", "A vial of a mysterious substance", GameWorld.Direction.SOUTH, cyan);
+    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Vial", "A vial of a mysterious substance", GameWorld.Direction.SOUTH, GameColor.cyan);
     southComponents = new ArrayList<>();
     southComponents.add(component3);
     contents.put(GameWorld.Direction.NORTH, northComponents);
@@ -88,16 +79,16 @@ public class GameWorldFactory {
 
     northWall = new Wall(true, GameWorld.Direction.NORTH);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(false, cyan);
+    eastDoor = new Door(false, GameColor.cyan);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(true, cyan);
+    westDoor = new Door(true, GameColor.cyan);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Optic spanner", "For getting a grip on light", GameWorld.Direction.WEST, purple);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Optic spanner", "For getting a grip on light", GameWorld.Direction.WEST, GameColor.purple);
     contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(2, 0, 0, 2, 2, 1, "Cupboard", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
@@ -116,17 +107,17 @@ public class GameWorldFactory {
     walls.put(GameWorld.Direction.NORTH, northWall);
     eastWall = new Wall(true, GameWorld.Direction.EAST);
     walls.put(GameWorld.Direction.EAST, eastWall);
-    southDoor = new Door(true, purple);
+    southDoor = new Door(true, GameColor.purple);
     southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(false, cyan);
+    westDoor = new Door(false, GameColor.cyan);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Boots", "Made for walking", GameWorld.Direction.EAST, purple);
+    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Boots", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
     eastComponents = new ArrayList<>();
     eastComponents.add(component1);
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "Another one", GameWorld.Direction.SOUTH, purple);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "Another one", GameWorld.Direction.SOUTH, GameColor.purple);
     southComponents = new ArrayList<>();
     southComponents.add(component1);
     contents.put(GameWorld.Direction.EAST, eastComponents);
@@ -139,29 +130,29 @@ public class GameWorldFactory {
     contents = new HashMap<>();
     walls = new HashMap<>();
 
-    northDoor = new Door(false, purple);
+    northDoor = new Door(false, GameColor.purple);
     northWall = new Wall(true, GameWorld.Direction.NORTH, northDoor);
     walls.put(GameWorld.Direction.NORTH, northWall);
     eastWall = new Wall(true, GameWorld.Direction.EAST);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(true, green);
+    westDoor = new Door(true, GameColor.green);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Battery pack", "Optimised energy storage", GameWorld.Direction.EAST, green);
-    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Rare metal", "Very valuable", GameWorld.Direction.EAST, gold);
+    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Battery pack", "Optimised energy storage", GameWorld.Direction.EAST, GameColor.green);
+    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Rare metal", "Very valuable", GameWorld.Direction.EAST, GameColor.gold);
     contained = new ArrayList<>();
     contained.add(component1);
     contained.add(component2);
     container1 = new Container(1, 0, 2, 1, 2, 1, "Barrel", "Storage barrel", GameWorld.Direction.EAST, contained);
     eastComponents = new ArrayList<>();
     eastComponents.add(container1);
-    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Ceiling fan", "Keeps you cool", GameWorld.Direction.WEST, green);
+    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Ceiling fan", "Keeps you cool", GameWorld.Direction.WEST, GameColor.green);
     westComponents = new ArrayList<>();
     westComponents.add(component3);
-    component4 = new KeyComponent(2, 1, 0, 1, 1, 1, "Computer console", "Provides access to the mainframe", GameWorld.Direction.SOUTH, green);
+    component4 = new KeyComponent(2, 1, 0, 1, 1, 1, "Computer console", "Provides access to the mainframe", GameWorld.Direction.SOUTH, GameColor.green);
     southComponents = new ArrayList<>();
     southComponents.add(component4);
     contents.put(GameWorld.Direction.EAST, eastComponents);
@@ -177,16 +168,16 @@ public class GameWorldFactory {
 
     northWall = new Wall(true, GameWorld.Direction.NORTH);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(false, green);
+    eastDoor = new Door(false, GameColor.green);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(true, green);
+    westDoor = new Door(true, GameColor.green);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Helmet", "Safety is key", GameWorld.Direction.NORTH, gold);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Helmet", "Safety is key", GameWorld.Direction.NORTH, GameColor.gold);
     contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(1, 0, 1, 1, 1, 1, "Crate", "A humble crate", GameWorld.Direction.NORTH, contained);
@@ -203,19 +194,19 @@ public class GameWorldFactory {
 
     northWall = new Wall(true, GameWorld.Direction.NORTH);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(false, green);
+    eastDoor = new Door(false, GameColor.green);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
-    southDoor = new Door(true, gold);
+    southDoor = new Door(true, GameColor.gold);
     southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
     walls.put(GameWorld.Direction.SOUTH, southWall);
     westWall = new Wall(true, GameWorld.Direction.WEST);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(0, 1, 2, 1, 1, 1, "Glowing orb", "Glowing orb of wonder, bow in splendor", GameWorld.Direction.NORTH, gold);
+    component1 = new KeyComponent(0, 1, 2, 1, 1, 1, "Glowing orb", "Glowing orb of wonder, bow in splendor", GameWorld.Direction.NORTH, GameColor.gold);
     northComponents = new ArrayList<>();
     northComponents.add(component1);
-    component2 = new KeyComponent(1, 1, 2, 1, 1, 1, "Tesseract", "A fourth dimensional hypercube", GameWorld.Direction.WEST, blue);
+    component2 = new KeyComponent(1, 1, 2, 1, 1, 1, "Tesseract", "A fourth dimensional hypercube", GameWorld.Direction.WEST, GameColor.brown);
     westComponents = new ArrayList<>();
     westComponents.add(component2);
     contents.put(GameWorld.Direction.WEST, westComponents);
@@ -228,10 +219,10 @@ public class GameWorldFactory {
     contents = new HashMap<>();
     walls = new HashMap<>();
 
-    northDoor = new Door(false, gold);
+    northDoor = new Door(false, GameColor.brown);
     northWall = new Wall(true, GameWorld.Direction.NORTH, northDoor);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(true, blue);
+    eastDoor = new Door(true, GameColor.brown);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
@@ -239,13 +230,13 @@ public class GameWorldFactory {
     westWall = new Wall(true, GameWorld.Direction.WEST);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 1, 2, 1, 1, 1, "Mirror", "See who you really are", GameWorld.Direction.SOUTH, silver);
+    component1 = new KeyComponent(1, 1, 2, 1, 1, 1, "Mirror", "See who you really are", GameWorld.Direction.SOUTH, GameColor.silver);
     southComponents = new ArrayList<>();
     southComponents.add(component1);
-    component2 = new KeyComponent(2, 0, 1, 1, 1, 1, "Radioactive waste", "Secure storage facility for radioactive waste", GameWorld.Direction.WEST, blue);
+    component2 = new KeyComponent(2, 0, 1, 1, 1, 1, "Radioactive waste", "Secure storage facility for radioactive waste", GameWorld.Direction.WEST, GameColor.brown);
     westComponents = new ArrayList<>();
     westComponents.add(component2);
-    component3 = new KeyComponent(0, 1, 0, 1, 2, 1, "Humanoid android", "An autonomous humanoid personal assistant", GameWorld.Direction.EAST, blue);
+    component3 = new KeyComponent(0, 1, 0, 1, 2, 1, "Humanoid android", "An autonomous humanoid personal assistant", GameWorld.Direction.EAST, GameColor.brown);
     eastComponents = new ArrayList<>();
     eastComponents.add(component3);
     contents.put(GameWorld.Direction.WEST, westComponents);
@@ -261,16 +252,16 @@ public class GameWorldFactory {
 
     northWall = new Wall(true, GameWorld.Direction.NORTH);
     walls.put(GameWorld.Direction.NORTH, northWall);
-    eastDoor = new Door(true, blue);
+    eastDoor = new Door(true, GameColor.brown);
     eastWall = new Wall(true, GameWorld.Direction.EAST, eastDoor);
     walls.put(GameWorld.Direction.EAST, eastWall);
     southWall = new Wall(true, GameWorld.Direction.SOUTH);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(false, blue);
+    westDoor = new Door(false, GameColor.brown);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "The holy grail", "A legendary relic", GameWorld.Direction.SOUTH, silver);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "The holy grail", "A legendary relic", GameWorld.Direction.SOUTH, GameColor.silver);
     southComponents = new ArrayList<>();
     contained = new ArrayList<>();
     contained.add(component1);
@@ -289,14 +280,14 @@ public class GameWorldFactory {
     walls.put(GameWorld.Direction.NORTH, northWall);
     eastWall = new Wall(true, GameWorld.Direction.EAST);
     walls.put(GameWorld.Direction.EAST, eastWall);
-    southDoor = new Door(true, silver);
+    southDoor = new Door(true, GameColor.silver);
     southWall = new Wall(true, GameWorld.Direction.SOUTH, southDoor);
     walls.put(GameWorld.Direction.SOUTH, southWall);
-    westDoor = new Door(false, blue);
+    westDoor = new Door(false, GameColor.brown);
     westWall = new Wall(true, GameWorld.Direction.WEST, westDoor);
     walls.put(GameWorld.Direction.WEST, westWall);
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Apple", "A juicy sweet red apple", GameWorld.Direction.WEST, silver);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Apple", "A juicy sweet red apple", GameWorld.Direction.WEST, GameColor.silver);
     westComponents = new ArrayList<>();
     westComponents.add(component1);
     contents.put(GameWorld.Direction.WEST, westComponents);
