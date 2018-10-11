@@ -22,7 +22,7 @@ public class Room {
 	public final static int SIZE = 10;
 
 	private Map<Direction, ArrayList<WorldObject>> contents;
-	private Map<Direction,Wall>walls;
+	private Map<Direction,Wall> walls;
 	private int x;
 	private int y;
 

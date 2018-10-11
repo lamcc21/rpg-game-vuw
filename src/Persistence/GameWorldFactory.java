@@ -68,12 +68,12 @@ public class GameWorldFactory {
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "An essential plasma utility", GameWorld.Direction.NORTH, cyan);
     component2 = new KeyComponent(2, 2, 0, 1, 1, 1, "Computer console", "Wall mounted for convenience", GameWorld.Direction.NORTH, cyan);
     contained = new ArrayList<>();
-    contained.add(component2);
+    contained.add(component1);
     container1 = new Container(2, 1, 2, 1, 1, 1, "Crate", "A simple crate", GameWorld.Direction.NORTH, contained);
     northComponents = new ArrayList<>();
-    northComponents.add(component1);
+    northComponents.add(component2);
     northComponents.add(container1);
-    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Vile", "A vile of a mysterious substance", GameWorld.Direction.SOUTH, cyan);
+    component3 = new KeyComponent(1, 0, 0, 1, 1, 1, "Viae", "A vile of a mysterious substance", GameWorld.Direction.SOUTH, cyan);
     southComponents = new ArrayList<>();
     southComponents.add(component3);
     contents.put(GameWorld.Direction.NORTH, northComponents);
