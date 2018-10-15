@@ -56,7 +56,7 @@ public class GameWorld {
 	public void setRoom(Room[][] rooms) {
 		this.rooms=rooms;
 	}
-	
+
 	public void movePlayer(Direction d) {
 		if (rooms[player.getX()][player.getY()].hasNeighbor(d, rooms) &&
 				rooms[player.getX()][player.getY()].getWall(d).hasDoor()
@@ -67,12 +67,12 @@ public class GameWorld {
 
 	public void pickUp(WorldObject object) {
 		// this returns the list of objects from players perspective and removes object from it
-		rooms[player.getX()][player.getY()].getContents().get(player.getPerspective()).remove(object);
+		rooms[player.getX()][player.getY()].getContents(player.getPerspective()).remove(object);
 		player.pickUp(object);
 	}
-	
-	
-	
+
+
+
 	public void drop(WorldObject object) {
 		player.dropItem(object);
 		List<WorldObject>objects = getObjectsInView();
@@ -86,6 +86,6 @@ public class GameWorld {
 	}
 
 	public List<WorldObject> getObjectsInView() {
-		return rooms[player.getX()][player.getY()].getContents().get(player.getPerspective());
+		return rooms[player.getX()][player.getY()].getContents(player.getPerspective());
 	}
 }

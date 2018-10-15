@@ -2,17 +2,16 @@ package GameWorld;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class Door {
 
-	boolean isLocked;
-	Color color;
+	private boolean isLocked;
+	private GameColor gameColor;
 
-	public Door(boolean isLocked, Color color) {
+	public Door(boolean isLocked, GameColor gameColor) {
 		this.isLocked=isLocked;
-		this.color=color;
+		this.gameColor = gameColor;
 	}
 
 	public Door(boolean isLocked) {
@@ -31,12 +30,12 @@ public class Door {
 	}
 
 	@XmlElement
-	public Color getColor() {
-		return color;
+	public GameColor getGameColor() {
+		return gameColor;
 	}
 
-	public void setColor(Color c) {
-		this.color=c;
+	public void setGameColor(GameColor c) {
+		this.gameColor =c;
 	}
 
 

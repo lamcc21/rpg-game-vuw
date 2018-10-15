@@ -20,63 +20,77 @@ import static java.lang.System.exit;
  */
 
 public class Application extends JFrame{
+  private CanvasPane canvas;
+  private InventoryPane inventory;
+  private CraftingPane crafting;
+  private GameWorld gameWorld;
+
 
   private Application() throws IOException, InterruptedException {
     super("Have A Go Escaping");
     setLayout(new GridBagLayout());
     UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
-    GameWorld gameWorld = createGameWorld(new File("prototypeGame.xml"));
+    this.gameWorld = createGameWorld(new File("prototypeGame.xml"));
 
     if(gameWorld != null){
-      CanvasPane canvas = new CanvasPane(gameWorld);
-      InventoryPane inventory = new InventoryPane(gameWorld);
-      CraftingPane crafting = new CraftingPane(gameWorld);
+      this.canvas = new CanvasPane(gameWorld);
+      this.inventory = new InventoryPane(gameWorld);
+      this.crafting = new CraftingPane(gameWorld);
+      GridBagConstraints gbc = new GridBagConstraints();
 
-
-      GridBagConstraints toprow = new GridBagConstraints();
-      GridBagConstraints bottomrow = new GridBagConstraints();
-
-      toprow.anchor = GridBagConstraints.NORTH;
+      gbc.anchor = GridBagConstraints.NORTH;
       Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
       this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
       //This centers every window displayed
 
-      toprow.fill = GridBagConstraints.VERTICAL;
-      toprow.gridx = 0;
-      toprow.gridy = 0;
+      gbc.fill = GridBagConstraints.VERTICAL;
+      gbc.gridx = 0;
+      gbc.gridy = 0;
 
-      BasicArrowButton buttonwest = new BasicArrowButton(BasicArrowButton.WEST) {
-        @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
-      };
-      add(buttonwest, toprow);
-
-      toprow.gridx = 1;
-      toprow.gridy = 0;
-      add(canvas, toprow);
-
-      toprow.gridx = 2;
-      toprow.gridy = 0;
-
-      BasicArrowButton buttoneast = new BasicArrowButton(BasicArrowButton.EAST) {
+      BasicArrowButton buttonWest = new BasicArrowButton(BasicArrowButton.WEST) {
         @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
       };
 
-      add(buttoneast, toprow);
+      buttonWest.addActionListener(e -> {
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getLeft());
+        System.out.println(gameWorld.getPlayer().getPerspective());
+        canvas.revalidate();
+      });
 
-      toprow.fill = GridBagConstraints.NONE;
-      toprow.gridx = 0;
-      toprow.gridy = 1;
-      toprow.gridwidth = 2;
+      add(buttonWest, gbc);
 
-      toprow.anchor = GridBagConstraints.WEST;
-      add(inventory, toprow);
+      gbc.gridx = 1;
+      gbc.gridy = 0;
+      add(canvas, gbc);
 
-      toprow.gridx = 1;
-      toprow.gridy = 1;
-      //toprow.insets = new Insets(0,0,0,15);
-      toprow.anchor = GridBagConstraints.EAST;
-      add(crafting, toprow);
+      gbc.gridx = 2;
+      gbc.gridy = 0;
+
+      BasicArrowButton buttonEast = new BasicArrowButton(BasicArrowButton.EAST) {
+        @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
+      };
+
+      buttonEast.addActionListener(e -> {
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
+        System.out.println(gameWorld.getPlayer().getPerspective());
+        canvas.revalidate();
+      });
+
+      add(buttonEast, gbc);
+
+      gbc.fill = GridBagConstraints.NONE;
+      gbc.gridx = 0;
+      gbc.gridy = 1;
+      gbc.gridwidth = 2;
+
+      gbc.anchor = GridBagConstraints.WEST;
+      add(inventory, gbc);
+
+      gbc.gridx = 1;
+      gbc.gridy = 1;
+      gbc.anchor = GridBagConstraints.EAST;
+      add(crafting, gbc);
 
       pack();
     }else{
@@ -87,16 +101,17 @@ public class Application extends JFrame{
     getContentPane().setBackground(Color.gray);
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
-    startListening(gameWorld);
+
+    startListening();
   }
 
-  private void startListening(GameWorld gameWorld) throws InterruptedException {
-    while(true){
-      //inventory.updateInventoryGUI(gameWorld.getRoom().getContents()); //TODO: If Item is added or removed
-      /*Map<GameWorld.Direction, ArrayList<WorldObject>> objectList = gameWorld.getRoom(0,0).getContents();
-      System.out.println(Arrays.toString(objectList.get(GameWorld.Direction.NORTH).toArray()));*/
 
-      Thread.sleep(4000);
+  private void startListening() throws InterruptedException {
+    while(true){
+        inventory.updateInventoryGUI(gameWorld.getPlayer().getInventory(), gameWorld.getPlayer()); //TODO: If Item is added or removed
+        System.out.println("asdasdsa");
+        gameWorld.getPlayer().toggleUpdateNeeded();
+        Thread.sleep(5000);
     }
   }
 

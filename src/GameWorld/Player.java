@@ -1,13 +1,10 @@
 package GameWorld;
 
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import GameWorld.GameWorld.Direction;
 
@@ -25,16 +22,18 @@ public class Player {
 
 	private Direction perspective;
 	private List<WorldObject> inventory;
+  private boolean updateNeeded;
 	private int xPos;
 	private int yPos;
 
 	public Player(int xpos,int ypos) {
 	  this.perspective=Direction.NORTH;
-	  this.inventory = new ArrayList<WorldObject>();
+	  this.inventory = new ArrayList<>();
 	  this.xPos=xpos;
 	  this.yPos=ypos;
+	  this.updateNeeded = false;
 	}
-//
+
 	public Player() {}
 
 	/**
@@ -103,10 +102,9 @@ public class Player {
 	public void unlock(Door door) {
 		for(WorldObject object : inventory) {
 			if(object instanceof KeyObject) {
-				if(object.getColor().equals(door.getColor()))door.setIsLocked(false);
+				if(object.getGameColor().equals(door.getGameColor()))door.setIsLocked(false);
 			}
 		}
-
 	}
 
 	/**
@@ -139,11 +137,21 @@ public class Player {
 		return object.getDescription();
 	}
 
-	public List<WorldObject> getCraftable(Color c) {
+  public boolean isCraftable(GameColor c) {
+    int matchedObject = 0;
+    for(WorldObject object: inventory) {
+      if(object.getGameColor().equals(c) && object instanceof KeyComponent) {
+        matchedObject+=1;
+      }
+    }
+    return matchedObject == 3;
+  }
+
+	private List<WorldObject> getCraftable(GameColor c) {
 		int matchedObject = 0;
-		List<WorldObject> keycomps = new ArrayList<WorldObject>();
+		List<WorldObject> keycomps = new ArrayList<>();
 		for(WorldObject object: inventory) {
-			if(object.getColor().equals(c) && object instanceof KeyComponent) {
+			if(object.getGameColor().equals(c) && object instanceof KeyComponent) {
 				matchedObject+=1;
 				keycomps.add(object);
 			}
@@ -154,22 +162,27 @@ public class Player {
 		return null;
 	}
 
-	public void craft(Color c) throws IOException {
+	public void craft(GameColor c){
 		List<WorldObject> craftable = getCraftable(c);
+		assert craftable != null;
+
 		for(WorldObject object : craftable) {
 			dropItem(object);
 		}
 		WorldObject key = new KeyObject(c);
 		inventory.add(key);
+    toggleUpdateNeeded(); //this enables the inventory to update only when needed
 	}
 
+	public void toggleUpdateNeeded(){
+	  this.updateNeeded ^= true;
+  }
 
+  public boolean isUpdateNeeded(){
+	  return this.updateNeeded;
+  }
 
-	public Direction getRight(){
-		return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];
-	}
+	public Direction getRight(){return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];}
 
-	public Direction getLeft(){
-		return Direction.values()[(Math.floorMod(perspective.ordinal()-1, 4))];
-	}
+	public Direction getLeft(){ return Direction.values()[(Math.floorMod(perspective.ordinal()-1, 4))];}
 }
