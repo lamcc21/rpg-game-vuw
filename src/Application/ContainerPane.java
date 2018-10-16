@@ -6,6 +6,7 @@ import GameWorld.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ContainerPane extends JPanel {
   private JButton[] optionItems;
@@ -30,11 +31,11 @@ public class ContainerPane extends JPanel {
 
   public void updateContainerGUI(Container inventory, Player player) {
     for (int i = 0; i < inventory.getContents().size(); i++) {
-      System.out.println("with container updateGUI");
       if (inventory.getContents().get(i) != null) {
         WorldObject item = inventory.getContents().get(i);
-        int j = i; //int needs to be final for lambda expression
         optionItems[i].setEnabled(true);
+
+        int j = i; //int needs to be final for lambda expression
         optionItems[i].addActionListener(e -> {
           player.getInventory().add(item);
           player.toggleUpdateNeeded(); //needs to update craft gui
@@ -58,9 +59,10 @@ public class ContainerPane extends JPanel {
   }
 
   public void updateContainerGUI() {
-    System.out.println("without container updateGUI");
-
     for (JButton optionItem : optionItems) {
+      for(ActionListener l : optionItem.getActionListeners()){
+        optionItem.removeActionListener(l);
+      }
       optionItem.setToolTipText("Empty Slot");
       optionItem.setText("");
       optionItem.setEnabled(false);
@@ -75,6 +77,4 @@ public class ContainerPane extends JPanel {
   public void setActive(boolean value){
     this.isActive = value;
   }
-
-
 }

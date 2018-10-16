@@ -120,6 +120,7 @@ public class Player {
 	 * @param d
 	 */
 	public void moveRoom(Direction d) {
+    JOptionPane.showMessageDialog(null, "Now moving Rooms");
 		switch(d) {
 		case NORTH:
 			setY(yPos-1);
@@ -152,7 +153,7 @@ public class Player {
         matchedObject+=1;
       }
     }
-    return matchedObject == 3;
+    return matchedObject >= 3;
   }
 
 	private List<WorldObject> getCraftable(GameColor c) {
@@ -164,7 +165,7 @@ public class Player {
 				keycomps.add(object);
 			}
 		}
-		if(matchedObject==3) {
+		if(matchedObject>=3) {
 			return keycomps;
 		}
 		return null;
