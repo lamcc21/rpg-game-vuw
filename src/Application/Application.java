@@ -5,8 +5,10 @@ import Renderer.CanvasPane;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static java.lang.System.exit;
@@ -117,10 +119,23 @@ public class Application extends JFrame{
     }
   }
 
-  private void createSaveFile(GameWorld gameWorld){Persistence.ObjectToXml(gameWorld, "prototypeGame");}
+  private void createSaveFile(GameWorld gameWorld){
+    try {
+      Persistence.ObjectToXml(gameWorld, "prototypeGame");
+    } catch (JAXBException e) {
+      //TODO: handle save error
+    } catch (FileNotFoundException e) {
+      //TODO: handle save error
+    }
+  }
 
   private GameWorld createGameWorld(File saveFile){
+    try {
       return Persistence.XmlToObject(saveFile);
+    } catch (JAXBException e) {
+      //TODO: handle load error
+    }
+    return null;
   }
 
   public static void main(String[] args) throws IOException, InterruptedException { new Application();}

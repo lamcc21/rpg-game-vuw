@@ -22,11 +22,7 @@ public class gameTests {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
-
     }
-    
-
 
     @Test
     public void testPickup(){
