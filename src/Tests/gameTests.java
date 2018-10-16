@@ -26,14 +26,19 @@ public class gameTests {
         }
 
     }
-    
+
     @Test
     public void testLockedDoor() {
     	initialise();
         Player p = gameWorld.getPlayer();
         Room r = gameWorld.getRoom(p.getX(), p.getY());
         assert(p.getX()==0 && p.getY()==0);
-        gameWorld.movePlayer(GameWorld.Direction.EAST);
+        try {
+			gameWorld.movePlayer(GameWorld.Direction.EAST);
+		} catch (EndGameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         assert(p.getX()==0 && p.getY()==0);
     }
 
@@ -49,7 +54,12 @@ public class gameTests {
         Pickup(expected);
         gameWorld.getPlayer().craft(GameColor.cyan);
         p.unlock(r.getWall(GameWorld.Direction.EAST).getDoor());
-        gameWorld.movePlayer(GameWorld.Direction.EAST);
+        try {
+			gameWorld.movePlayer(GameWorld.Direction.EAST);
+		} catch (EndGameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         assert(p.getX()==1 && p.getY()==0);
     }
 
@@ -72,7 +82,7 @@ public class gameTests {
         for(WorldObject ob : p.getInventory()) {
         	System.out.println(ob.toString());
         }
-       
+
         assert(expected.equals(p.getInventory()));
     }
 
