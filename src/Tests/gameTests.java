@@ -1,13 +1,13 @@
-package GameWorld.Tests;
+package Tests;
 
 import GameWorld.*;
 import Persistence.Persistence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +17,12 @@ public class gameTests {
 
    
     public static void initialise(){
-       gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
-
-
+        try {
+            gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
-    
-
 
     @Test
     public void testPickup(){

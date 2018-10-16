@@ -5,12 +5,13 @@ import Renderer.CanvasPane;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
+import javax.xml.bind.JAXBException;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static java.lang.System.exit;
@@ -155,6 +156,8 @@ public class Application extends JFrame{
         //TODO: need to update craft gui when ever a item is added
     }
   }
+
+  private void createSaveFile(GameWorld gameWorld){Persistence.ObjectToXml(gameWorld, "prototypeGame");}
 
   private GameWorld createGameWorld(File saveFile){
       return Persistence.XmlToObject(saveFile);
