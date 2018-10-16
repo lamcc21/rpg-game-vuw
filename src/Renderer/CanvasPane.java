@@ -123,7 +123,6 @@ public class CanvasPane extends JPanel{
 
         x = startX + object.getX()*spaceX;
 
-
         //test method for drawing 2d box png in 3d
         try {
         	File image = new File(object.getFilePath());
@@ -215,10 +214,8 @@ public class CanvasPane extends JPanel{
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
-
                 //iterate through all bounding boxes
                 for (Rectangle r : boundingBoxes.keySet()) {
-
                     //if click is within a bounding box
                     if (r.contains(e.getX(), e.getY())) {
                         //initialise object associated with bounding box clicked
@@ -238,17 +235,22 @@ public class CanvasPane extends JPanel{
                           //check if door is clicked
                           //check if door is locked, moving rooms if not.
                           System.out.println(((Door) object).getIsLocked());
-                          if (((Door) object).getIsLocked()) {
+
+                          if(((Door) object).getIsLocked()){
+                            player.unlock(((Door) object)); //Tries to unlock door
+                          }
+
+                          if (!((Door) object).getIsLocked()) {
                             player.moveRoom(player.getPerspective());
                             //remove the door
                             boundingBoxes.remove(r);
                           } else JOptionPane.showMessageDialog(null, "Door Is Locked, You need to Make Key");
-                        }else{
-                          pane.updateContainerGUI();//Closes container panel
                         }
-
                         //update canvas
                         repaint();
+                    } else{
+                      pane.updateContainerGUI();//Closes container panel
+                      pane.revalidate();
                     }
                 }
             }

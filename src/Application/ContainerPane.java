@@ -32,6 +32,7 @@ public class ContainerPane extends JPanel {
       if (inventory.getContents().get(i) != null) {
         WorldObject item = inventory.getContents().get(i);
         int j = i; //int needs to be final for lambda expression
+        optionItems[i].setEnabled(true);
         optionItems[i].addActionListener(e -> {
           player.getInventory().add(item);
           player.toggleUpdateNeeded(); //needs to update craft gui
@@ -42,7 +43,6 @@ public class ContainerPane extends JPanel {
         optionItems[i].setText(item.getName());
         optionItems[i].setToolTipText(item.getDescription());
         optionItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        optionItems[i].setEnabled(true);
       } else {
         i = inventory.getContents().size();
       }
