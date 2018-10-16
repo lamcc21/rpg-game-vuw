@@ -478,7 +478,7 @@ public class GameWorldFactory {
     GameWorld game = new GameWorld(player, rooms);
 
     try {
-      Persistence.ObjectToXml(game, new File("smallMap"));
+      Persistence.ObjectToXml(game, new File("smallMap.xml"));
     } catch (JAXBException e) {
       e.printStackTrace();
     } catch (FileNotFoundException e) {

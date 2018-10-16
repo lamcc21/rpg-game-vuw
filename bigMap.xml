@@ -70,12 +70,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>128</b>
     <g>125</g>
     <r>67</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -121,12 +121,12 @@
                         <value>
                             <direction>SOUTH</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>36</b>
     <g>170</g>
     <r>170</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -139,12 +139,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>37</b>
     <g>99</g>
     <r>63</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -168,7 +168,7 @@
                         <g>50</g>
                         <r>114</r>
                     </gameColor>
-                    <name>Tesseract</name>
+                    <name>Plasma conduit</name>
                     <x>1</x>
                     <y>1</y>
                     <z>2</z>
@@ -185,7 +185,7 @@
                         <g>50</g>
                         <r>114</r>
                     </gameColor>
-                    <name>Humanoid android</name>
+                    <name>Vial</name>
                     <x>0</x>
                     <y>1</y>
                     <z>0</z>
@@ -223,12 +223,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>28</b>
     <g>50</g>
     <r>114</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -241,12 +241,12 @@
                         <value>
                             <direction>NORTH</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>28</b>
     <g>50</g>
     <r>114</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -263,7 +263,7 @@
                         <g>50</g>
                         <r>114</r>
                     </gameColor>
-                    <name>Radioactive waste</name>
+                    <name>Computer console</name>
                     <x>2</x>
                     <y>0</y>
                     <z>1</z>
@@ -280,12 +280,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>128</b>
     <g>125</g>
     <r>67</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -305,12 +305,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>128</b>
     <g>125</g>
     <r>67</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -342,7 +342,7 @@
                     </contents>
                     <description>A very useful device for putting things in</description>
                     <direction>WEST</direction>
-                    <name>Cupboard</name>
+                    <name>Crate</name>
                     <x>2</x>
                     <y>0</y>
                     <z>0</z>
@@ -360,7 +360,7 @@
                             <g>99</g>
                             <r>63</r>
                         </gameColor>
-                        <name>Battery pack</name>
+                        <name>Plasma conduit</name>
                         <x>1</x>
                         <y>0</y>
                         <z>2</z>
@@ -373,7 +373,7 @@
                             <g>170</g>
                             <r>170</r>
                         </gameColor>
-                        <name>Rare metal</name>
+                        <name>Helmet</name>
                         <x>1</x>
                         <y>0</y>
                         <z>2</z>
@@ -404,12 +404,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>37</b>
     <g>99</g>
     <r>63</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -429,12 +429,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>37</b>
     <g>99</g>
     <r>63</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -463,14 +463,14 @@
                             <g>121</g>
                             <r>121</r>
                         </gameColor>
-                        <name>The holy grail</name>
+                        <name>Glowing orb</name>
                         <x>1</x>
                         <y>0</y>
                         <z>1</z>
                     </contents>
                     <description>Antique device once used on earth</description>
                     <direction>SOUTH</direction>
-                    <name>Table</name>
+                    <name>Crate</name>
                     <x>1</x>
                     <y>0</y>
                     <z>1</z>
@@ -481,12 +481,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>28</b>
     <g>50</g>
     <r>114</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -506,12 +506,12 @@
                         <value>
                             <direction>EAST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>28</b>
     <g>50</g>
     <r>114</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -541,7 +541,7 @@
                         <g>66</g>
                         <r>75</r>
                     </gameColor>
-                    <name>Boots</name>
+                    <name>Vial</name>
                     <x>0</x>
                     <y>0</y>
                     <z>0</z>
@@ -565,12 +565,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>128</b>
     <g>125</g>
     <r>67</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -583,12 +583,12 @@
                         <value>
                             <direction>SOUTH</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>121</b>
     <g>66</g>
     <r>75</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -624,7 +624,7 @@
                             <g>99</g>
                             <r>63</r>
                         </gameColor>
-                        <name>Battery pack</name>
+                        <name>Plasma conduit</name>
                         <x>1</x>
                         <y>0</y>
                         <z>2</z>
@@ -637,7 +637,7 @@
                             <g>170</g>
                             <r>170</r>
                         </gameColor>
-                        <name>Rare metal</name>
+                        <name>Helmet</name>
                         <x>1</x>
                         <y>0</y>
                         <z>2</z>
@@ -657,7 +657,7 @@
                     </contents>
                     <description>Storage barrel</description>
                     <direction>EAST</direction>
-                    <name>Barrel</name>
+                    <name>Crate</name>
                     <x>1</x>
                     <y>0</y>
                     <z>2</z>
@@ -681,12 +681,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>37</b>
     <g>99</g>
     <r>63</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -713,12 +713,12 @@
                         <value>
                             <direction>NORTH</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>121</b>
     <g>66</g>
     <r>75</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -735,7 +735,7 @@
                         <g>99</g>
                         <r>63</r>
                     </gameColor>
-                    <name>Ceiling fan</name>
+                    <name>Vial</name>
                     <x>1</x>
                     <y>3</y>
                     <z>1</z>
@@ -750,12 +750,12 @@
                         <value>
                             <direction>WEST</direction>
                             <door>
+<isLocked>false</isLocked>
 <gameColor>
     <b>28</b>
     <g>50</g>
     <r>114</r>
 </gameColor>
-<isLocked>false</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -768,12 +768,12 @@
                         <value>
                             <direction>SOUTH</direction>
                             <door>
+<isLocked>true</isLocked>
 <gameColor>
     <b>121</b>
     <g>121</g>
     <r>121</r>
 </gameColor>
-<isLocked>true</isLocked>
 <x>0</x>
 <y>0</y>
 <z>0</z>
@@ -804,7 +804,7 @@
                         <g>121</g>
                         <r>121</r>
                     </gameColor>
-                    <name>Apple</name>
+                    <name>Plasma conduit</name>
                     <x>1</x>
                     <y>0</y>
                     <z>1</z>
