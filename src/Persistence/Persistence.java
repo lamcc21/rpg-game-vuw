@@ -49,8 +49,7 @@ public class Persistence {
         try {
             JAXBContext context = JAXBContext.newInstance(GameWorld.class);
             Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-            GameWorld game = (GameWorld) jaxbUnmarshaller.unmarshal(file);
-            return game;
+            return (GameWorld) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
