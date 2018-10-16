@@ -76,12 +76,14 @@ public class CanvasPane extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        room = gameWorld.getRoom(player.getX(), player.getY());
         Graphics2D g2d = (Graphics2D) g;
         constructPolygonGradientMap(g2d);
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
     private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+    	 boundingBoxes = new HashMap<>();
         if(objectsInView!=null) {
 	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
         }
