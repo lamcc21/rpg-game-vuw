@@ -16,8 +16,6 @@ public class GameWorld {
 
 	private Player player;
 
-	@XmlElementWrapper
-	@XmlElement
 	private Room[][] rooms;
 
 	public enum Direction{
@@ -40,21 +38,21 @@ public class GameWorld {
 		return player;
 	}
 
+	@XmlElement
+	public Room[][] getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Room[][] rooms) {
+		this.rooms = rooms;
+	}
+
 	public void setPlayer(Player p) {
 		player=p;
 	}
 
 	public Room getRoom(int x,int y) {
 		return rooms[x][y];
-	}
-
-
-	public Room[][] getRooms() {
-		return rooms;
-	}
-
-	public void setRoom(Room[][] rooms) {
-		this.rooms=rooms;
 	}
 
 	public void movePlayer(Direction d) {

@@ -125,7 +125,7 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Vial", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
+    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Plasma conduit", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
     eastComponents.add(component1);
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "Another one", GameWorld.Direction.SOUTH, GameColor.purple);
     southComponents.add(component1);
