@@ -11,9 +11,6 @@ public class KeyObject extends Holdable {
     this.xPos=xPos;
     this.yPos=yPos;
     this.zPos=zPos;
-    this.xWidth=xWidth;
-    this.yHeight=yHeight;
-    this.zWidth=zDepth;
     this.name=Name;
     this.description=Description;
     this.direction=d;
@@ -23,7 +20,7 @@ public class KeyObject extends Holdable {
 	public KeyObject(GameColor c){
 		this.gameColor = c;
         this.description = "A "+ c.toString() +" key, I wonder what it opens..";
-		this.name = c.toString()+" Key";
+		this.name ="Key";
 	}
 
 	public KeyObject(){}

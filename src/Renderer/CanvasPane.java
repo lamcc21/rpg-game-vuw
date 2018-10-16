@@ -14,10 +14,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 
 import GameWorld.*;
+import GameWorld.Container;
 
 public class CanvasPane extends JPanel{
     /*object drawing fields*/
@@ -47,7 +49,7 @@ public class CanvasPane extends JPanel{
     private int FRONT_X_SPACING = 320;
 
     //bounding box for objects
-    private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
+    private HashMap<Rectangle, WorldObject> boundingBoxes = new HashMap<>();
 
     // color fields
     private Color BLUE = Color.blue;
@@ -65,7 +67,6 @@ public class CanvasPane extends JPanel{
         this.player = gameWorld.getPlayer();
         this.room = gameWorld.getRoom(player.getX(), player.getY());
         this.addMouseListener(MyMouseListener());
-        this.perspective = player.getPerspective();
         this.gameWorld = gameWorld;
     }
 
@@ -78,7 +79,9 @@ public class CanvasPane extends JPanel{
     }
 
     private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
-        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+        if(objectsInView!=null) {
+	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+        }
     }
 
 
@@ -119,17 +122,20 @@ public class CanvasPane extends JPanel{
         x = startX + object.getX()*spaceX;
 
 
-//        //test method for drawing 2d box png in 3d
-//        try {
-//            BufferedImage img = object.getImageFile();
-//            //draw
-//            g2d.drawImage(img, x, y, objectSize, objectSize, null);
-//            //add bounding box to the arraylist to allow for detectable clicks`
-//            Rectangle bound = new Rectangle(x, y, objectSize, objectSize);
-//            boundingBoxes.add(bound);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        //test method for drawing 2d box png in 3d
+        try {
+        	File image = new File(object.getFilePath());
+            BufferedImage img = ImageIO.read(image);
+
+            //draw
+            g2d.drawImage(img, x, y, objectSize, objectSize, null);
+            //add bounding box to the arraylist to allow for detectable clicks`
+            Rectangle bound = new Rectangle(x, y, objectSize, objectSize);
+            boundingBoxes.put(bound, object);
+        } catch (IOException e) {
+            System.out.println(object.getFilePath());
+            e.printStackTrace();
+        }
     }
 
     private void constructPolygonGradientMap(Graphics2D g2d){
@@ -172,8 +178,8 @@ public class CanvasPane extends JPanel{
 
     private void drawAngles(Graphics2D g2d){
         g2d.setColor(Color.BLACK);
-        g2d.drawLine(0, 100, 800, 100); //top left angle
-        g2d.drawLine(0, 400, 800, 400); //bottom left angle
+        g2d.drawLine(0, 100, 800, 100); //top angle
+        g2d.drawLine(0, 400, 800, 400); //bottom angle
     }
 
     private void fillPolygons(Graphics2D g2d, HashMap<Polygon, GradientPaint> polygons){
@@ -188,42 +194,68 @@ public class CanvasPane extends JPanel{
 
         //set respective door colors (instead of hardcoding this, get the color from GameWorld)
 
+        this.perspective = player.getPerspective();
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getGameColor().getR(), room.getWall(player.getRight()).getDoor().getGameColor().getG(), room.getWall(player.getRight()).getDoor().getGameColor().getB());
-            //Color backDoorColor = room.getWall(perspective).getDoor().getColor();
-            int[] backDoorX = {350, 450, 450, 350};
-            int[] backDoorY = {225, 225, 400, 400};
-            Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
+            Door door = room.getWall(perspective).getDoor();
+            Color backDoorColor = new Color(door.getGameColor().getR(), door.getGameColor().getG(), door.getGameColor().getB());
             g2d.setColor(backDoorColor);
-            g2d.fillPolygon(backDoor);
+            g2d.fillRect(350, 225, 100, 175);
             g2d.setColor(Color.black);
-            g2d.drawPolygon(backDoor);
+            g2d.drawRect(350, 225, 100, 175);
             g2d.fillOval(430, 325, 10, 10); //back knob
+            Rectangle bound = new Rectangle(350, 225, 100, 175);
+            boundingBoxes.put(bound, door);
         }
     }
-
-    /*private void drawObjects(Graphics g) {
-        for(WorldObject object: GameWorld.getRoom().getContents()){
-          drawObject(object);
-        }
-    }*/
-
-    /*private void drawObject(WorldObject object) {
-        int objectDistance = object.getDistance();
-        if(object.isVisible()) {
-          //draw object
-        }
-    }*/
 
     private MouseListener MyMouseListener(){
       return new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
-          for(Rectangle r : boundingBoxes){
-            if(r.contains(e.getX(), e.getY())){
-              System.out.println("Box click detected");
+            try {
+
+                //iterate through all bounding boxes
+                for (Rectangle r : boundingBoxes.keySet()) {
+
+                    //if click is within a bounding box
+                    if (r.contains(e.getX(), e.getY())) {
+
+                        //initialise object associated with bounding box clicked
+                        WorldObject object = boundingBoxes.get(r);
+
+                        //check if container is clicked
+                        if(object instanceof Container){
+                            //print container description
+                            System.out.println(object.getName() + ": " + object.getDescription());
+                        }
+
+                        //check if object is clicked
+                        if (object instanceof Holdable) {
+                            //print object description
+                            System.out.println(object.getName() + ": " + object.getDescription());
+                            //pick up the object
+                            gameWorld.pickUp(object);
+                            //remove the associated object
+                            boundingBoxes.remove(r);
+                        }
+
+                        //check if door is clicked
+                        if (object instanceof Door) {
+                            //check if door is locked, moving rooms if not.
+                            if (((Door) object).getIsLocked()) {
+                                player.moveRoom(player.getPerspective());
+                                //remove the door
+                                boundingBoxes.remove(r);
+                            } else System.out.println("You must find the key!");
+                        }
+
+                        //update canvas
+                        repaint();
+                    }
+                }
             }
-          }
+            catch(ConcurrentModificationException c){
+            }
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
         }
 

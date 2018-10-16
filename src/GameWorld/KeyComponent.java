@@ -12,9 +12,6 @@ public class KeyComponent extends Holdable {
     this.xPos=xPos;
     this.yPos=yPos;
     this.zPos=zPos;
-    this.xWidth=xWidth;
-    this.yHeight=yHeight;
-    this.zWidth=zDepth;
     this.name=Name;
     this.description=Description;
     this.direction=d;
@@ -24,11 +21,11 @@ public class KeyComponent extends Holdable {
 	public KeyComponent(){
   }
 
-    @Override
+/*    @Override
     public String toString() {
         return "KeyComponent{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
-}
+*/}

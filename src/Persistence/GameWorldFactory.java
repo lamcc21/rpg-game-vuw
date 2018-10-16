@@ -59,7 +59,7 @@ public class GameWorldFactory {
     walls.put(GameWorld.Direction.WEST, westWall);
 
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "An essential plasma utility", GameWorld.Direction.NORTH, GameColor.cyan);
-    component2 = new KeyComponent(2, 2, 0, 1, 1, 1, "Computer console", "Wall mounted for convenience", GameWorld.Direction.NORTH, GameColor.cyan);
+    component2 = new KeyComponent(2, 1, 0, 1, 1, 1, "Computer console", "Wall mounted for convenience", GameWorld.Direction.NORTH, GameColor.cyan);
     contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(2, 1, 2, 1, 1, 1, "Crate", "A simple crate", GameWorld.Direction.NORTH, contained);

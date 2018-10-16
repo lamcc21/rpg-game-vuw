@@ -15,15 +15,18 @@ import java.util.List;
 public class gameTests {
     static GameWorld gameWorld;
 
-    @BeforeAll
+   
     public static void initialise(){
        gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
 
 
     }
+    
+
 
     @Test
     public void testPickup(){
+    	initialise();
         List<WorldObject> expected = new ArrayList<>();
         Pickup(expected);
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
@@ -31,9 +34,10 @@ public class gameTests {
         Pickup(expected);
         assertEquals(expected, gameWorld.getPlayer().getInventory(), "inventory does not contain expected items");
     }
-
+    
     @Test
     public void testCraftKey(){
+    	initialise();
         List<WorldObject> expected = new ArrayList<>();
         Pickup(expected);
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
