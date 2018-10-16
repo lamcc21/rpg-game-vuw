@@ -27,9 +27,6 @@ public abstract class WorldObject  {
 	protected int yPos;//the lowest cube the object is  within
 	protected int zPos;//the closest cube the object is within
 
-	//these are the dimensions of the object. Currently they are integers but
-	//if this impacts the drawing then we can change to doubles
-
 	protected Direction direction;
 
 	protected String name;

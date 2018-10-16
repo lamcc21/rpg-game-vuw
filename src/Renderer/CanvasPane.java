@@ -78,7 +78,9 @@ public class CanvasPane extends JPanel{
     }
 
    private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
-        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+       if(objectsInView!=null) {
+	   for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+       }
     }
 
 

@@ -53,6 +53,7 @@ public class Application extends JFrame{
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getLeft());
         System.out.println(gameWorld.getPlayer().getPerspective());
         canvas.revalidate();
+        canvas.repaint();
       });
 
       add(buttonWest, gbc);
@@ -72,6 +73,7 @@ public class Application extends JFrame{
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
         System.out.println(gameWorld.getPlayer().getPerspective());
         canvas.revalidate();
+        canvas.repaint();
       });
 
       add(buttonEast, gbc);
