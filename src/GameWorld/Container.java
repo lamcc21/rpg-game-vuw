@@ -38,7 +38,8 @@ public class Container extends WorldObject {
 	}
 
 	public Container() {
-	  this.isOpen = false;
+		contents = new ArrayList<>();
+	  	this.isOpen = false;
   }
 
 	public void OpenorClose(){
