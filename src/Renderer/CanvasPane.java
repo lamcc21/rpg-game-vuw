@@ -192,8 +192,8 @@ public class CanvasPane extends JPanel{
         //set respective door colors (instead of hardcoding this, get the color from GameWorld)
 
         if (room.getWall(perspective).hasDoor()) {
-            Color backDoorColor = new Color(room.getWall(player.getRight()).getDoor().getGameColor().getR(), room.getWall(player.getRight()).getDoor().getGameColor().getG(), room.getWall(player.getRight()).getDoor().getGameColor().getB());
-            //Color backDoorColor = room.getWall(perspective).getDoor().getColor();
+            Door door = room.getWall(perspective).getDoor();
+            Color backDoorColor = new Color(door.getGameColor().getR(), door.getGameColor().getG(), door.getGameColor().getB());
             int[] backDoorX = {350, 450, 450, 350};
             int[] backDoorY = {225, 225, 400, 400};
             Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
@@ -202,21 +202,10 @@ public class CanvasPane extends JPanel{
             g2d.setColor(Color.black);
             g2d.drawPolygon(backDoor);
             g2d.fillOval(430, 325, 10, 10); //back knob
+            Rectangle bound = new Rectangle(350, 225, 100, 175);
+            boundingBoxes.put(bound, door);
         }
     }
-
-    /*private void drawObjects(Graphics g) {
-        for(WorldObject object: GameWorld.getRoom().getContents()){
-          drawObject(object);
-        }
-    }*/
-
-    /*private void drawObject(WorldObject object) {
-        int objectDistance = object.getDistance();
-        if(object.isVisible()) {
-          //draw object
-        }
-    }*/
 
     private MouseListener MyMouseListener(){
       return new MouseListener() {
@@ -226,7 +215,9 @@ public class CanvasPane extends JPanel{
             if(r.contains(e.getX(), e.getY())){
                 WorldObject object = boundingBoxes.get(r);
                 System.out.println(object.getName() + ": " + object.getDescription());
-                gameWorld.pickUp(object);
+                if(object instanceof Holdable)gameWorld.pickUp(object);
+                boundingBoxes.remove(r);
+                repaint();
             }
           }
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
