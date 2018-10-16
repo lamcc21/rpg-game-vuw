@@ -61,8 +61,4 @@ public class Container extends WorldObject {
 		return isSelected;
 	}
 
-
-
-
-
 }
