@@ -22,7 +22,7 @@ public class Player {
 
 	private Direction perspective;
 	private List<WorldObject> inventory;
-  	private boolean craftGuiUpdate;
+  	private boolean updateNeeded;
 	private int xPos;
 	private int yPos;
 
@@ -31,10 +31,13 @@ public class Player {
 	  this.inventory = new ArrayList<>();
 	  this.xPos=xpos;
 	  this.yPos=ypos;
-	  this.craftGuiUpdate = false;
+	  this.updateNeeded = false;
 	}
 
-	public Player() {}
+	public Player() {
+		this.perspective=Direction.NORTH;
+		this.inventory = new ArrayList<>();
+	}
 
 	/**
 	 * all getters and setters for fields in class
@@ -86,7 +89,6 @@ public class Player {
 		if(ob instanceof Holdable) {
 			if(inventory.size()<16)
 			inventory.add(ob);
-			toggleUpdateNeeded(); //this enables the craft to update only when needed
 		}
 	}
 
@@ -172,14 +174,15 @@ public class Player {
 		}
 		WorldObject key = new KeyObject(c);
 		inventory.add(key);
+    toggleUpdateNeeded(); //this enables the inventory to update only when needed
 	}
 
 	public void toggleUpdateNeeded(){
-	  this.craftGuiUpdate ^= true;
+	  this.updateNeeded ^= true;
   }
 
-	public boolean craftGuiUpdateNeeded(){
-	  return this.craftGuiUpdate;
+  public boolean isUpdateNeeded(){
+	  return this.updateNeeded;
   }
 
 	public Direction getRight(){return Direction.values()[(Math.floorMod(perspective.ordinal()+1, 4))];}

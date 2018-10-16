@@ -77,7 +77,7 @@ public class CanvasPane extends JPanel{
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
-    private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+   private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
         for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
     }
 
@@ -121,7 +121,9 @@ public class CanvasPane extends JPanel{
 
         //test method for drawing 2d box png in 3d
         try {
-            BufferedImage img = object.getImageFile();
+        	File image = new File(object.getFilePath());
+            BufferedImage img = ImageIO.read(image);
+
             //draw
             g2d.drawImage(img, x, y, objectSize, objectSize, null);
             //add bounding box to the arraylist to allow for detectable clicks`

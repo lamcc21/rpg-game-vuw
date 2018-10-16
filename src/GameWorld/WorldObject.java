@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
+import java.util.Objects;
+
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -15,7 +17,7 @@ import java.util.List;
  *
  */
 @XmlTransient
-@XmlSeeAlso({KeyObject.class, KeyComponent.class})
+@XmlSeeAlso({KeyObject.class, KeyComponent.class, Container.class})
 public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can
@@ -192,4 +194,20 @@ public abstract class WorldObject  {
 		return 0;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof WorldObject)) return false;
+		WorldObject that = (WorldObject) o;
+		return Objects.equals(getGameColor(), that.getGameColor());
+	}
+
+	public String getFilePath() {
+		return "src/images/"+name+".png";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getGameColor());
+	}
 }

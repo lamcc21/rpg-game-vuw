@@ -28,7 +28,7 @@ public class Application extends JFrame{
     setMinimumSize(new Dimension(860, 762));
     UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
-    this.gameWorld = createGameWorld(new File("prototypeGame.xml"));
+    this.gameWorld = createGameWorld(new File("prototypeGame1.xml"));
 
     if(gameWorld != null){
       this.canvas = new CanvasPane(gameWorld);
