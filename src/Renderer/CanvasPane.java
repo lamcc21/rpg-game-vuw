@@ -224,7 +224,9 @@ public class CanvasPane extends JPanel{
         public void mouseClicked(MouseEvent e) {
           for(Rectangle r : boundingBoxes.keySet()){
             if(r.contains(e.getX(), e.getY())){
-              System.out.println(boundingBoxes.get(r).getName() + ": " + boundingBoxes.get(r).getDescription());
+                WorldObject object = boundingBoxes.get(r);
+                System.out.println(object.getName() + ": " + object.getDescription());
+                gameWorld.pickUp(object);
             }
           }
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
