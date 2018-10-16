@@ -202,9 +202,11 @@ public class CanvasPane extends JPanel{
             //add bounding box to the arraylist to allow for detectable clicks`
             Rectangle bound = new Rectangle(x, y, objectSize, objectSize);
             boundingBoxes.put(bound, object);
-        } catch (IOException e) {
-            System.out.println(object.getFilePath());
-            e.printStackTrace();
+        }     catch(Exception c){
+        	if(c instanceof EndGameException) {
+        		JOptionPane.showMessageDialog(null, "YOU WON!!");
+
+        	}else if(c instanceof ConcurrentModificationException) {}
         }
     }
 
