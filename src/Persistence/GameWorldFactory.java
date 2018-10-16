@@ -2,6 +2,7 @@ package Persistence;
 
 import GameWorld.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -310,6 +311,6 @@ public class GameWorldFactory {
 
     GameWorld game = new GameWorld(player, rooms);
 
-    Persistence.ObjectToXml(game, "prototypeGame1.xml");
+    Persistence.ObjectToXml(game, new File("prototypeGame1.xml"));
   }
 }

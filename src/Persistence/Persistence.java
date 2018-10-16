@@ -25,14 +25,14 @@ public class Persistence {
      * ObjectToXml method takes a GameWorld object and creates an XML file with
      * the name [filename].xml in the project root folder
      * @param gameWorld
-     * @param filename
+     * @param file
      */
-    public static void ObjectToXml(GameWorld gameWorld, String filename){
+    public static void ObjectToXml(GameWorld gameWorld, File file){
         try {
             JAXBContext context = JAXBContext.newInstance(GameWorld.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(gameWorld, new FileOutputStream(filename));
+            marshaller.marshal(gameWorld, new FileOutputStream(file));
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {

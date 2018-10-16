@@ -6,7 +6,11 @@ import Renderer.CanvasPane;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import static java.lang.System.exit;
@@ -28,7 +32,14 @@ public class Application extends JFrame{
     setMinimumSize(new Dimension(860, 762));
     UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
-    this.gameWorld = createGameWorld(new File("prototypeGame1.xml"));
+
+    JFrame parentFrame = new JFrame();
+    final JFileChooser fc = new JFileChooser();
+    int returnVal = fc.showOpenDialog(parentFrame);
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+      File file = fc.getSelectedFile();
+      this.gameWorld = createGameWorld(file);
+    }
 
     if(gameWorld != null){
       this.canvas = new CanvasPane(gameWorld);
@@ -97,8 +108,36 @@ public class Application extends JFrame{
       exit(0);
     }
 
+    addWindowListener(new WindowAdapter() {
+      @Override
+      public void windowClosing(WindowEvent e) {
+        String ObjButtons[] = {"Yes","No"};
+        int PromptResult = JOptionPane.showOptionDialog(null,
+                "Would you like to save?", "",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                ObjButtons,ObjButtons[1]);
+        if(PromptResult==0) {
+          JFrame parentFrame = new JFrame();
+
+          JFileChooser fc = new JFileChooser();
+          fc.setDialogTitle("Specify a file to save");
+
+          int userSelection = fc.showSaveDialog(parentFrame);
+
+          if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fc.getSelectedFile();
+            Persistence.ObjectToXml(gameWorld, fileToSave);
+          }
+          System.exit(0);
+        }
+        if(PromptResult==1) {
+          System.exit(0);
+        }
+      }
+    });
+
     getContentPane().setBackground(Color.gray);
-    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     setVisible(true);
 
     startListening();
@@ -116,8 +155,6 @@ public class Application extends JFrame{
         //TODO: need to update craft gui when ever a item is added
     }
   }
-
-  private void createSaveFile(GameWorld gameWorld){Persistence.ObjectToXml(gameWorld, "prototypeGame");}
 
   private GameWorld createGameWorld(File saveFile){
       return Persistence.XmlToObject(saveFile);

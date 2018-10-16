@@ -84,7 +84,6 @@ public class CanvasPane extends JPanel{
         }
     }
 
-
     private void drawBufferedImages(Graphics2D g2d, WorldObject object) {
         int startX;
         int spaceX;
