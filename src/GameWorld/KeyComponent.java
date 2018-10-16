@@ -23,4 +23,12 @@ public class KeyComponent extends Holdable {
 
 	public KeyComponent(){
   }
+
+    @Override
+    public String toString() {
+        return "KeyComponent{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
