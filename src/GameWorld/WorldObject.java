@@ -141,15 +141,6 @@ public abstract class WorldObject  {
 
 
 	/**
-	 * returns distance from viewer depending on viewer perspective
-	 * @param perspective
-	 * @return
-	 */
-	public int getDistance(Direction perspective) {
-		return this.zPos;
-	}
-
-	/**
 	 * Auxillary method for determining left to right orientaion of objects for
 	 * the renderer
 	 * @return relative position along X axis

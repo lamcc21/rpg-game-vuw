@@ -15,7 +15,7 @@ import java.util.List;
 public class gameTests {
     static GameWorld gameWorld;
 
-   
+
     public static void initialise(){
 
         try {
@@ -27,6 +27,24 @@ public class gameTests {
     }
 
     @Test
+    public void testMoveRoom() {
+    	initialise();
+        List<WorldObject> expected = new ArrayList<>();
+        Pickup(expected);
+        Player p = gameWorld.getPlayer();
+        Room r = gameWorld.getRoom(p.getX(), p.getY());
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
+        Pickup(expected);
+        gameWorld.getPlayer().craft(GameColor.cyan);
+        p.unlock(r.getWall(GameWorld.Direction.EAST).getDoor());
+        gameWorld.movePlayer(GameWorld.Direction.EAST);
+        assert(p.getX()==1 && p.getY()==0);
+    }
+
+
+
+    @Test
     public void testPickup(){
     	initialise();
         List<WorldObject> expected = new ArrayList<>();
@@ -34,9 +52,10 @@ public class gameTests {
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
         Pickup(expected);
-        assertEquals(expected, gameWorld.getPlayer().getInventory(), "inventory does not contain expected items");
+        gameWorld.getPlayer().craft(GameColor.cyan);
+
     }
-    
+
     @Test
     public void testCraftKey(){
     	initialise();
