@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class gameTests {
@@ -24,6 +25,16 @@ public class gameTests {
             e.printStackTrace();
         }
 
+    }
+    
+    @Test
+    public void testLockedDoor() {
+    	initialise();
+        Player p = gameWorld.getPlayer();
+        Room r = gameWorld.getRoom(p.getX(), p.getY());
+        assert(p.getX()==0 && p.getY()==0);
+        gameWorld.movePlayer(GameWorld.Direction.EAST);
+        assert(p.getX()==0 && p.getY()==0);
     }
 
     @Test
@@ -42,7 +53,28 @@ public class gameTests {
         assert(p.getX()==1 && p.getY()==0);
     }
 
-
+    @Test
+    public void testPickup2() {
+    	initialise();
+        Player p = gameWorld.getPlayer();
+        Room r = gameWorld.getRoom(p.getX(), p.getY());
+        List<WorldObject> objects = new ArrayList<>(r.getContents(p.getPerspective()));
+        List<String> expected =  Arrays.asList("Vial","Computer console","Plasma conduit");
+        for (WorldObject object : objects) {
+        	gameWorld.pickUp(object);
+        }
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getLeft());
+        gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getLeft());
+        objects = new ArrayList<>(r.getContents(p.getPerspective()));
+        for (WorldObject object : objects) {
+        	gameWorld.pickUp(object);
+        }
+        for(WorldObject ob : p.getInventory()) {
+        	System.out.println(ob.toString());
+        }
+       
+        assert(expected.equals(p.getInventory()));
+    }
 
     @Test
     public void testPickup(){
@@ -53,7 +85,6 @@ public class gameTests {
         gameWorld.getPlayer().setPerspective(gameWorld.getPlayer().getRight());
         Pickup(expected);
         gameWorld.getPlayer().craft(GameColor.cyan);
-
     }
 
     @Test

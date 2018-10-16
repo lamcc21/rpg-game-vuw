@@ -66,4 +66,20 @@ public class GameColor {
 	public int hashCode() {
 		return Objects.hash(R, G, B);
 	}
+
+	public String toString() {
+		if(R==67 && G==125 && B==128) {
+			return "cyan";
+		}else if(R==75 && G==66 && B==121){
+			return "purple";
+		}else if(R==63 && G==99 && B==37) {
+			return "green";
+		}else if(R==170 && G==170 && B==36) {
+			return "gold";
+		}else if(R==114 && G==50 && B==28) {
+			return "brown";
+		}else {
+			return "silver";
+		}
+	}
 }

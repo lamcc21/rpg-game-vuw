@@ -68,17 +68,20 @@ public class GameWorld {
 	public void pickUp(WorldObject object) {
 		// this returns the list of objects from players perspective and removes object from it
 		List<WorldObject> contents = rooms[player.getX()][player.getY()].getContents(player.getPerspective());
+		WorldObject cont = null;
+		player.pickUp(object);
 		if(contents.contains(object)) {
 			contents.remove(object);
 		}else {
 			for(WorldObject ob : contents) {
 				if(ob.contents.contains(object)) {
-					ob.contents.remove(object);
+					cont = ob;
 					}
 			}
+			if(cont!=null) {
+				cont.contents.remove(object);
+			}
 		}
-
-		player.pickUp(object);
 	}
 
 
