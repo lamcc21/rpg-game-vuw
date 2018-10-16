@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gameWorld>
+    <rooms>
+        <rooms>
+            <item>
+                <north xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Wall mounted for convenience</description>
+                    <direction>NORTH</direction>
+                    <gameColor>
+                        <b>128</b>
+                        <g>125</g>
+                        <r>67</r>
+                    </gameColor>
+                    <name>Computer console</name>
+                    <x>2</x>
+                    <y>1</y>
+                    <z>0</z>
+                </north>
+                <north xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
+                    <contents xsi:type="keyComponent">
+                        <description>An essential plasma utility</description>
+                        <direction>NORTH</direction>
+                        <gameColor>
+                            <b>128</b>
+                            <g>125</g>
+                            <r>67</r>
+                        </gameColor>
+                        <name>Plasma conduit</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>1</z>
+                    </contents>
+                    <description>A simple crate</description>
+                    <direction>NORTH</direction>
+                    <name>Crate</name>
+                    <x>2</x>
+                    <y>1</y>
+                    <z>2</z>
+                </north>
+                <south xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>A vial of a mysterious substance</description>
+                    <direction>SOUTH</direction>
+                    <gameColor>
+                        <b>128</b>
+                        <g>125</g>
+                        <r>67</r>
+                    </gameColor>
+                    <name>Vial</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>0</z>
+                </south>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>128</b>
+    <g>125</g>
+    <r>67</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <x>0</x>
+                <y>0</y>
+            </item>
+            <item>
+                <north xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Glowing orb of wonder, bow in splendor</description>
+                    <direction>NORTH</direction>
+                    <gameColor>
+                        <b>36</b>
+                        <g>170</g>
+                        <r>170</r>
+                    </gameColor>
+                    <name>Glowing orb</name>
+                    <x>0</x>
+                    <y>1</y>
+                    <z>2</z>
+                </north>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <door>
+<gameColor>
+    <b>36</b>
+    <g>170</g>
+    <r>170</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>37</b>
+    <g>99</g>
+    <r>63</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <west xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>A fourth dimensional hypercube</description>
+                    <direction>WEST</direction>
+                    <gameColor>
+                        <b>28</b>
+                        <g>50</g>
+                        <r>114</r>
+                    </gameColor>
+                    <name>Tesseract</name>
+                    <x>1</x>
+                    <y>1</y>
+                    <z>2</z>
+                </west>
+                <x>0</x>
+                <y>1</y>
+            </item>
+            <item>
+                <east xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>An autonomous humanoid personal assistant</description>
+                    <direction>EAST</direction>
+                    <gameColor>
+                        <b>28</b>
+                        <g>50</g>
+                        <r>114</r>
+                    </gameColor>
+                    <name>Humanoid android</name>
+                    <x>0</x>
+                    <y>1</y>
+                    <z>0</z>
+                </east>
+                <south xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>See who you really are</description>
+                    <direction>SOUTH</direction>
+                    <gameColor>
+                        <b>121</b>
+                        <g>121</g>
+                        <r>121</r>
+                    </gameColor>
+                    <name>Mirror</name>
+                    <x>1</x>
+                    <y>1</y>
+                    <z>2</z>
+                </south>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>28</b>
+    <g>50</g>
+    <r>114</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <door>
+<gameColor>
+    <b>28</b>
+    <g>50</g>
+    <r>114</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <west xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Secure storage facility for radioactive waste</description>
+                    <direction>WEST</direction>
+                    <gameColor>
+                        <b>28</b>
+                        <g>50</g>
+                        <r>114</r>
+                    </gameColor>
+                    <name>Radioactive waste</name>
+                    <x>2</x>
+                    <y>0</y>
+                    <z>1</z>
+                </west>
+                <x>0</x>
+                <y>2</y>
+            </item>
+        </rooms>
+        <rooms>
+            <item>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>128</b>
+    <g>125</g>
+    <r>67</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>128</b>
+    <g>125</g>
+    <r>67</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <west xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
+                    <contents xsi:type="keyComponent">
+                        <description>For getting a grip on light</description>
+                        <direction>WEST</direction>
+                        <gameColor>
+                            <b>121</b>
+                            <g>66</g>
+                            <r>75</r>
+                        </gameColor>
+                        <name>Optic spanner</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>1</z>
+                    </contents>
+                    <description>A very useful device for putting things in</description>
+                    <direction>WEST</direction>
+                    <name>Cupboard</name>
+                    <x>2</x>
+                    <y>0</y>
+                    <z>0</z>
+                </west>
+                <x>1</x>
+                <y>0</y>
+            </item>
+            <item>
+                <north xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
+                    <contents xsi:type="keyComponent">
+                        <description>Optimised energy storage</description>
+                        <direction>EAST</direction>
+                        <gameColor>
+                            <b>37</b>
+                            <g>99</g>
+                            <r>63</r>
+                        </gameColor>
+                        <name>Battery pack</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>2</z>
+                    </contents>
+                    <contents xsi:type="keyComponent">
+                        <description>Very valuable</description>
+                        <direction>EAST</direction>
+                        <gameColor>
+                            <b>36</b>
+                            <g>170</g>
+                            <r>170</r>
+                        </gameColor>
+                        <name>Rare metal</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>2</z>
+                    </contents>
+                    <contents xsi:type="keyComponent">
+                        <description>Safety is key</description>
+                        <direction>NORTH</direction>
+                        <gameColor>
+                            <b>36</b>
+                            <g>170</g>
+                            <r>170</r>
+                        </gameColor>
+                        <name>Helmet</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>1</z>
+                    </contents>
+                    <description>A humble crate</description>
+                    <direction>NORTH</direction>
+                    <name>Crate</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>1</z>
+                </north>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>37</b>
+    <g>99</g>
+    <r>63</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>37</b>
+    <g>99</g>
+    <r>63</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <x>1</x>
+                <y>1</y>
+            </item>
+            <item>
+                <south xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
+                    <contents xsi:type="keyComponent">
+                        <description>A legendary relic</description>
+                        <direction>SOUTH</direction>
+                        <gameColor>
+                            <b>121</b>
+                            <g>121</g>
+                            <r>121</r>
+                        </gameColor>
+                        <name>The holy grail</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>1</z>
+                    </contents>
+                    <description>Antique device once used on earth</description>
+                    <direction>SOUTH</direction>
+                    <name>Table</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>1</z>
+                </south>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>28</b>
+    <g>50</g>
+    <r>114</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <door>
+<gameColor>
+    <b>28</b>
+    <g>50</g>
+    <r>114</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <x>1</x>
+                <y>2</y>
+            </item>
+        </rooms>
+        <rooms>
+            <item>
+                <east xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Made for walking</description>
+                    <direction>EAST</direction>
+                    <gameColor>
+                        <b>121</b>
+                        <g>66</g>
+                        <r>75</r>
+                    </gameColor>
+                    <name>Boots</name>
+                    <x>0</x>
+                    <y>0</y>
+                    <z>0</z>
+                </east>
+                <south xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Another one</description>
+                    <direction>SOUTH</direction>
+                    <gameColor>
+                        <b>121</b>
+                        <g>66</g>
+                        <r>75</r>
+                    </gameColor>
+                    <name>Plasma conduit</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>1</z>
+                </south>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>128</b>
+    <g>125</g>
+    <r>67</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <door>
+<gameColor>
+    <b>121</b>
+    <g>66</g>
+    <r>75</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <x>2</x>
+                <y>0</y>
+            </item>
+            <item>
+                <east xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
+                    <contents xsi:type="keyComponent">
+                        <description>Optimised energy storage</description>
+                        <direction>EAST</direction>
+                        <gameColor>
+                            <b>37</b>
+                            <g>99</g>
+                            <r>63</r>
+                        </gameColor>
+                        <name>Battery pack</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>2</z>
+                    </contents>
+                    <contents xsi:type="keyComponent">
+                        <description>Very valuable</description>
+                        <direction>EAST</direction>
+                        <gameColor>
+                            <b>36</b>
+                            <g>170</g>
+                            <r>170</r>
+                        </gameColor>
+                        <name>Rare metal</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>2</z>
+                    </contents>
+                    <contents xsi:type="keyComponent">
+                        <description>Safety is key</description>
+                        <direction>NORTH</direction>
+                        <gameColor>
+                            <b>36</b>
+                            <g>170</g>
+                            <r>170</r>
+                        </gameColor>
+                        <name>Helmet</name>
+                        <x>1</x>
+                        <y>0</y>
+                        <z>1</z>
+                    </contents>
+                    <description>Storage barrel</description>
+                    <direction>EAST</direction>
+                    <name>Barrel</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>2</z>
+                </east>
+                <south xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Provides access to the mainframe</description>
+                    <direction>SOUTH</direction>
+                    <gameColor>
+                        <b>37</b>
+                        <g>99</g>
+                        <r>63</r>
+                    </gameColor>
+                    <name>Computer console</name>
+                    <x>2</x>
+                    <y>1</y>
+                    <z>0</z>
+                </south>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>37</b>
+    <g>99</g>
+    <r>63</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <door>
+<gameColor>
+    <b>121</b>
+    <g>66</g>
+    <r>75</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <west xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>Keeps you cool</description>
+                    <direction>WEST</direction>
+                    <gameColor>
+                        <b>37</b>
+                        <g>99</g>
+                        <r>63</r>
+                    </gameColor>
+                    <name>Ceiling fan</name>
+                    <x>1</x>
+                    <y>3</y>
+                    <z>1</z>
+                </west>
+                <x>2</x>
+                <y>1</y>
+            </item>
+            <item>
+                <walls>
+                    <entry>
+                        <key>WEST</key>
+                        <value>
+                            <direction>WEST</direction>
+                            <door>
+<gameColor>
+    <b>28</b>
+    <g>50</g>
+    <r>114</r>
+</gameColor>
+<isLocked>false</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SOUTH</key>
+                        <value>
+                            <direction>SOUTH</direction>
+                            <door>
+<gameColor>
+    <b>121</b>
+    <g>121</g>
+    <r>121</r>
+</gameColor>
+<isLocked>true</isLocked>
+<x>0</x>
+<y>0</y>
+<z>0</z>
+                            </door>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>EAST</key>
+                        <value>
+                            <direction>EAST</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>NORTH</key>
+                        <value>
+                            <direction>NORTH</direction>
+                            <visible>true</visible>
+                        </value>
+                    </entry>
+                </walls>
+                <west xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="keyComponent">
+                    <description>A juicy sweet red apple</description>
+                    <direction>WEST</direction>
+                    <gameColor>
+                        <b>121</b>
+                        <g>121</g>
+                        <r>121</r>
+                    </gameColor>
+                    <name>Apple</name>
+                    <x>1</x>
+                    <y>0</y>
+                    <z>1</z>
+                </west>
+                <x>2</x>
+                <y>2</y>
+            </item>
+        </rooms>
+    </rooms>
+    <player>
+        <perspective>NORTH</perspective>
+        <x>0</x>
+        <y>0</y>
+    </player>
+</gameWorld>

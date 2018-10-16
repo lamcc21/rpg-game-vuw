@@ -16,7 +16,7 @@ public class Container extends WorldObject {
   private boolean isSelected;
 
 	public Container(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
-	String Name,String Description,Direction direction, List<WorldObject> contents ) throws IOException {
+	String Name,String Description,Direction direction, List<WorldObject> contents ) {
 		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,direction);
     this.isOpen = false;
 		try {
@@ -27,7 +27,7 @@ public class Container extends WorldObject {
 	}
 
 	public Container(int xPos,int yPos, int zPos, int xWidth, int yHeight, int zDepth,
-	String Name,String Description,Direction direction) throws IOException {
+	String Name,String Description,Direction direction) {
 		super(xPos,yPos,zPos,xWidth,yHeight,zDepth,Name,Description,direction);
     this.isOpen = false;
 		try {
@@ -37,7 +37,7 @@ public class Container extends WorldObject {
 		}
 	}
 
-	public Container()throws IOException {
+	public Container() {
 	  this.isOpen = false;
   }
 
