@@ -47,7 +47,7 @@ public class CanvasPane extends JPanel{
     private int FRONT_X_SPACING = 320;
 
     //bounding box for objects
-    private ArrayList<Rectangle> boundingBoxes = new ArrayList<>();
+    private HashMap<Rectangle, WorldObject> boundingBoxes = new HashMap<>();
 
     // color fields
     private Color BLUE = Color.blue;
@@ -128,8 +128,9 @@ public class CanvasPane extends JPanel{
             g2d.drawImage(img, x, y, objectSize, objectSize, null);
             //add bounding box to the arraylist to allow for detectable clicks`
             Rectangle bound = new Rectangle(x, y, objectSize, objectSize);
-            boundingBoxes.add(bound);
+            boundingBoxes.put(bound, object);
         } catch (IOException e) {
+            System.out.println(object.getFilePath());
             e.printStackTrace();
         }
     }
@@ -221,9 +222,9 @@ public class CanvasPane extends JPanel{
       return new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
-          for(Rectangle r : boundingBoxes){
+          for(Rectangle r : boundingBoxes.keySet()){
             if(r.contains(e.getX(), e.getY())){
-              System.out.println("Box click detected");
+              System.out.println(boundingBoxes.get(r).getName() + ": " + boundingBoxes.get(r).getDescription());
             }
           }
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
