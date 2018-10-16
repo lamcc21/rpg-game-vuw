@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Door {
+public class Door extends WorldObject{
 
 	private boolean isLocked;
 	private GameColor gameColor;
