@@ -202,6 +202,10 @@ public abstract class WorldObject  {
 		return Objects.equals(getGameColor(), that.getGameColor());
 	}
 
+	public String getFilePath() {
+		return "src/images/"+name+".png";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(getGameColor());
