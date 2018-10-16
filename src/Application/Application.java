@@ -127,7 +127,13 @@ public class Application extends JFrame{
 
           if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fc.getSelectedFile();
-            Persistence.ObjectToXml(gameWorld, fileToSave);
+              try {
+                  Persistence.ObjectToXml(gameWorld, fileToSave);
+              } catch (JAXBException e1) {
+                  //TODO
+              } catch (FileNotFoundException e1) {
+                  //TODO
+              }
           }
           System.exit(0);
         }
@@ -158,7 +164,12 @@ public class Application extends JFrame{
   }
 
   private GameWorld createGameWorld(File saveFile){
-      return Persistence.XmlToObject(saveFile);
+      try {
+          return Persistence.XmlToObject(saveFile);
+      } catch (JAXBException e) {
+          //TODO
+      }
+      return null;
   }
 
   public static void main(String[] args) throws IOException, InterruptedException { new Application();}
