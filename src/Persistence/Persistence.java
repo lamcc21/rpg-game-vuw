@@ -25,19 +25,14 @@ public class Persistence {
      * ObjectToXml method takes a GameWorld object and creates an XML file with
      * the name [filename].xml in the project root folder
      * @param gameWorld
-     * @param filename
+     * @param file
      */
-    public static void ObjectToXml(GameWorld gameWorld, String filename){
-        try {
-            JAXBContext context = JAXBContext.newInstance(GameWorld.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(gameWorld, new FileOutputStream(filename));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static void ObjectToXml(GameWorld gameWorld, File file) throws JAXBException, FileNotFoundException {
+        JAXBContext context = JAXBContext.newInstance(GameWorld.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.marshal(gameWorld, new FileOutputStream(file));
+
     }
 
     /**
@@ -45,15 +40,10 @@ public class Persistence {
      * @param file
      * @return GameWorld object
      */
-    public static GameWorld XmlToObject(File file){
-        try {
-            JAXBContext context = JAXBContext.newInstance(GameWorld.class);
-            Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-            return (GameWorld) jaxbUnmarshaller.unmarshal(file);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static GameWorld XmlToObject(File file) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(GameWorld.class);
+        Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+        return (GameWorld) jaxbUnmarshaller.unmarshal(file);
     }
 
 }

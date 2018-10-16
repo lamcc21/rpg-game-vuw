@@ -2,6 +2,8 @@ package Persistence;
 
 import GameWorld.*;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -310,6 +312,10 @@ public class GameWorldFactory {
 
     GameWorld game = new GameWorld(player, rooms);
 
-    Persistence.ObjectToXml(game, "prototypeGame1.xml");
+    try {
+      Persistence.ObjectToXml(game, new File("prototypeGame1.xml"));
+    } catch (JAXBException e) {
+      e.printStackTrace();
+    }
   }
 }

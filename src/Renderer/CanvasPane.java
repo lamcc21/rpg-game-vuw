@@ -81,12 +81,11 @@ public class CanvasPane extends JPanel{
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
-   private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
-       if(objectsInView!=null) {
-	   for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
-       }
+    private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+        if(objectsInView!=null) {
+	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+        }
     }
-
 
     private void drawBufferedImages(Graphics2D g2d, WorldObject object) {
         int startX;
@@ -216,7 +215,10 @@ public class CanvasPane extends JPanel{
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
+
+                //iterate through all bounding boxes
                 for (Rectangle r : boundingBoxes.keySet()) {
+
                     //if click is within a bounding box
                     if (r.contains(e.getX(), e.getY())) {
                         //initialise object associated with bounding box clicked
@@ -244,6 +246,8 @@ public class CanvasPane extends JPanel{
                         }else{
                           pane.updateContainerGUI();//Closes container panel
                         }
+
+                        //update canvas
                         repaint();
                     }
                 }
