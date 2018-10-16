@@ -106,7 +106,6 @@ public class CanvasPane extends JPanel{
                   //Updates Container Inventory
                   pane.setActive(true);
                   pane.updateContainerGUI((Container) object, player);
-                  System.out.println(object.getName() + ": " + object.getDescription());
                   containerclicked = true;
                 } else if (object instanceof Holdable) {
                   //check if object is clicked
@@ -117,8 +116,6 @@ public class CanvasPane extends JPanel{
                 } else if (object instanceof Door) {
                   //check if door is clicked
                   //check if door is locked, moving rooms if not.
-                  System.out.println(((Door) object).getIsLocked());
-
                   if (((Door) object).getIsLocked()) {
                     player.unlock(((Door) object)); //Tries to unlock door
                   }

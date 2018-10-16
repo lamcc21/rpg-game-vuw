@@ -357,32 +357,6 @@
         <item>
             <north xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="container">
                 <contents xsi:type="keyComponent">
-                    <description>Optimised energy storage</description>
-                    <direction>EAST</direction>
-                    <gameColor>
-                        <b>37</b>
-                        <g>99</g>
-                        <r>63</r>
-                    </gameColor>
-                    <name>Plasma conduit</name>
-                    <x>1</x>
-                    <y>0</y>
-                    <z>2</z>
-                </contents>
-                <contents xsi:type="keyComponent">
-                    <description>Very valuable</description>
-                    <direction>EAST</direction>
-                    <gameColor>
-                        <b>36</b>
-                        <g>170</g>
-                        <r>170</r>
-                    </gameColor>
-                    <name>Helmet</name>
-                    <x>1</x>
-                    <y>0</y>
-                    <z>2</z>
-                </contents>
-                <contents xsi:type="keyComponent">
                     <description>Safety is key</description>
                     <direction>NORTH</direction>
                     <gameColor>
@@ -645,19 +619,6 @@
                     <x>1</x>
                     <y>0</y>
                     <z>2</z>
-                </contents>
-                <contents xsi:type="keyComponent">
-                    <description>Safety is key</description>
-                    <direction>NORTH</direction>
-                    <gameColor>
-                        <b>36</b>
-                        <g>170</g>
-                        <r>170</r>
-                    </gameColor>
-                    <name>Helmet</name>
-                    <x>1</x>
-                    <y>0</y>
-                    <z>1</z>
                 </contents>
                 <description>Storage barrel</description>
                 <direction>EAST</direction>
