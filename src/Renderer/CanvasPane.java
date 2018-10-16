@@ -82,6 +82,7 @@ public class CanvasPane extends JPanel{
     }
 
     private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+    	 boundingBoxes = new HashMap<>();
         if(objectsInView!=null) {
 	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
         }
@@ -95,7 +96,7 @@ public class CanvasPane extends JPanel{
         int z = object.getZ();
         int objectHeight = object.getY();
         int objectSize;
-        boundingBoxes = new HashMap<>();
+
         if(z == 2){
             startX = BACK_X_START;
             spaceX = BACK_X_SPACING;
