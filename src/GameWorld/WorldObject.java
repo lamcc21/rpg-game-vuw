@@ -168,6 +168,7 @@ public abstract class WorldObject  {
 	}
 
 	public String getFilePath() {
+		if(name.equals("Crate"))return"src/images/"+name+".png";
 		return "src/images/"+name+"_"+gameColor.toString()+".png";
 	}
 
