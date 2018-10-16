@@ -76,17 +76,87 @@ public class CanvasPane extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        room = gameWorld.getRoom(player.getX(), player.getY());
+        boundingBoxes = new HashMap<>();
+        room = gameWorld.getRoom(player.getX(),player.getY());
         Graphics2D g2d = (Graphics2D) g;
         constructPolygonGradientMap(g2d);
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
     private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
-    	 boundingBoxes = new HashMap<>();
         if(objectsInView!=null) {
 	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
         }
+    }
+
+    private MouseListener MyMouseListener(){
+      return new MouseListener() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+          boolean containerclicked = false;
+          try {
+            //iterate through all bounding boxes
+            for (Rectangle r : boundingBoxes.keySet()) {
+              //if click is within a bounding box
+              if (r.contains(e.getX(), e.getY())) {
+                //initialise object associated with bounding box clicked
+                WorldObject object = boundingBoxes.get(r);
+                //check if container is clicked
+                if (object instanceof Container) {
+                  //Updates Container Inventory
+                  pane.setActive(true);
+                  pane.updateContainerGUI((Container) object, player);
+                  System.out.println(object.getName() + ": " + object.getDescription());
+                  containerclicked = true;
+                } else if (object instanceof Holdable) {
+                  //check if object is clicked
+                  //pick up the object
+                  gameWorld.pickUp(object);
+                  //remove the associated object
+                  boundingBoxes.remove(r);
+                } else if (object instanceof Door) {
+                  //check if door is clicked
+                  //check if door is locked, moving rooms if not.
+                  System.out.println(((Door) object).getIsLocked());
+
+                  if (((Door) object).getIsLocked()) {
+                    player.unlock(((Door) object)); //Tries to unlock door
+                  }
+
+                  if (!((Door) object).getIsLocked()) {
+                    player.moveRoom(player.getPerspective());
+                    //remove the door
+                    boundingBoxes.remove(r);
+                  } else JOptionPane.showMessageDialog(null, "Door Is Locked, You need to Make Key");
+                }
+                //update canvas
+                repaint();
+              }
+            }
+            if(!containerclicked){
+            if(pane.isActive()){
+                pane.updateContainerGUI();
+                pane.setActive(false);
+              }//Closes container panel
+            }
+          }catch(ConcurrentModificationException c){}
+          //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {}
+
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+          //TODO: I think this can be used for highlighting description
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {}
+      };
     }
 
     private void drawBufferedImages(Graphics2D g2d, WorldObject object) {
@@ -211,69 +281,6 @@ public class CanvasPane extends JPanel{
         }
     }
 
-    private MouseListener MyMouseListener(){
-      return new MouseListener() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            try {
-                //iterate through all bounding boxes
-                for (Rectangle r : boundingBoxes.keySet()) {
-                    //if click is within a bounding box
-                    if (r.contains(e.getX(), e.getY())) {
-                        //initialise object associated with bounding box clicked
-                        WorldObject object = boundingBoxes.get(r);
-                        //check if container is clicked
-                        if(object instanceof Container){
-                            //Updates Container Inventory
-                            pane.updateContainerGUI((Container) object, player);
-                            System.out.println(object.getName() + ": " + object.getDescription());
-                        }else if (object instanceof Holdable) {
-                          //check if object is clicked
-                          //pick up the object
-                          gameWorld.pickUp(object);
-                          //remove the associated object
-                          boundingBoxes.remove(r);
-                        }else if (object instanceof Door) {
-                          //check if door is clicked
-                          //check if door is locked, moving rooms if not.
-                          System.out.println(((Door) object).getIsLocked());
 
-                          if(((Door) object).getIsLocked()){
-                            player.unlock(((Door) object)); //Tries to unlock door
-                          }
-
-                          if (!((Door) object).getIsLocked()) {
-                            player.moveRoom(player.getPerspective());
-                            //remove the door
-                            boundingBoxes.remove(r);
-                          } else JOptionPane.showMessageDialog(null, "Door Is Locked, You need to Make Key");
-                        }
-                        //update canvas
-                        repaint();
-                    } else{
-                      pane.updateContainerGUI();//Closes container panel
-                      pane.revalidate();
-                    }
-                }
-            }
-            catch(ConcurrentModificationException c){}
-          //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {}
-
-        @Override
-        public void mouseReleased(MouseEvent e) {}
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-          //TODO: I think this can be used for highlighting description
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {}
-      };
-    }
 }
 

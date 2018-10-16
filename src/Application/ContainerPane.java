@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class ContainerPane extends JPanel {
   private JButton[] optionItems;
+  private boolean isActive;
 
   public ContainerPane(){
     optionItems = new JButton[5];
@@ -29,6 +30,7 @@ public class ContainerPane extends JPanel {
 
   public void updateContainerGUI(Container inventory, Player player) {
     for (int i = 0; i < inventory.getContents().size(); i++) {
+      System.out.println("with container updateGUI");
       if (inventory.getContents().get(i) != null) {
         WorldObject item = inventory.getContents().get(i);
         int j = i; //int needs to be final for lambda expression
@@ -56,11 +58,23 @@ public class ContainerPane extends JPanel {
   }
 
   public void updateContainerGUI() {
+    System.out.println("without container updateGUI");
+
     for (JButton optionItem : optionItems) {
-      optionItem.setToolTipText("");
+      optionItem.setToolTipText("Empty Slot");
+      optionItem.setText("");
       optionItem.setEnabled(false);
       optionItem.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
   }
+
+  public boolean isActive(){
+    return this.isActive;
+  }
+
+  public void setActive(boolean value){
+    this.isActive = value;
+  }
+
 
 }

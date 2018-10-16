@@ -3,6 +3,7 @@ package GameWorld;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -106,10 +107,13 @@ public class Player {
 	public void unlock(Door door) {
 		for(WorldObject object : inventory) {
 			if(object instanceof KeyObject) {
-				if(object.getGameColor().equals(door.getGameColor()))door.setIsLocked(false);
+				if(object.getGameColor().equals(door.getGameColor())) {
+          door.setIsLocked(false);
+          JOptionPane.showMessageDialog(null, "Door Is Now Unlocked");
+          }
+        }
 			}
-		}
-	}
+  }
 
 	/**
 	 * method for moving character to another room
