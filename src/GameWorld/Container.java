@@ -45,22 +45,18 @@ public class Container extends WorldObject {
     isOpen = !isOpen;
   }
 
-	public boolean canContain(WorldObject ob) {
-		return(this.xWidth>ob.xWidth && this.yHeight>ob.yHeight && this.zWidth>ob.zWidth);
-	}
-
 	/**
 	 * adds object to Container
 	 * @param ob
 	 */
 	public void addWorldObject(WorldObject ob) {
-		if(canContain(ob))contents.add(ob);
+		contents.add(ob);
 	}
-	
+
 	public void setIsSelected(Boolean b) {
 		isSelected =b;
 	}
-	
+
 	public boolean getIsSelected() {
 		return isSelected;
 	}

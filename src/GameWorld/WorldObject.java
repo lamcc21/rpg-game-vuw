@@ -29,9 +29,6 @@ public abstract class WorldObject  {
 
 	//these are the dimensions of the object. Currently they are integers but
 	//if this impacts the drawing then we can change to doubles
-	protected int xWidth;
-	protected int yHeight;
-	protected int zWidth;
 
 	protected Direction direction;
 
@@ -51,9 +48,6 @@ public abstract class WorldObject  {
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
-		this.xWidth=xWidth;
-		this.yHeight=yHeight;
-		this.zWidth=zDepth;
 		this.name=Name;
 		this.description=Description;
 		this.direction=direction;
@@ -67,9 +61,6 @@ public abstract class WorldObject  {
 		this.xPos=xPos;
 		this.yPos=yPos;
 		this.zPos=zPos;
-		this.xWidth=xWidth;
-		this.yHeight=yHeight;
-		this.zWidth=zDepth;
 		this.name=Name;
 		this.description=Description;
 		this.direction=direction;
@@ -105,20 +96,6 @@ public abstract class WorldObject  {
 		this.zPos = z;
 	}
 
-	@XmlElement
-	public int getWidth(){
-		return xWidth;
-	}
-
-	@XmlElement
-	public int getHeight() {
-		return yHeight;
-	}
-
-	@XmlElement
-	public int getDepth() {
-		return zWidth;
-	}
 
 	@XmlElement
 	public String getName() {
@@ -172,7 +149,7 @@ public abstract class WorldObject  {
 	 * @return
 	 */
 	public int getDistance(Direction perspective) {
-		return 0;
+		return this.zPos;
 	}
 
 	/**
@@ -209,5 +186,9 @@ public abstract class WorldObject  {
 	@Override
 	public int hashCode() {
 		return Objects.hash(getGameColor());
+	}
+
+	public String toString() {
+		return name;
 	}
 }

@@ -17,9 +17,6 @@ public abstract class Holdable extends WorldObject {
     this.xPos=xPos;
     this.yPos=yPos;
     this.zPos=zPos;
-    this.xWidth=xWidth;
-    this.yHeight=yHeight;
-    this.zWidth=zDepth;
     this.name=Name;
     this.description=Description;
     this.direction=d;
