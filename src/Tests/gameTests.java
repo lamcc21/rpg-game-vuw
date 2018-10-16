@@ -17,11 +17,9 @@ public class gameTests {
 
    
     public static void initialise(){
-        try {
-            gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+
+        gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
+
     }
 
     @Test
