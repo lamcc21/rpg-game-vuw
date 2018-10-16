@@ -20,7 +20,7 @@ public class KeyObject extends Holdable {
     this.gameColor = gameColor;
 	}
 
-	KeyObject(GameColor c){
+	public KeyObject(GameColor c){
 		this.gameColor = c;
         this.description = "A "+ c.toString() +" key, I wonder what it opens..";
 		this.name = c.toString()+" Key";

@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
+import java.util.Objects;
+
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -192,4 +194,16 @@ public abstract class WorldObject  {
 		return 0;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof WorldObject)) return false;
+		WorldObject that = (WorldObject) o;
+		return Objects.equals(getGameColor(), that.getGameColor());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getGameColor());
+	}
 }
