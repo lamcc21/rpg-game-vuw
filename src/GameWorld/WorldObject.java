@@ -168,7 +168,7 @@ public abstract class WorldObject  {
 	}
 
 	public String getFilePath() {
-		return "src/images/"+name+".png";
+		return "src/images/"+name+"_"+gameColor.toString()+".png";
 	}
 
 	@Override
