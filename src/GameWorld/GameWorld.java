@@ -55,10 +55,12 @@ public class GameWorld {
 		return rooms[x][y];
 	}
 
-	public void movePlayer(Direction d) {
+	public void movePlayer(Direction d) throws EndGameException {
 		if (rooms[player.getX()][player.getY()].hasNeighbor(d, rooms) &&
 				rooms[player.getX()][player.getY()].getWall(d).hasDoor()
 				&& !rooms[player.getX()][player.getY()].getWall(d).door.getIsLocked()) {
+			if(rooms[player.getX()][player.getY()].getWall(d).door.getGameColor().toString()
+					.equals("silver")) {throw (new EndGameException());}
 			player.moveRoom(d);
 		}
 	}
