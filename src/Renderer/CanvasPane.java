@@ -76,6 +76,7 @@ public class CanvasPane extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        room = gameWorld.getRoom(player.getX(), player.getY());
         Graphics2D g2d = (Graphics2D) g;
         constructPolygonGradientMap(g2d);
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
