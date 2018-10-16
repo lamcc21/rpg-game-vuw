@@ -188,6 +188,7 @@ public class GameWorldFactory {
     eastComponents= new ArrayList<>();
 
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Helmet", "Safety is key", GameWorld.Direction.NORTH, GameColor.gold);
+    contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(1, 0, 1, 1, 1, 1, "Crate", "A humble crate", GameWorld.Direction.NORTH, contained);
     northComponents.add(container1);
