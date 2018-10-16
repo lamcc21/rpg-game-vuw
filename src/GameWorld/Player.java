@@ -181,7 +181,7 @@ public class Player {
 	  this.craftGuiUpdate ^= true;
   }
 
-  public boolean craftGuiUpdateNeeded(){
+  	public boolean craftGuiUpdateNeeded(){
 	  return this.craftGuiUpdate;
   }
 
