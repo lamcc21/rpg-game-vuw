@@ -1,7 +1,6 @@
 package GameWorld;
 
 import GameWorld.GameWorld.Direction;
-import GameWorld.GameColor;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;

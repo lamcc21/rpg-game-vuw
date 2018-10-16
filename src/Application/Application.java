@@ -19,31 +19,28 @@ public class Application extends JFrame{
   private CanvasPane canvas;
   private InventoryPane inventory;
   private CraftingPane crafting;
+  private ContainerPane container;
   private GameWorld gameWorld;
-
 
   private Application() throws IOException, InterruptedException {
     super("Have A Go Escaping");
     setLayout(new GridBagLayout());new Dimension();
-    setMinimumSize(new Dimension(860, 762));
+    setMinimumSize(new Dimension(860, 802));
     UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
     this.gameWorld = createGameWorld(new File("prototypeGame1.xml"));
 
     if(gameWorld != null){
-      this.canvas = new CanvasPane(gameWorld);
+      this.container = new ContainerPane();
+      this.canvas = new CanvasPane(gameWorld,container);
       this.inventory = new InventoryPane(gameWorld);
       this.crafting = new CraftingPane(gameWorld);
       GridBagConstraints gbc = new GridBagConstraints();
 
-      gbc.anchor = GridBagConstraints.NORTH;
       Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
       this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
       //This centers every window displayed
 
-      gbc.fill = GridBagConstraints.VERTICAL;
-      gbc.gridx = 0;
-      gbc.gridy = 0;
 
       BasicArrowButton buttonWest = new BasicArrowButton(BasicArrowButton.WEST) {
         @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
@@ -56,14 +53,22 @@ public class Application extends JFrame{
         canvas.repaint();
       });
 
+      gbc.anchor = GridBagConstraints.NORTH;
+      gbc.fill = GridBagConstraints.VERTICAL;
+      gbc.gridx = 0;
+      gbc.gridwidth = 3;
+      gbc.gridy = 0;
+      add(container, gbc);
+
+      gbc.anchor = GridBagConstraints.SOUTH;
+      gbc.gridwidth = 1;
+      gbc.gridx = 0;
+      gbc.gridy = 1;
       add(buttonWest, gbc);
 
       gbc.gridx = 1;
-      gbc.gridy = 0;
+      gbc.gridy = 1;
       add(canvas, gbc);
-
-      gbc.gridx = 2;
-      gbc.gridy = 0;
 
       BasicArrowButton buttonEast = new BasicArrowButton(BasicArrowButton.EAST) {
         @Override public Dimension getPreferredSize() { return new Dimension(30, 350);}
@@ -76,21 +81,21 @@ public class Application extends JFrame{
         canvas.repaint();
       });
 
+      gbc.gridx = 2;
+      gbc.gridy = 1;
       add(buttonEast, gbc);
 
       gbc.fill = GridBagConstraints.NONE;
       gbc.gridx = 0;
-      gbc.gridy = 1;
+      gbc.gridy = 2;
       gbc.gridwidth = 2;
-
       gbc.anchor = GridBagConstraints.WEST;
       add(inventory, gbc);
 
       gbc.gridx = 1;
-      gbc.gridy = 1;
+      gbc.gridy = 2;
       gbc.anchor = GridBagConstraints.EAST;
       add(crafting, gbc);
-
       pack();
     }else{
       JOptionPane.showMessageDialog(this, "Game Load Error");
@@ -103,7 +108,6 @@ public class Application extends JFrame{
 
     startListening();
   }
-
 
   private void startListening() throws InterruptedException {
     while(true){

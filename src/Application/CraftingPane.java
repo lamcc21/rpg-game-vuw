@@ -78,32 +78,32 @@ class CraftingPane extends JPanel{
         for(int j=0; j<keyItems.length; j++){
             keyItems[j].setEnabled(false);
             switch (j) {
-              case 0: if(gameWorld.getPlayer().isCraftable(new GameColor(67,125,128))){
+              case 0: if(gameWorld.getPlayer().isCraftable(GameColor.cyan)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Cyan Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
               }
-              case 1: if(gameWorld.getPlayer().isCraftable(new GameColor(75, 66, 121))){
+              case 1: if(gameWorld.getPlayer().isCraftable(GameColor.purple)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Purple Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
               }
-              case 2: if(gameWorld.getPlayer().isCraftable(new GameColor(63,99, 37))){
+              case 2: if(gameWorld.getPlayer().isCraftable(GameColor.green)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Green Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
               }
-              case 3: if(gameWorld.getPlayer().isCraftable(new GameColor(170, 170, 36))){
+              case 3: if(gameWorld.getPlayer().isCraftable(GameColor.gold)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Gold Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
               }
-              case 4: if(gameWorld.getPlayer().isCraftable(new GameColor(114,50,28))){
+              case 4: if(gameWorld.getPlayer().isCraftable(GameColor.brown)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Brown Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
               }
-              case 5: if(gameWorld.getPlayer().isCraftable(new GameColor(121,121,121))){
+              case 5: if(gameWorld.getPlayer().isCraftable(GameColor.silver)){
                 keyItems[j].setEnabled(true);
                 keyItems[j].setToolTipText("Craft Silver Key");
                 keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

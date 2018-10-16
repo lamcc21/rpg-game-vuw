@@ -18,6 +18,7 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 
+import Application.ContainerPane;
 import GameWorld.*;
 import GameWorld.Container;
 
@@ -61,13 +62,15 @@ public class CanvasPane extends JPanel{
     private Player player;
     private GameWorld.Direction perspective;
     private GameWorld gameWorld;
+    private ContainerPane pane;
 
-    public CanvasPane(GameWorld gameWorld) {
+    public CanvasPane(GameWorld gameWorld, ContainerPane pane) {
         setPreferredSize(new Dimension(800, 600));
         this.player = gameWorld.getPlayer();
         this.room = gameWorld.getRoom(player.getX(), player.getY());
         this.addMouseListener(MyMouseListener());
         this.gameWorld = gameWorld;
+        this.pane = pane;
     }
 
     @Override
@@ -216,41 +219,36 @@ public class CanvasPane extends JPanel{
                 for (Rectangle r : boundingBoxes.keySet()) {
                     //if click is within a bounding box
                     if (r.contains(e.getX(), e.getY())) {
-
                         //initialise object associated with bounding box clicked
                         WorldObject object = boundingBoxes.get(r);
-
                         //check if container is clicked
                         if(object instanceof Container){
-                            //print container description
+                            //Updates Container Inventory
+                            pane.updateContainerGUI((Container) object, player);
                             System.out.println(object.getName() + ": " + object.getDescription());
-                        }
-
-                        //check if object is clicked
-                        if (object instanceof Holdable) {
-                            //print object description
-                            System.out.println(object.getName() + ": " + object.getDescription());
-                            //pick up the object
-                            gameWorld.pickUp(object);
-                            //remove the associated object
+                        }else if (object instanceof Holdable) {
+                          //check if object is clicked
+                          //pick up the object
+                          gameWorld.pickUp(object);
+                          //remove the associated object
+                          boundingBoxes.remove(r);
+                        }else if (object instanceof Door) {
+                          //check if door is clicked
+                          //check if door is locked, moving rooms if not.
+                          System.out.println(((Door) object).getIsLocked());
+                          if (((Door) object).getIsLocked()) {
+                            player.moveRoom(player.getPerspective());
+                            //remove the door
                             boundingBoxes.remove(r);
-                        }
-
-                        //check if door is clicked
-                        if (object instanceof Door) {
-                            //check if door is locked, moving rooms if not.
-                            if (((Door) object).getIsLocked()) {
-                                player.moveRoom(player.getPerspective());
-                                //remove the door
-                                boundingBoxes.remove(r);
-                            } else System.out.println("You must find the key!");
+                          } else JOptionPane.showMessageDialog(null, "Door Is Locked, You need to Make Key");
+                        }else{
+                          pane.updateContainerGUI();//Closes container panel
                         }
                         repaint();
                     }
                 }
             }
-            catch(ConcurrentModificationException c){
-            }
+            catch(ConcurrentModificationException c){}
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
         }
 
@@ -270,3 +268,4 @@ public class CanvasPane extends JPanel{
       };
     }
 }
+

@@ -6,7 +6,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Door extends WorldObject{
 
-	private boolean isLocked;
+  @XmlElement
+  private boolean isLocked;
+
 	private GameColor gameColor;
 
 	public Door(boolean isLocked, GameColor gameColor) {
@@ -14,13 +16,8 @@ public class Door extends WorldObject{
 		this.gameColor = gameColor;
 	}
 
-	public Door(boolean isLocked) {
-		this.isLocked=isLocked;
-	}
-
 	public Door() {}
 
-	@XmlElement
 	public boolean getIsLocked() {
 		return isLocked;
 	}
