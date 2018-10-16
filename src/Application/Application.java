@@ -157,8 +157,6 @@ public class Application extends JFrame{
     }
   }
 
-  private void createSaveFile(GameWorld gameWorld){Persistence.ObjectToXml(gameWorld, "prototypeGame");}
-
   private GameWorld createGameWorld(File saveFile){
       return Persistence.XmlToObject(saveFile);
   }
