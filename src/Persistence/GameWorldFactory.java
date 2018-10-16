@@ -97,7 +97,7 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     westComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Optic spanner", "For getting a grip on light", GameWorld.Direction.WEST, GameColor.purple);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "For getting a grip on light", GameWorld.Direction.WEST, GameColor.purple);
     contained = new ArrayList<>();
     contained.add(component1);
     container1 = new Container(2, 0, 0, 2, 2, 1, "Crate", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
