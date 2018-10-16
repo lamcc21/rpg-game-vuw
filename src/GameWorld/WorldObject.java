@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
+import java.util.Map;
 /**
  * An abstract class containing the basic properties of all Objects that are inside of
  * the rooms
@@ -190,6 +191,10 @@ public abstract class WorldObject  {
 			return zPos;
 		}
 		return 0;
+	}
+
+	public String getFilePath() {
+		return "src/images/"+name+".png";
 	}
 
 }
