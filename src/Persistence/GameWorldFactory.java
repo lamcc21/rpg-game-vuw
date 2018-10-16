@@ -100,7 +100,7 @@ public class GameWorldFactory {
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Optic spanner", "For getting a grip on light", GameWorld.Direction.WEST, GameColor.purple);
     contained = new ArrayList<>();
     contained.add(component1);
-    container1 = new Container(2, 0, 0, 2, 2, 1, "Cupboard", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
+    container1 = new Container(2, 0, 0, 2, 2, 1, "Crate", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
     westComponents.add(container1);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 1, 0);
@@ -125,7 +125,7 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Boots", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
+    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Vial", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
     eastComponents.add(component1);
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "Another one", GameWorld.Direction.SOUTH, GameColor.purple);
     southComponents.add(component1);
@@ -152,14 +152,14 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();;
 
-    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Battery pack", "Optimised energy storage", GameWorld.Direction.EAST, GameColor.green);
-    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Rare metal", "Very valuable", GameWorld.Direction.EAST, GameColor.gold);
+    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Plasma conduit", "Optimised energy storage", GameWorld.Direction.EAST, GameColor.green);
+    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Helmet", "Very valuable", GameWorld.Direction.EAST, GameColor.gold);
     contained = new ArrayList<>();
     contained.add(component1);
     contained.add(component2);
-    container1 = new Container(1, 0, 2, 1, 2, 1, "Barrel", "Storage barrel", GameWorld.Direction.EAST, contained);
+    container1 = new Container(1, 0, 2, 1, 2, 1, "Crate", "Storage barrel", GameWorld.Direction.EAST, contained);
     eastComponents.add(container1);
-    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Ceiling fan", "Keeps you cool", GameWorld.Direction.WEST, GameColor.green);
+    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Vial", "Keeps you cool", GameWorld.Direction.WEST, GameColor.green);
     westComponents.add(component3);
     component4 = new KeyComponent(2, 1, 0, 1, 1, 1, "Computer console", "Provides access to the mainframe", GameWorld.Direction.SOUTH, GameColor.green);
     southComponents.add(component4);
@@ -216,7 +216,7 @@ public class GameWorldFactory {
 
     component1 = new KeyComponent(0, 1, 2, 1, 1, 1, "Glowing orb", "Glowing orb of wonder, bow in splendor", GameWorld.Direction.NORTH, GameColor.gold);
     northComponents.add(component1);
-    component2 = new KeyComponent(1, 1, 2, 1, 1, 1, "Tesseract", "A fourth dimensional hypercube", GameWorld.Direction.WEST, GameColor.brown);
+    component2 = new KeyComponent(1, 1, 2, 1, 1, 1, "Plasma conduit", "A fourth dimensional hypercube", GameWorld.Direction.WEST, GameColor.brown);
     westComponents.add(component2);
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 0, 1);
     rooms[0][1] = room;
@@ -242,9 +242,9 @@ public class GameWorldFactory {
 
     component1 = new KeyComponent(1, 1, 2, 1, 1, 1, "Mirror", "See who you really are", GameWorld.Direction.SOUTH, GameColor.silver);
     southComponents.add(component1);
-    component2 = new KeyComponent(2, 0, 1, 1, 1, 1, "Radioactive waste", "Secure storage facility for radioactive waste", GameWorld.Direction.WEST, GameColor.brown);
+    component2 = new KeyComponent(2, 0, 1, 1, 1, 1, "Computer console", "Secure storage facility for radioactive waste", GameWorld.Direction.WEST, GameColor.brown);
     westComponents.add(component2);
-    component3 = new KeyComponent(0, 1, 0, 1, 2, 1, "Humanoid android", "An autonomous humanoid personal assistant", GameWorld.Direction.EAST, GameColor.brown);
+    component3 = new KeyComponent(0, 1, 0, 1, 2, 1, "Vial", "An autonomous humanoid personal assistant", GameWorld.Direction.EAST, GameColor.brown);
     eastComponents.add(component3);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 0, 2);
@@ -269,10 +269,10 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "The holy grail", "A legendary relic", GameWorld.Direction.SOUTH, GameColor.silver);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Glowing orb", "A legendary relic", GameWorld.Direction.SOUTH, GameColor.silver);
     contained = new ArrayList<>();
     contained.add(component1);
-    container1 = new Container(1, 0, 1, 2, 1, 1, "Table", "Antique device once used on earth", GameWorld.Direction.SOUTH, contained);
+    container1 = new Container(1, 0, 1, 2, 1, 1, "Crate", "Antique device once used on earth", GameWorld.Direction.SOUTH, contained);
     southComponents.add(container1);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 1, 2);
@@ -297,7 +297,7 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Apple", "A juicy sweet red apple", GameWorld.Direction.WEST, GameColor.silver);
+    component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "A juicy sweet red apple", GameWorld.Direction.WEST, GameColor.silver);
     westComponents.add(component1);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 2, 2);
@@ -396,14 +396,14 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();
 
-    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Boots", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
+    component1 = new KeyComponent(0, 0, 0, 1, 1, 1, "Computer console", "Made for walking", GameWorld.Direction.EAST, GameColor.purple);
     eastComponents.add(component1);
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Plasma conduit", "Another one", GameWorld.Direction.SOUTH, GameColor.purple);
     southComponents.add(component1);
     component1 = new KeyComponent(1, 0, 1, 1, 1, 1, "Optic spanner", "For getting a grip on light", GameWorld.Direction.WEST, GameColor.purple);
     contained = new ArrayList<>();
     contained.add(component1);
-    container1 = new Container(2, 0, 0, 2, 2, 1, "Cupboard", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
+    container1 = new Container(2, 0, 0, 2, 2, 1, "Crate", "A very useful device for putting things in", GameWorld.Direction.WEST, contained);
     westComponents.add(container1);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 1, 0);
@@ -428,14 +428,14 @@ public class GameWorldFactory {
     southComponents= new ArrayList<>();
     eastComponents= new ArrayList<>();;
 
-    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Battery pack", "Optimised energy storage", GameWorld.Direction.EAST, GameColor.gold);
-    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Rare metal", "Very valuable", GameWorld.Direction.EAST, GameColor.gold);
+    component1 = new KeyComponent(1, 0, 2, 1, 1, 1, "Plasma conduit", "Optimised energy storage", GameWorld.Direction.EAST, GameColor.gold);
+    component2 = new KeyComponent(1, 0, 2, 1, 1, 1, "Computer console", "Very valuable", GameWorld.Direction.EAST, GameColor.gold);
     contained = new ArrayList<>();
     contained.add(component1);
     contained.add(component2);
-    container1 = new Container(1, 0, 2, 1, 2, 1, "Barrel", "Storage barrel", GameWorld.Direction.EAST, contained);
+    container1 = new Container(1, 0, 2, 1, 2, 1, "Crate", "Storage barrel", GameWorld.Direction.EAST, contained);
     eastComponents.add(container1);
-    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Ceiling fan", "Keeps you cool", GameWorld.Direction.WEST, GameColor.gold);
+    component3 = new KeyComponent(1, 3, 1, 1, 1, 1, "Glowing orb", "Keeps you cool", GameWorld.Direction.WEST, GameColor.gold);
     westComponents.add(component3);
 
     room = new Room(northComponents,eastComponents,southComponents,westComponents, walls, 1, 1);
