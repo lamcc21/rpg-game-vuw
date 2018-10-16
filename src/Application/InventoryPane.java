@@ -2,7 +2,6 @@ package Application;
 
 import GameWorld.*;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -67,10 +66,6 @@ class InventoryPane extends JPanel{
         WorldObject item = inventory.get(i);
         inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
-        inventoryItems[i].addActionListener(e -> {
-          player.dropItem(item);
-          updateInventoryGUI(player.getInventory(),player);
-        });
         inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         inventoryItems[i].setEnabled(true);
       } else {
