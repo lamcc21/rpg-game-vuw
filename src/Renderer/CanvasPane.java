@@ -78,10 +78,10 @@ public class CanvasPane extends JPanel{
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
     }
 
-   private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
-       if(objectsInView!=null) {
-	   for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
-       }
+    private void drawObjectsInPerspective(Graphics2D g2d, List<WorldObject> objectsInView) {
+        if(objectsInView!=null) {
+	        for(WorldObject object : objectsInView) drawBufferedImages(g2d, object);
+        }
     }
 
 
@@ -213,7 +213,10 @@ public class CanvasPane extends JPanel{
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
+
+                //iterate through all bounding boxes
                 for (Rectangle r : boundingBoxes.keySet()) {
+
                     //if click is within a bounding box
                     if (r.contains(e.getX(), e.getY())) {
 
@@ -245,6 +248,8 @@ public class CanvasPane extends JPanel{
                                 boundingBoxes.remove(r);
                             } else System.out.println("You must find the key!");
                         }
+
+                        //update canvas
                         repaint();
                     }
                 }
