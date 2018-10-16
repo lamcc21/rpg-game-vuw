@@ -22,7 +22,7 @@ public class KeyObject extends Holdable {
 
 	KeyObject(GameColor c){
 		this.gameColor = c;
-    this.description = "A "+ c.toString() +" key, I wonder what it opens..";
+        this.description = "A "+ c.toString() +" key, I wonder what it opens..";
 		this.name = c.toString()+" Key";
 	}
 

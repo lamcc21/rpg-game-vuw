@@ -22,7 +22,7 @@ public class Player {
 
 	private Direction perspective;
 	private List<WorldObject> inventory;
-  private boolean updateNeeded;
+  	private boolean updateNeeded;
 	private int xPos;
 	private int yPos;
 
@@ -34,7 +34,10 @@ public class Player {
 	  this.updateNeeded = false;
 	}
 
-	public Player() {}
+	public Player() {
+		this.perspective=Direction.NORTH;
+		this.inventory = new ArrayList<>();
+	}
 
 	/**
 	 * all getters and setters for fields in class

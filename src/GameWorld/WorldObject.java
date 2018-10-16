@@ -15,7 +15,7 @@ import java.util.List;
  *
  */
 @XmlTransient
-@XmlSeeAlso({KeyObject.class, KeyComponent.class})
+@XmlSeeAlso({KeyObject.class, KeyComponent.class, Container.class})
 public abstract class WorldObject  {
 
 	//these are the coordinates for the object, it would be good if we can
