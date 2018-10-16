@@ -14,10 +14,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 
 import GameWorld.*;
+import GameWorld.Container;
 
 public class CanvasPane extends JPanel{
     /*object drawing fields*/
@@ -65,7 +67,6 @@ public class CanvasPane extends JPanel{
         this.player = gameWorld.getPlayer();
         this.room = gameWorld.getRoom(player.getX(), player.getY());
         this.addMouseListener(MyMouseListener());
-        this.perspective = player.getPerspective();
         this.gameWorld = gameWorld;
     }
 
@@ -177,8 +178,8 @@ public class CanvasPane extends JPanel{
 
     private void drawAngles(Graphics2D g2d){
         g2d.setColor(Color.BLACK);
-        g2d.drawLine(0, 100, 800, 100); //top left angle
-        g2d.drawLine(0, 400, 800, 400); //bottom left angle
+        g2d.drawLine(0, 100, 800, 100); //top angle
+        g2d.drawLine(0, 400, 800, 400); //bottom angle
     }
 
     private void fillPolygons(Graphics2D g2d, HashMap<Polygon, GradientPaint> polygons){
@@ -193,16 +194,14 @@ public class CanvasPane extends JPanel{
 
         //set respective door colors (instead of hardcoding this, get the color from GameWorld)
 
+        this.perspective = player.getPerspective();
         if (room.getWall(perspective).hasDoor()) {
             Door door = room.getWall(perspective).getDoor();
             Color backDoorColor = new Color(door.getGameColor().getR(), door.getGameColor().getG(), door.getGameColor().getB());
-            int[] backDoorX = {350, 450, 450, 350};
-            int[] backDoorY = {225, 225, 400, 400};
-            Polygon backDoor = new Polygon(backDoorX, backDoorY, 4);
             g2d.setColor(backDoorColor);
-            g2d.fillPolygon(backDoor);
+            g2d.fillRect(350, 225, 100, 175);
             g2d.setColor(Color.black);
-            g2d.drawPolygon(backDoor);
+            g2d.drawRect(350, 225, 100, 175);
             g2d.fillOval(430, 325, 10, 10); //back knob
             Rectangle bound = new Rectangle(350, 225, 100, 175);
             boundingBoxes.put(bound, door);
@@ -213,15 +212,45 @@ public class CanvasPane extends JPanel{
       return new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
-          for(Rectangle r : boundingBoxes.keySet()){
-            if(r.contains(e.getX(), e.getY())){
-                WorldObject object = boundingBoxes.get(r);
-                System.out.println(object.getName() + ": " + object.getDescription());
-                if(object instanceof Holdable)gameWorld.pickUp(object);
-                boundingBoxes.remove(r);
-                repaint();
+            try {
+                for (Rectangle r : boundingBoxes.keySet()) {
+                    //if click is within a bounding box
+                    if (r.contains(e.getX(), e.getY())) {
+
+                        //initialise object associated with bounding box clicked
+                        WorldObject object = boundingBoxes.get(r);
+
+                        //check if container is clicked
+                        if(object instanceof Container){
+                            //print container description
+                            System.out.println(object.getName() + ": " + object.getDescription());
+                        }
+
+                        //check if object is clicked
+                        if (object instanceof Holdable) {
+                            //print object description
+                            System.out.println(object.getName() + ": " + object.getDescription());
+                            //pick up the object
+                            gameWorld.pickUp(object);
+                            //remove the associated object
+                            boundingBoxes.remove(r);
+                        }
+
+                        //check if door is clicked
+                        if (object instanceof Door) {
+                            //check if door is locked, moving rooms if not.
+                            if (((Door) object).getIsLocked()) {
+                                player.moveRoom(player.getPerspective());
+                                //remove the door
+                                boundingBoxes.remove(r);
+                            } else System.out.println("You must find the key!");
+                        }
+                        repaint();
+                    }
+                }
             }
-          }
+            catch(ConcurrentModificationException c){
+            }
           //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
         }
 
