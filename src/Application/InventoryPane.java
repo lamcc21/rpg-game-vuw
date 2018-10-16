@@ -1,19 +1,19 @@
 package Application;
 
-import GameWorld.GameWorld;
-import GameWorld.Player;
-import GameWorld.WorldObject;
-import GameWorld.GameColor;
+import GameWorld.*;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 class InventoryPane extends JPanel{
   private final BufferedImage defaultImage = ImageIO.read(getClass().getResource("black.png"));
+  private final BufferedImage keyImage = ImageIO.read(getClass().getResource("key.png"));
   //Icon made on flaticon.com and is licensed by http://creativecommons.org/licenses/by/3.0/
   private JButton[] inventoryItems;
 
@@ -39,7 +39,7 @@ class InventoryPane extends JPanel{
       if(inventory.get(i)!=null){
         WorldObject item = inventory.get(i);
         inventoryItems[i]= new JButton();
-        inventoryItems[i].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
         inventoryItems[i].addActionListener((e -> {
           player.dropItem(item);
@@ -65,7 +65,7 @@ class InventoryPane extends JPanel{
     for (int i = 0; i < inventory.size(); i++) {
       if (inventory.get(i) != null) {
         WorldObject item = inventory.get(i);
-        inventoryItems[i].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
         inventoryItems[i].addActionListener(e -> {
           player.dropItem(item);
@@ -84,6 +84,20 @@ class InventoryPane extends JPanel{
       inventoryItems[j].setEnabled(false);
       inventoryItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
+  }
+
+
+  private BufferedImage getIcon(WorldObject item) {
+    if(item instanceof KeyObject){return this.keyImage;}
+    else{
+      File image = new File(item.getFilePath());
+      try {
+        return ImageIO.read(image);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    return defaultImage;
   }
 
   private String getText(String item, String description, GameColor color){
