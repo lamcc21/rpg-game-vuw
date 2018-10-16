@@ -1,6 +1,5 @@
 package Application;
 import GameWorld.GameWorld;
-import GameWorld.WorldObject;
 import Persistence.Persistence;
 import Renderer.CanvasPane;
 
@@ -9,9 +8,6 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 import static java.lang.System.exit;
 
@@ -28,7 +24,8 @@ public class Application extends JFrame{
 
   private Application() throws IOException, InterruptedException {
     super("Have A Go Escaping");
-    setLayout(new GridBagLayout());
+    setLayout(new GridBagLayout());new Dimension();
+    setMinimumSize(new Dimension(860, 762));
     UIManager.put("ToolTip.background", new Color(67, 125, 128));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
     this.gameWorld = createGameWorld(new File("prototypeGame1.xml"));
@@ -108,12 +105,17 @@ public class Application extends JFrame{
 
   private void startListening() throws InterruptedException {
     while(true){
-        inventory.updateInventoryGUI(gameWorld.getPlayer().getInventory(), gameWorld.getPlayer()); //TODO: If Item is added or removed
-        System.out.println("asdasdsa");
-        gameWorld.getPlayer().toggleUpdateNeeded();
-        Thread.sleep(5000);
+        inventory.updateInventoryGUI(gameWorld.getPlayer().getInventory(), gameWorld.getPlayer());
+        if(gameWorld.getPlayer().craftGuiUpdateNeeded()){
+          crafting.updateCraftGUI(gameWorld);
+          gameWorld.getPlayer().toggleUpdateNeeded(); //stopped the craft gui from updating till another item is added
+        }
+        Thread.sleep(1000);
+        //TODO: need to update craft gui when ever a item is added
     }
   }
+
+  private void createSaveFile(GameWorld gameWorld){Persistence.ObjectToXml(gameWorld, "prototypeGame");}
 
   private GameWorld createGameWorld(File saveFile){
       return Persistence.XmlToObject(saveFile);

@@ -74,7 +74,7 @@ class CraftingPane extends JPanel{
         }));
     }
 
-    private void updateCraftGUI(GameWorld gameWorld){
+    public void updateCraftGUI(GameWorld gameWorld){
         for(int j=0; j<keyItems.length; j++){
             keyItems[j].setEnabled(false);
             switch (j) {
