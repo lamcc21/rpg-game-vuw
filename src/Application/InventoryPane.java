@@ -40,7 +40,7 @@ class InventoryPane extends JPanel{
         inventoryItems[i]= new JButton();
         inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         if(item instanceof KeyObject){ inventoryItems[i].setBackground(convertColourClass(item.getGameColor()));}
-        inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
+        inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription()));
         inventoryItems[i].addActionListener((e -> {
           player.dropItem(item);
           updateInventoryGUI(player.getInventory(),player);
@@ -55,6 +55,7 @@ class InventoryPane extends JPanel{
       inventoryItems[j]= new JButton();
       inventoryItems[j].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
       inventoryItems[j].setToolTipText("Empty Slot");
+      inventoryItems[j].setBackground(new Color(255,255,255));
       inventoryItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
       inventoryItems[j].setEnabled(false);
     }
@@ -67,7 +68,7 @@ class InventoryPane extends JPanel{
         WorldObject item = inventory.get(i);
         inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
         if(item instanceof KeyObject){ inventoryItems[i].setBackground(convertColourClass(item.getGameColor()));}
-        inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
+        inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription()));
         inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         inventoryItems[i].setEnabled(true);
       } else {
@@ -77,6 +78,7 @@ class InventoryPane extends JPanel{
 
     for(int j=inventory.size(); j<inventoryItems.length; j++){
       inventoryItems[j].setIcon(new ImageIcon(defaultImage.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+      inventoryItems[j].setBackground(new Color(255,255,255));
       inventoryItems[j].setToolTipText("Empty Slot");
       inventoryItems[j].setEnabled(false);
       inventoryItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -108,11 +110,11 @@ class InventoryPane extends JPanel{
     return Color.black;
   }
 
-  private String getText(String item, String description, GameColor color){
+  private String getText(String item, String description){
     return "<html>" +
         "<p>" +
         item +
-        "<br>" + description + "<br>" + " Color: " + color.getB() + color.getG() + color.getB()+
+        "<br>" + description +
         "<br>------------<br>" + "Click To Drop" +
         "</p>\n" +
         "<table>\n";

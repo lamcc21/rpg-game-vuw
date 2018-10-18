@@ -31,7 +31,7 @@ public class Application extends JFrame{
     super("Have A Go Escaping");
     setLayout(new GridBagLayout());new Dimension();
     setMinimumSize(new Dimension(870, 820));
-    UIManager.put("ToolTip.background", new Color(67, 125, 128));
+    UIManager.put("ToolTip.background", new Color(255, 255, 255));
     setUIFont(new javax.swing.plaf.FontUIResource("Futuro", Font.BOLD, 15));
 
     JFrame parentFrame = new JFrame();
@@ -154,11 +154,12 @@ public class Application extends JFrame{
   private void startListening() throws InterruptedException {
     while(true){
         inventory.updateInventoryGUI(gameWorld.getPlayer().getInventory(), gameWorld.getPlayer());
+        Thread.sleep(259);
         if(gameWorld.getPlayer().craftGuiUpdateNeeded()){
           crafting.updateCraftGUI(gameWorld);
           gameWorld.getPlayer().toggleUpdateNeeded(); //stopped the craft gui from updating till another item is added
         }
-        Thread.sleep(500);
+        Thread.sleep(250);
 
     }
   }
