@@ -6,6 +6,7 @@ import GameWorld.GameColor;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -75,44 +76,70 @@ class CraftingPane extends JPanel{
     }
 
     public void updateCraftGUI(GameWorld gameWorld){
-        for(int j=0; j<keyItems.length; j++){
-            keyItems[j].setEnabled(false);
-            switch (j) {
-              case 0: if(gameWorld.getPlayer().isCraftable(GameColor.cyan)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Cyan Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
-              case 1: if(gameWorld.getPlayer().isCraftable(GameColor.purple)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Purple Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
-              case 2: if(gameWorld.getPlayer().isCraftable(GameColor.green)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Green Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
-              case 3: if(gameWorld.getPlayer().isCraftable(GameColor.gold)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Gold Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
-              case 4: if(gameWorld.getPlayer().isCraftable(GameColor.brown)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Brown Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
-              case 5: if(gameWorld.getPlayer().isCraftable(GameColor.silver)){
-                keyItems[j].setEnabled(true);
-                keyItems[j].setToolTipText("Craft Silver Key");
-                keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-              }
+        for(JButton craftButton: keyItems){
+          for (ActionListener l : craftButton.getActionListeners()) {
+            craftButton.removeActionListener(l);
           }
-          if(!keyItems[j].isEnabled()){
-            keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            keyItems[j].setToolTipText(null);
-          }
+        }
+
+        for(int i=0; i<keyItems.length; i++){
+            keyItems[i].setEnabled(false);
+            int j = i;
+
+            if(gameWorld.getPlayer().isCraftable(GameColor.cyan) && j==0){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Cyan Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.cyan);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }else if(gameWorld.getPlayer().isCraftable(GameColor.purple) && j==1){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Purple Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.purple);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }else if(gameWorld.getPlayer().isCraftable(GameColor.green) && j==2){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Green Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.green);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }else if(gameWorld.getPlayer().isCraftable(GameColor.gold) && j==3){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Gold Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.gold);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }else if(gameWorld.getPlayer().isCraftable(GameColor.brown) && j==4){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Brown Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.brown);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }else if(gameWorld.getPlayer().isCraftable(GameColor.silver) && j==5){
+              keyItems[j].setEnabled(true);
+              keyItems[j].setToolTipText("Craft Silver Key");
+              keyItems[j].addActionListener((e -> {
+                gameWorld.getPlayer().craft(GameColor.silver);
+                keyItems[j].setEnabled(false);
+              }));
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            if(!keyItems[j].isEnabled()){
+              keyItems[j].setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+              keyItems[j].setToolTipText(null);
+            }
         }
     }
 }

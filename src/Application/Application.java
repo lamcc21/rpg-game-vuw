@@ -133,9 +133,7 @@ public class Application extends JFrame{
               try {
                   Persistence.ObjectToXml(gameWorld, fileToSave);
               } catch (JAXBException e1) {
-                  //TODO
               } catch (FileNotFoundException e1) {
-                  //TODO
               }
           }
           System.exit(0);
@@ -160,8 +158,8 @@ public class Application extends JFrame{
           crafting.updateCraftGUI(gameWorld);
           gameWorld.getPlayer().toggleUpdateNeeded(); //stopped the craft gui from updating till another item is added
         }
-        Thread.sleep(1000);
-        //TODO: need to update craft gui when ever a item is added
+        Thread.sleep(500);
+
     }
   }
 
@@ -169,7 +167,6 @@ public class Application extends JFrame{
       try {
           return Persistence.XmlToObject(saveFile);
       } catch (JAXBException e) {
-          //TODO
       }
       return null;
   }

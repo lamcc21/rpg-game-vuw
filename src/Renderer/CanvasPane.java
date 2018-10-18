@@ -137,7 +137,6 @@ public class CanvasPane extends JPanel{
               }//Closes container panel
             }
           }catch(ConcurrentModificationException c){}
-          //TODO: Used for picking up object if possible otherwise player will be notified that it is unobtainable??
         }
 
         @Override
@@ -148,7 +147,6 @@ public class CanvasPane extends JPanel{
 
         @Override
         public void mouseEntered(MouseEvent e) {
-          //TODO: I think this can be used for highlighting description
         }
 
         @Override

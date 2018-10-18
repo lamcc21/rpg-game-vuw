@@ -39,6 +39,7 @@ class InventoryPane extends JPanel{
         WorldObject item = inventory.get(i);
         inventoryItems[i]= new JButton();
         inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        if(item instanceof KeyObject){ inventoryItems[i].setBackground(convertColourClass(item.getGameColor()));}
         inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
         inventoryItems[i].addActionListener((e -> {
           player.dropItem(item);
@@ -65,6 +66,7 @@ class InventoryPane extends JPanel{
       if (inventory.get(i) != null) {
         WorldObject item = inventory.get(i);
         inventoryItems[i].setIcon(new ImageIcon(getIcon(item).getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH)));
+        if(item instanceof KeyObject){ inventoryItems[i].setBackground(convertColourClass(item.getGameColor()));}
         inventoryItems[i].setToolTipText(getText(item.getName(), item.getDescription(), item.getGameColor()));
         inventoryItems[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         inventoryItems[i].setEnabled(true);
@@ -93,6 +95,17 @@ class InventoryPane extends JPanel{
       }
     }
     return defaultImage;
+  }
+
+  //This is only needed because swing can't handle custom colour class;
+  private Color convertColourClass(GameColor color){
+    if(color.equals(GameColor.cyan)){return new Color(67,125,128);}
+    else if(color.equals(GameColor.purple)){return new Color(75, 66, 121);}
+    else if(color.equals(GameColor.green)){return new Color(63,99, 37);}
+    else if(color.equals(GameColor.gold)){return new Color(170, 170, 36);}
+    else if(color.equals(GameColor.brown)){return new Color(114,50,28);}
+    else if(color.equals(GameColor.silver)){return new Color(121,121,121);}
+    return Color.black;
   }
 
   private String getText(String item, String description, GameColor color){

@@ -18,7 +18,6 @@ public class gameTests {
 
 
     public static void initialise(){
-
         try {
             gameWorld = Persistence.XmlToObject(new File("prototypeGame1.xml"));
         } catch (JAXBException e) {
@@ -36,7 +35,6 @@ public class gameTests {
         try {
 			gameWorld.movePlayer(GameWorld.Direction.EAST);
 		} catch (EndGameException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         assert(p.getX()==0 && p.getY()==0);
@@ -57,7 +55,6 @@ public class gameTests {
         try {
 			gameWorld.movePlayer(GameWorld.Direction.EAST);
 		} catch (EndGameException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         assert(p.getX()==1 && p.getY()==0);
