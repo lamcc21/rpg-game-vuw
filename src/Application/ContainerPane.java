@@ -30,6 +30,7 @@ public class ContainerPane extends JPanel {
   }
 
   public void updateContainerGUI(Container inventory, Player player) {
+	updateContainerGUI();
     for (int i = 0; i < inventory.getContents().size(); i++) {
       if (inventory.getContents().get(i) != null) {
         WorldObject item = inventory.getContents().get(i);
