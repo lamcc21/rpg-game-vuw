@@ -99,6 +99,8 @@ public class GameWorld {
 	}
 
 	public List<WorldObject> getObjectsInView() {
+		if(player.getX()<0 || player.getX()>=rooms.length ||
+				player.getY()<0 || player.getY()>=rooms[0].length) {return null;}
 		return rooms[player.getX()][player.getY()].getContents(player.getPerspective());
 	}
 }

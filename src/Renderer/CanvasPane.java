@@ -77,7 +77,23 @@ public class CanvasPane extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         boundingBoxes = new HashMap<>();
+        int PromptResult = 9000 ;
+        boolean gameover = false;
+        try {
         room = gameWorld.getRoom(player.getX(),player.getY());
+        }catch(ArrayIndexOutOfBoundsException e) {
+        	gameover=true;
+        }
+        if(gameover) {
+        	SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                	JOptionPane.showMessageDialog(null, "Game Won", "Game Won", 
+                    JOptionPane.INFORMATION_MESSAGE);  
+                    System.exit(1);
+                }
+            });
+        }
         Graphics2D g2d = (Graphics2D) g;
         constructPolygonGradientMap(g2d);
         drawObjectsInPerspective(g2d, gameWorld.getObjectsInView());
